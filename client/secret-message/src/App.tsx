@@ -1,11 +1,6 @@
-
+import LanguageSelector from "./components/LanguageSelector";
 function App() {
-
-  return (
-    <>
-      
-    </>
-  )
+  return <LanguageSelector />;
 }
 
-export default App
+export default App;

@@ -1,23 +1,12 @@
 import { useState } from "react";
-import languageIcons from "../../assets/languageIcons/languageIcons";
-import style from "./LanguageSelector.module.css";
+import languageToImg from "../../assets/languageIcons/languageIcons";
+import style from "./languageSelector.module.css";
 import { PiCaretDownBold } from "react-icons/pi";
 
 const LanguageSelector = () => {
   const [isActive, setActive] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("English");
-  const languages = ["Arabic", "English", "French"];
-
-  const languageToImg = (language: string) => {
-    return (
-      <>
-        <img
-          src={languageIcons[language as keyof typeof languageIcons]}
-          alt={language}
-        />
-      </>
-    );
-  };
+  const languages = ["English", "Arabic", "French"];
   return (
     <div>
       <button

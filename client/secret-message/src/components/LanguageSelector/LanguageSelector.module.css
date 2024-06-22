@@ -20,9 +20,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Lilita One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Lilita One";
 }
 .languageOption:hover {
   background-color: hsl(180, 83%, 79%);

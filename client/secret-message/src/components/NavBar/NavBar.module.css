@@ -1,0 +1,12 @@
+@import "../../index.css";
+.navBar {
+  background-color: var(--color-secondary);
+  display: flex;
+  padding: 20px;
+  padding-right: 50px;
+  align-items: center;
+  gap: 30px;
+}
+.navBar div:first-of-type {
+    flex: 1;
+}

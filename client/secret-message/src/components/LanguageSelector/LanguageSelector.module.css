@@ -1,20 +1,26 @@
 .caret {
   color: #7e7e7e;
   font-size: 2rem;
-  margin-left: 10px;
+  margin-left: 7px;
 }
 .languageSwitchBtn {
   cursor: pointer;
   border-radius: 10px;
   border: none;
+  padding: 7px;
+  background-color: white;
 }
 .languageOptions {
-  background-color: antiquewhite;
+  background-color: white;
   width: 120px;
   padding: 10px 0;
+  position: fixed;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 2px solid var(--color-primary);
 }
 .languageOption {
-  background-color: hsl(180, 83%, 89%);
+  background-color: white;
   padding: 5px 15px;
   cursor: pointer;
   display: flex;
@@ -23,8 +29,14 @@
   font-family: "Lilita One";
 }
 .languageOption:hover {
-  background-color: hsl(180, 83%, 79%);
+  background-color: hsl(0, 0%, 90%);
 }
 .selectedLanguage {
-  background-color: hsl(180, 83%, 69%);
+  background-color: var(--color-primary);
+}
+.LanguageSelectorCloser{
+  background-color: rgba(245, 240, 255, 0.558);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }

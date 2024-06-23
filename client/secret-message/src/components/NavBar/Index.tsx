@@ -1,11 +1,12 @@
 import style from "./NavBar.module.css";
 import LanguageSelector from "../LanguageSelector";
+import Button from "../Button";
 const NavBar = () => {
   return (
-    <nav className={style.NavBar}>
+    <nav className={style.navBar}>
       <LanguageSelector />
-      <button className="nav__button--outline">Log in</button>
-      <button className="nav__button--fill">Sign up</button>
+      <Button btnType="btnPrimary">Register</Button>
+      <Button btnType="btnSecondary">Login</Button>
     </nav>
   );
 };

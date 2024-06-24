@@ -1,0 +1,75 @@
+.hero {
+  background-image: url("../../assets/images/hero_background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 120px;
+  padding: 50px 100px;
+  padding-bottom: 1rem;
+}
+.hero__text {
+  font-family: "lilita one";
+  color: white;
+  width: 600px;
+  text-shadow: 8px 8px 5px rgba(0, 0, 0, 0.244);
+  align-self: center;
+  padding-bottom: 3rem;
+}
+.hero__text h1 {
+  font-size: 5rem;
+  margin-bottom: 2.5rem;
+}
+.hero__text h2 {
+  padding-right: 30px;
+  font-size: 2rem;
+}
+.hero__img {
+  width: 750px;
+  overflow: hidden;
+}
+.devider {
+  background-image: url("../../assets/images/wave-haikei.svg");
+  width: 100%;
+  aspect-ratio: 16/1;
+  height: fit-content;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+.readMore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 70%;
+  font-family: "Lilita One";
+  font-size: 2rem;
+  color: var(--color-secondary);
+  cursor: pointer;
+  text-decoration: none;
+}
+.readMoreCaret {
+  animation: springy;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite ;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes springy {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,7 @@
+.instructions {
+  margin: 100px 0;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

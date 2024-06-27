@@ -28,6 +28,7 @@
 .hero__text h2 {
   padding-right: 30px;
   font-size: 2rem;
+  font-family: "Poppins";
 }
 .hero__img {
   width: 750px;
@@ -58,7 +59,7 @@
 .readMoreCaret {
   animation: springy;
   animation-duration: 1.5s;
-  animation-iteration-count: infinite ;
+  animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 

@@ -9,7 +9,7 @@ const HowToUse = () => {
       <InstructionBox floatLeft={false} />
       <hr />
       <InstructionBox floatLeft={true} />
-      <Button btnType="btnPrimary">Get Started</Button>
+      <Button btnType="btnPrimary">Get Started Now!</Button>
     </section>
   );
 };

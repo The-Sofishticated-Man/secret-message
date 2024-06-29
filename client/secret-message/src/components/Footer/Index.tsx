@@ -7,12 +7,12 @@ const Footer = () => {
         Made with{" "}
         <span className={style.heartIcon}>
           <FaHeart
-            style={{ position: "relative", top: "5px", margin: "0 6px 0 3px" }}
+            style={{ position: "relative", top: "0px", margin: "0 6px 0 3px" }}
             color="var(--color-primary)"
           />
         </span>
         By
-        <a href="https://github.com/The-Sophishticated-Man" target="_blank">
+        <a href="https://github.com/The-Sophishticated-Man" target="_blank" className={style.sophishticated}>
           <strong>The Sophishticated Man</strong>
         </a>
       </h4>

@@ -4,9 +4,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth;
-}
 :root {
   --font-primary: "Lilita One";
   --light: #fff;
@@ -14,3 +11,7 @@ html {
   --color-primary: #ffbe0b;
   --color-secondary: #8338ec;
 }
+html {
+  scroll-behavior: smooth;
+}
+

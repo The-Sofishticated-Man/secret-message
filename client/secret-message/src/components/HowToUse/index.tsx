@@ -1,6 +1,7 @@
 import InstructionBox from "../InstructionBox";
 import style from "./HowToUse.module.css";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 const HowToUse = () => {
   return (
     <section id="next" className={style.instructions}>
@@ -25,7 +26,11 @@ const HowToUse = () => {
         explicabo in?
       </InstructionBox>
       <hr />
-      <Button btnType="btnPrimary" Size="2rem">Get Started Now!</Button>
+      <Link to={"/register"}>
+        <Button btnType="btnPrimary" Size="1.5rem">
+          Get Started Now!
+        </Button>
+      </Link>
     </section>
   );
 };

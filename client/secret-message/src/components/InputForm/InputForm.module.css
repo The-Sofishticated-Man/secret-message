@@ -1,0 +1,31 @@
+.loginForm {
+  max-width: 50%;
+  padding: 40px 60px;
+  background-color: var(--color-secondary);
+  border-radius: 15px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+}
+.formField {
+  width: 100%;
+}
+.formCheckLabel {
+  color: white;
+}
+.formHeading {
+  text-align: center;
+  color: var(--color-primary);
+  font-family: "Lilita One";
+}
+.formSubHeading {
+  color: var(--color-primary);
+  font-family: "Poppins";
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.warningMessage {
+  color: var(--color-primary);
+  font-family: "Lilita One";
+}

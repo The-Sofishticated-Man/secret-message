@@ -53,9 +53,11 @@ function InputForm({
               placeholder=""
             />
             <label htmlFor="usernameField">Username</label>
-            {errors.username ? 
-              <p className={style.warningMessage}>{errors.username.message}</p>:<p></p>
-            }
+            {errors.username ? (
+              <p className={style.warningMessage}>{errors.username.message}</p>
+            ) : (
+              <p></p>
+            )}
           </div>
         </>
       )}
@@ -68,10 +70,12 @@ function InputForm({
           placeholder=""
         />
         <label htmlFor="emailField">Email address</label>
+        {errors.email ? (
+          <p className={style.warningMessage}>{errors.email.message}</p>
+        ) : (
+          <p></p>
+        )}
       </div>
-      {errors.email ? 
-       <p className={style.warningMessage}>{errors.email.message}</p>:<p></p>
-      }
       <div className={`form-floating mb-3  ${style.formField}`}>
         <input
           {...register("password")}
@@ -81,10 +85,12 @@ function InputForm({
           placeholder=""
         />
         <label htmlFor="passwordField">Password</label>
+        {errors.password ? (
+          <p className={style.warningMessage}>{errors.password.message}</p>
+        ) : (
+          <p></p>
+        )}
       </div>
-      {errors.password ? 
-        <p className={style.warningMessage}>{errors.password.message}</p>:<p></p>
-      }
       <div className={`form-check`}>
         <input
           type="checkbox"

@@ -5,11 +5,7 @@ const Login = () => {
     <section className={style.formSection}>
       <InputForm
         onSubmit={(formData) => {
-          try {
-            console.log(formData);
-          } catch (error) {
-            console.log(error);
-          }
+          console.log(formData);
         }}
         newUser={false}
       />

@@ -28,4 +28,5 @@
 .warningMessage {
   color: var(--color-primary);
   font-family: "Lilita One";
+  margin: 0;
 }

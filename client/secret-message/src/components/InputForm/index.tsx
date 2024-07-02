@@ -29,7 +29,6 @@ function InputForm({
   } = useForm<formData>({
     resolver: zodResolver(userSchema),
   });
-  console.log(errors);
   return (
     <form
       noValidate={true}

@@ -11,15 +11,22 @@ mongoose
   });
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  email: { type: String, required: true },
+  username: {
+    type: String,
+    required: true,
+    unique: [true, "Username already taken"],
+    min: [3, "Username must be at least 3 characters long."],
+    max: [18, "Username must be at most 18 characters long."],
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: [true, "This email is already in use"],
+    //matches to Email regular expression (basically checks if it's a valid email)
+    match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Email not valid"],
+  },
   password: { type: String, required: true },
 });
 
 const SMUser = mongoose.model("SMUser", userSchema);
-
-async function addNewUser(userData) {
-  const newUser = new SMUser(userData);
-  return newUser.save();
-}
-module.exports = { addNewUser };
+module.exports = { SMUser };

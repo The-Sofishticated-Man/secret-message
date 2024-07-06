@@ -4,7 +4,8 @@
   "description": "backend for my secret message thingy I'm trying to make",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/index.ts"
   },
   "keywords": [
     "node",
@@ -18,7 +19,16 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-validator": "^7.1.0",
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-validator": "^3.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.3"
   }
 }

@@ -1,45 +1,36 @@
-import style from "./.module.css";
+import style from "./RegisterForm.module.css";
 import Button from "../Button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { formData, serverError, userSchema } from "../../hooks/useRegister";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
-//Declare schema for form input
-const userSchema = z.object({
-  username: z.string().min(3).max(18),
-  email: z.string().email(),
-  password: z.string().min(8).max(20),
-});
-
-//Delcare type based on the zod schema
-type formData = z.infer<typeof userSchema>;
-
 function RegisterForm() {
-  //using react hook form to control fields
   const {
-    register,
     handleSubmit,
+    register,
+    setError,
     formState: { errors },
   } = useForm<formData>({
     resolver: zodResolver(userSchema),
   });
-  
   const onSubmit = (formInput: formData) => {
     axios
       .post("http://localhost:3000/register", formInput)
       .then((response) => {
         console.log("Registeration successful:", response.data);
       })
-      .catch((error) => {
-        console.log("Registration failed: ", error);
+      .catch(({ response: { data } }) => {
+        console.log(data);
+        data.forEach((error: serverError) => {
+          setError(error.path, { type: error.path, message: error.msg });
+        });
       });
   };
-
   return (
     <form
       noValidate={true}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit) /*handleSubmit(onSubmit)*/}
       className={style.loginForm}
     >
       <h1 className={style.formHeading}>Welcome Back!</h1>

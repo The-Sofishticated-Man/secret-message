@@ -12,7 +12,7 @@ export const userSchema = z.object({
   password: z
     .string()
     .min(8, "Password must be at least 8 characters long")
-    .max(20, { message: "Password must be at most 20 characters long" }),
+    .max(25, { message: "Password must be at most 25 characters long" }),
 });
 
 //Delcare type based on the zod schema
@@ -22,5 +22,3 @@ export interface serverError {
   path: "username" | "email" | "password" | "root" | `root.${string}`;
   msg: string;
 }
-
-export default { userSchema };

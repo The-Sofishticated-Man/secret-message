@@ -43,7 +43,7 @@ export const registerValidationSchema = [
     .escape()
     .notEmpty()
     .withMessage("password cannot be empty")
-    .isLength({ min: 8, max: 20 })
-    .withMessage("Password must be 8-20 characters long"),
+    .isLength({ min: 8, max: 25 })
+    .withMessage("Password must be 8-25 characters long"),
 ];
 export default { registerValidationSchema };

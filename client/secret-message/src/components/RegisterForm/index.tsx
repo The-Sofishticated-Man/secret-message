@@ -1,9 +1,9 @@
 import style from "./RegisterForm.module.css";
 import Button from "../Button";
-import { formData, serverError, userSchema } from "../../hooks/useRegister";
+import { formData, userSchema, serverError } from "../../util/registrationValidationUtil";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import { registerUser } from "../../services/apiClients";
 
 function RegisterForm() {
   const {
@@ -15,18 +15,19 @@ function RegisterForm() {
     resolver: zodResolver(userSchema),
   });
   const onSubmit = (formInput: formData) => {
-    axios
-      .post("http://localhost:3000/register", formInput)
-      .then((response) => {
-        console.log("Registeration successful:", response.data);
+    registerUser(formInput)
+      .then((data) => {
+        console.log("User added successfully", data);
       })
       .catch(({ response: { data } }) => {
-        console.log(data);
-        data.forEach((error: serverError) => {
-          setError(error.path, { type: error.path, message: error.msg });
+        //sets server error to their respective fields and logs them
+        data.forEach(({ path, msg }: serverError) => {
+          setError(path, { type: path, message: msg });
+          console.log(`assigned ${path} an error of ${msg}`);
         });
       });
   };
+
   return (
     <form
       noValidate={true}

@@ -1,21 +1,25 @@
+import LoadingSpinner from "../icons/LoadingSpinner";
 import style from "./btnStyles.module.css";
+import "ldrs/ring";
 const Button = ({
   btnType,
   children,
   Size,
   Margin,
+  loading,
 }: {
   btnType?: string;
-  children: string;
+  children?: string;
   Size?: string;
   Margin?: string;
+  loading?: boolean;
 }) => {
   return (
     <button
       style={{ fontSize: Size, margin: Margin }}
       className={`${style.btn} ${btnType && style[btnType]}`}
     >
-      {children}
+      {loading ? <LoadingSpinner /> : children}
     </button>
   );
 };

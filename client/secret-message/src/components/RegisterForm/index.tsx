@@ -1,11 +1,17 @@
 import style from "./RegisterForm.module.css";
 import Button from "../Button";
-import { formData, userSchema, serverError } from "../../util/registrationValidationUtil";
+import {
+  formData,
+  userSchema,
+  serverError,
+} from "../../util/registrationValidationUtil";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "../../services/apiClients";
+import { useState } from "react";
 
-function RegisterForm() {
+function RegisterForm({ onComplete }: { onComplete: () => void }) {
+  const [isLoading, setLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -15,9 +21,11 @@ function RegisterForm() {
     resolver: zodResolver(userSchema),
   });
   const onSubmit = (formInput: formData) => {
+    setLoading(true);
     registerUser(formInput)
       .then((data) => {
         console.log("User added successfully", data);
+        onComplete();
       })
       .catch(({ response: { data } }) => {
         //sets server error to their respective fields and logs them
@@ -25,7 +33,8 @@ function RegisterForm() {
           setError(path, { type: path, message: msg });
           console.log(`assigned ${path} an error of ${msg}`);
         });
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -94,7 +103,12 @@ function RegisterForm() {
           Remember me
         </label>
       </div>
-      <Button btnType="btnPrimary" Size="1rem" Margin="10px 0px 0 0px">
+      <Button
+        btnType="btnPrimary"
+        Size="1.3rem"
+        Margin="10px 0px 0 0px"
+        loading={isLoading}
+      >
         Register
       </Button>
     </form>

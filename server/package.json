@@ -17,6 +17,7 @@
   "author": "islam",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.40.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",

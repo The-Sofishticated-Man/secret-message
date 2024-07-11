@@ -26,7 +26,7 @@ const HowToUse = () => {
         explicabo in?
       </InstructionBox>
       <hr />
-      <Link to={"/register"}>
+      <Link to={"/user/register"}>
         <Button btnType="btnPrimary" Size="1.5rem">
           Get Started Now!
         </Button>

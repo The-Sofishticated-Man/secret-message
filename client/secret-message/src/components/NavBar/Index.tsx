@@ -6,10 +6,10 @@ const NavBar = () => {
   return (
     <nav className={style.navBar}>
       <LanguageSelector />
-      <Link to={"/register"}>
+      <Link to={"/user/register"}>
         <Button btnType="btnPrimary">Register</Button>
       </Link>
-      <Link to={"/login"}>
+      <Link to={"/user/login"}>
         <Button btnType="btnSecondary">Login</Button>
       </Link>
     </nav>

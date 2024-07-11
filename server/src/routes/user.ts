@@ -21,7 +21,7 @@ router.post(
       argon2
         .hash(formData.password)
         .then((hashedPassword) => {
-          SMUser.create({ ...FormData, password: hashedPassword })
+          SMUser.create({ ...formData, password: hashedPassword })
             .then((data) => {
               console.log("created user successfully:");
               res
@@ -42,5 +42,30 @@ router.post(
     }
   }
 );
+
+router.post("/login", (req, res) => {
+  const loginFields = req.body;
+  console.log("Login attempt: ", loginFields);
+  SMUser.findOne({ email: loginFields.email }).then(async (user) => {
+    if (!user) {
+      console.error("Login failed: user does not exist");
+      res.status(401).json({ message: "Auth failed" });
+    } else {
+      try {
+        if (
+          !(await argon2.verify(user.password as string, loginFields.password))
+        ) {
+          console.error("Login failed: password does not match");
+          res.status(401).json({ message: "Auth failed" });
+        } else {
+          console.log("Login successful");
+          res.send({ message: "Auth successful" });
+        }
+      } catch (err) {
+        console.error("Error: couldn't verify password", err);
+      }
+    }
+  });
+});
 
 export default router;

@@ -3,7 +3,7 @@ import SMUser from "./mongoAPI";
 
 async function usernameInUse(value: string) {
   const user = await SMUser.findOne({ username: value });
-  console.log("users with same username:", user);
+  console.log("found user with same username: ", user);
   //checks if the object is empty
   if (user) {
     throw new Error("Username already in use");
@@ -11,8 +11,7 @@ async function usernameInUse(value: string) {
 }
 async function emailInUse(value: string) {
   const user = await SMUser.findOne({ email: value });
-  console.log("found user: ", user);
-  console.log("check is : ", !(JSON.stringify(user) === "{}"));
+  console.log("found user with same email: ", user);
   if (user) {
     throw new Error("Email already in use");
   }

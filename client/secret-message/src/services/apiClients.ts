@@ -5,5 +5,8 @@ const apiClient = axios.create({
 });
 
 export function registerUser(userData: object) {
-  return apiClient.post("/register/", userData);
+  return apiClient.post("/user/register/", userData);
+}
+export function loginUser(userData: object) {
+  return apiClient.post("/user/login", userData);
 }

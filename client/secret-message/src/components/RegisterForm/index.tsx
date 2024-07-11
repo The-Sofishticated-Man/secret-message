@@ -27,9 +27,10 @@ function RegisterForm({ onComplete }: { onComplete: () => void }) {
         console.log("User added successfully", data);
         onComplete();
       })
-      .catch(({ response: { data } }) => {
+      .catch((something) => {
         //sets server error to their respective fields and logs them
-        data.forEach(({ path, msg }: serverError) => {
+        console.log("got an error trying to create user: ", something);
+        something.response.data.forEach(({ path, msg }: serverError) => {
           setError(path, { type: path, message: msg });
           console.log(`assigned ${path} an error of ${msg}`);
         });
@@ -40,10 +41,10 @@ function RegisterForm({ onComplete }: { onComplete: () => void }) {
   return (
     <form
       noValidate={true}
-      onSubmit={handleSubmit(onSubmit) /*handleSubmit(onSubmit)*/}
+      onSubmit={handleSubmit(onSubmit)}
       className={style.loginForm}
     >
-      <h1 className={style.formHeading}>Welcome Back!</h1>
+      <h1 className={style.formHeading}>Welcome!</h1>
 
       <p className={style.formSubHeading}>Register to create an new account</p>
       <div className={`form-floating mb-3  ${style.formField}`}>
@@ -91,17 +92,6 @@ function RegisterForm({ onComplete }: { onComplete: () => void }) {
         ) : (
           <p></p>
         )}
-      </div>
-      <div className={`form-check`}>
-        <input
-          type="checkbox"
-          name="remember"
-          id="remember"
-          className={`form-check-input`}
-        />
-        <label htmlFor="remember" className={style.formCheckLabel}>
-          Remember me
-        </label>
       </div>
       <Button
         btnType="btnPrimary"

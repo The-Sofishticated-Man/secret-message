@@ -11,9 +11,9 @@ mongoose
   });
 
 const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
+  username: { type: String, require: true },
+  email: { type: String, require: true },
+  password: { type: String, require: true },
 });
 
 const SMUser = mongoose.model("SMUser", userSchema);

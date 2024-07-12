@@ -4,6 +4,14 @@ import { validationResult } from "express-validator";
 import SMUser from "../mongoAPI";
 import { registerValidationSchema } from "../validationUtils";
 import argon2 from "argon2";
+import jwt from "jsonwebtoken";
+import { ObjectId } from "mongoose";
+
+function createJWTToken(_id: string) {
+  return jwt.sign({ _id }, process.env.JWT_SECRET_KEY as string, {
+    expiresIn: "7d",
+  });
+}
 
 router.post(
   "/register",
@@ -24,9 +32,12 @@ router.post(
           SMUser.create({ ...formData, password: hashedPassword })
             .then((data) => {
               console.log("created user successfully:");
-              res
-                .status(201)
-                .json({ message: "User created successfully", user: data });
+              const jwtToken = createJWTToken(data.id);
+              res.status(201).json({
+                message: "User created successfully",
+                user: data.email,
+                jwtToken,
+              });
             })
             .catch((err) => {
               //this triggers when mongoose fails to create the user
@@ -49,17 +60,18 @@ router.post("/login", (req, res) => {
   SMUser.findOne({ email: loginFields.email }).then(async (user) => {
     if (!user) {
       console.error("Login failed: user does not exist");
-      res.status(401).json({ message: "Auth failed" });
+      res.status(401).json({ message: "Login failed" });
     } else {
       try {
         if (
           !(await argon2.verify(user.password as string, loginFields.password))
         ) {
           console.error("Login failed: password does not match");
-          res.status(401).json({ message: "Auth failed" });
+          res.status(401).json({ message: "Login failed" });
         } else {
+          const jwtToken = createJWTToken(user.id);
           console.log("Login successful");
-          res.send({ message: "Auth successful" });
+          res.send({ message: "Login successful", jwtToken });
         }
       } catch (err) {
         console.error("Error: couldn't verify password", err);

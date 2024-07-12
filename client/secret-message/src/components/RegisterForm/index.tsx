@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "../../services/apiClients";
 import { useState } from "react";
 
-function RegisterForm({ onComplete }: { onComplete: () => void }) {
+function RegisterForm() {
   const [isLoading, setLoading] = useState(false);
   const {
     handleSubmit,
@@ -23,9 +23,8 @@ function RegisterForm({ onComplete }: { onComplete: () => void }) {
   const onSubmit = (formInput: formData) => {
     setLoading(true);
     registerUser(formInput)
-      .then((data) => {
-        console.log("User added successfully", data);
-        onComplete();
+      .then((response) => {
+        console.log("User added successfully", response.data);
       })
       .catch((something) => {
         //sets server error to their respective fields and logs them

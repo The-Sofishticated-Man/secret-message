@@ -16,7 +16,7 @@ const Button = ({
 }) => {
   return (
     <button
-      style={{ fontSize: Size, margin: Margin }}
+      style={{ fontSize: Size, margin: Margin, textDecoration: "none" }}
       className={`${style.btn} ${btnType && style[btnType]}`}
     >
       {loading ? <LoadingSpinner /> : children}

@@ -1,30 +1,31 @@
 import style from "./NavBar.module.css";
 import LanguageSelector from "../LanguageSelector";
 import Button from "../Button";
-import { Link } from "react-router-dom";
-const NavBar = ({
-  showLogin,
-  showRegister,
-  loggedIn,
-}: {
-  showLogin: boolean;
-  showRegister: boolean;
-  loggedIn: boolean;
-}) => {
+import BetterLink from "../BetterLink/BetterLink";
+import { useLocation } from "react-router-dom";
+
+const NavBar = ({ loggedIn }: { loggedIn: boolean }) => {
+  const { pathname } = useLocation();
+  const isInLoginPage = pathname === "/user/login";
+  const isInRegisterPage = pathname === "/user/register";
   return (
     <nav className={style.navBar}>
       <LanguageSelector />
       {!loggedIn ? (
         <>
-          {showRegister && (
-            <Link to={"/user/register"}>
+          {!isInRegisterPage && (
+            <BetterLink to={"/user/register"}>
               <Button btnType="btnPrimary">Register</Button>
-            </Link>
+            </BetterLink>
           )}
-          {showLogin && (
-            <Link to={"/user/login"}>
-              <Button btnType="btnSecondary">Log in</Button>
-            </Link>
+          {!isInLoginPage && (
+            <BetterLink to={"/user/login"}>
+              <Button
+                btnType={isInRegisterPage ? "btnPrimary" : "btnSecondary"}
+              >
+                Log in
+              </Button>
+            </BetterLink>
           )}
         </>
       ) : (

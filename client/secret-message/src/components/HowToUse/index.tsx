@@ -1,7 +1,7 @@
 import InstructionBox from "../InstructionBox";
 import style from "./HowToUse.module.css";
 import Button from "../Button";
-import { Link } from "react-router-dom";
+import BetterLink from "../BetterLink/BetterLink";
 const HowToUse = () => {
   return (
     <section id="next" className={style.instructions}>
@@ -26,11 +26,11 @@ const HowToUse = () => {
         explicabo in?
       </InstructionBox>
       <hr />
-      <Link to={"/user/register"}>
+      <BetterLink to={"/user/register"}>
         <Button btnType="btnPrimary" Size="1.5rem">
           Get Started Now!
         </Button>
-      </Link>
+      </BetterLink>
     </section>
   );
 };

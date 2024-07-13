@@ -4,10 +4,13 @@ import HomePage from "./routes/HomePage";
 import { Routes, Route } from "react-router-dom";
 import Register from "./routes/Register/RegisterPage";
 import Login from "./routes/Login/LoginPage";
+import useAuth from "./hooks/useAuth";
+
 function App() {
+  const { isLoggedIn } = useAuth();
   return (
     <>
-      <NavBar />
+      <NavBar loggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="user">

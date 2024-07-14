@@ -4,6 +4,7 @@ import useRegister from "../../hooks/useRegister";
 import { formData, userSchema } from "../../util/registrationValidationUtil";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useAuth from "../../hooks/useAuth";
 
 function RegisterForm() {
   const {
@@ -14,8 +15,9 @@ function RegisterForm() {
   } = useForm<formData>({
     resolver: zodResolver(userSchema),
   });
-
+  const { authState } = useAuth();
   const { isLoading, onSubmit } = useRegister(setError);
+  console.log(authState);
 
   return (
     <form

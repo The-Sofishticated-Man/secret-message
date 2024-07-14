@@ -5,6 +5,10 @@ import {
   pathType,
   serverError,
 } from "../util/registrationValidationUtil";
+import Cookies from "js-cookie";
+import useAuth from "./useAuth";
+import { SetUser } from "../util/loginUtil";
+Cookies.attributes;
 
 export default function useRegister(
   setError: (
@@ -13,20 +17,30 @@ export default function useRegister(
   ) => void
 ) {
   const [isLoading, setLoading] = useState(false);
+  const { authState } = useAuth();
   const onSubmit = (formInput: formData) => {
     console.log(formInput);
     setLoading(true);
     registerUser(formInput)
       .then((response) => {
         console.log("User added successfully", response.data);
+        SetUser(response.data.user, response.data.jwtToken);
+        console.log(authState);
       })
       .catch((error) => {
-        //sets server error to their respective fields and logs them
         console.log("got an error trying to create user: ", error);
-        error.response.data.forEach(({ path, msg }: serverError) => {
-          setError(path, { type: path, message: msg });
-          console.log(`assigned ${path} an error of ${msg}`);
-        });
+        if (error.response) {
+          //sets server error to their respective fields and logs them
+          error.response.data.forEach(({ path, msg }: serverError) => {
+            setError(path, { type: path, message: msg });
+            console.log(`assigned ${path} an error of ${msg}`);
+          });
+        } else {
+          setError("password", {
+            type: "password",
+            message: "Something went wrong, please try again later",
+          });
+        }
       })
       .finally(() => setLoading(false));
   };

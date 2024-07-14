@@ -1,11 +1,11 @@
 import useAuth from "./useAuth";
-
+import Cookies from "js-cookie";
 export default function useLogout() {
   const { dispatch } = useAuth();
 
   const logOut = () => {
     dispatch({ type: "LOGOUT", payload: null });
-    localStorage.removeItem("SMUser");
+    Cookies.remove("SMUser");
   };
   return logOut;
 }

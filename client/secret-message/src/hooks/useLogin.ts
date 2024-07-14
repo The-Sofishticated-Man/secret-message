@@ -1,20 +1,18 @@
 import { FormEvent, useState } from "react";
 import { loginUser } from "../services/apiClients";
-import useAuth from "./useAuth";
-
+import { SetUser } from "../util/loginUtil";
 export default function useLogin() {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const { dispatch } = useAuth();
   async function submitForm(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
     loginUser(loginData)
       .then((response) => {
         console.log("login successful: ", response);
-        localStorage.setItem("SMUser", response.data.jwtToken);
-        dispatch({type:"LOGIN",payload:response.data.user})
+        //stores username and jwt token in the cookie jar
+        SetUser(response.data.user,response.data.jwtToken)      
       })
       .catch((err) => {
         if (err.response) {

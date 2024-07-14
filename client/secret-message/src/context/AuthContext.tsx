@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useReducer } from "react";
-
+import { createContext, ReactNode, useEffect, useReducer } from "react";
+import Cookies from "js-cookie";
 interface authStateType {
   user: string | null;
 }
@@ -30,6 +30,12 @@ const authReducer = (
 
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [authState, dispatch] = useReducer(authReducer, { user: null });
+  useEffect(() => {
+    const SMUser = JSON.parse(Cookies.get("SMUser") as string);
+    if (SMUser) {
+      dispatch({ type: "LOGIN", payload: SMUser.user });
+    }
+  }, []);
 
   console.log("Authentication state: ", !!authState.user);
 

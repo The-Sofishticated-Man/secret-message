@@ -1,20 +1,40 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useReducer } from "react";
 
-interface AuthContextType {
-  isLoggedIn: boolean;
-  setLoggedIn: (state: boolean) => void;
+interface authStateType {
+  user: string | null;
 }
 
-export const AuthContext = createContext<AuthContextType>({
-  isLoggedIn: false,
-  setLoggedIn: () => {},
+interface authContextType {
+  authState: authStateType;
+  dispatch: React.Dispatch<{ type: string; payload: string | null }>;
+}
+
+export const AuthContext = createContext<authContextType>({
+  authState: { user: null },
+  dispatch: () => {},
 });
 
+const authReducer = (
+  authState: authStateType,
+  action: { type: string; payload: string | null }
+) => {
+  switch (action.type) {
+    case "LOGIN":
+      return { user: action.payload };
+    case "LOGOUT":
+      return { user: null };
+    default:
+      return authState;
+  }
+};
+
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  console.log("Authentication state: ", isLoggedIn);
+  const [authState, dispatch] = useReducer(authReducer, { user: null });
+
+  console.log("Authentication state: ", !!authState.user);
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+    <AuthContext.Provider value={{ authState, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

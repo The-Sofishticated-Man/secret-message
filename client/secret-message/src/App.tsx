@@ -7,10 +7,10 @@ import Login from "./routes/Login/LoginPage";
 import useAuth from "./hooks/useAuth";
 
 function App() {
-  const { isLoggedIn } = useAuth();
+  const { authState } = useAuth();
   return (
     <>
-      <NavBar loggedIn={isLoggedIn} />
+      <NavBar loggedIn={!!authState.user} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="user">

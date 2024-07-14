@@ -3,11 +3,14 @@ import LanguageSelector from "../LanguageSelector";
 import Button from "../Button";
 import BetterLink from "../BetterLink/BetterLink";
 import { useLocation } from "react-router-dom";
+import useLogout from "../../hooks/useLogout";
 
 const NavBar = ({ loggedIn }: { loggedIn: boolean }) => {
   const { pathname } = useLocation();
+  const logout = useLogout();
   const isInLoginPage = pathname === "/user/login";
   const isInRegisterPage = pathname === "/user/register";
+
   return (
     <nav className={style.navBar}>
       <LanguageSelector />
@@ -29,7 +32,9 @@ const NavBar = ({ loggedIn }: { loggedIn: boolean }) => {
           )}
         </>
       ) : (
-        <Button btnType="btnPrimary">Log out</Button>
+        <Button btnType="btnPrimary" OnClick={logout}>
+          Log out
+        </Button>
       )}
     </nav>
   );

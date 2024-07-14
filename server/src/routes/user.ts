@@ -35,7 +35,7 @@ router.post(
               const jwtToken = createJWTToken(data.id);
               res.status(201).json({
                 message: "User created successfully",
-                user: data.email,
+                user: data.username,
                 jwtToken,
               });
             })
@@ -71,7 +71,11 @@ router.post("/login", (req, res) => {
         } else {
           const jwtToken = createJWTToken(user.id);
           console.log("Login successful");
-          res.send({ message: "Login successful", jwtToken });
+          res.send({
+            message: "Login successful",
+            user: user.username,
+            jwtToken,
+          });
         }
       } catch (err) {
         console.error("Error: couldn't verify password", err);

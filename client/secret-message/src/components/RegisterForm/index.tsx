@@ -1,17 +1,11 @@
 import style from "./RegisterForm.module.css";
 import Button from "../Button";
-import {
-  formData,
-  userSchema,
-  serverError,
-} from "../../util/registrationValidationUtil";
+import useRegister from "../../hooks/useRegister";
+import { formData, userSchema } from "../../util/registrationValidationUtil";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerUser } from "../../services/apiClients";
-import { useState } from "react";
 
 function RegisterForm() {
-  const [isLoading, setLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -20,22 +14,8 @@ function RegisterForm() {
   } = useForm<formData>({
     resolver: zodResolver(userSchema),
   });
-  const onSubmit = (formInput: formData) => {
-    setLoading(true);
-    registerUser(formInput)
-      .then((response) => {
-        console.log("User added successfully", response.data);
-      })
-      .catch((something) => {
-        //sets server error to their respective fields and logs them
-        console.log("got an error trying to create user: ", something);
-        something.response.data.forEach(({ path, msg }: serverError) => {
-          setError(path, { type: path, message: msg });
-          console.log(`assigned ${path} an error of ${msg}`);
-        });
-      })
-      .finally(() => setLoading(false));
-  };
+
+  const { isLoading, onSubmit } = useRegister(setError);
 
   return (
     <form

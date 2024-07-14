@@ -18,7 +18,17 @@ export const userSchema = z.object({
 //Delcare type based on the zod schema
 export type formData = z.infer<typeof userSchema>;
 
+//This is sort of the enum type for the different input fields
+export type pathType =
+  | "username"
+  | "email"
+  | "password"
+  | "root"
+  | `root.${string}`;
+
+
+// This is the type of the error that will be returned from the server
 export interface serverError {
-  path: "username" | "email" | "password" | "root" | `root.${string}`;
+  path: pathType;
   msg: string;
 }

@@ -1,36 +1,9 @@
 import style from "./LoginForm.module.css";
 import Button from "../Button";
-import { FormEvent, useState } from "react";
-import { loginUser } from "../../services/apiClients";
+import useLogin from "../../hooks/useLogin";
 
 function RegisterForm() {
-  
-  const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
-
-  async function submitForm(event: FormEvent) {
-    event.preventDefault();
-    setLoading(true);
-    loginUser(loginData)
-      .then((data) => {
-        setError("Sign in successful");
-        console.log("login successful: ", data);
-      })
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 401) {
-            setError("Email or password is incorrect");
-          }
-        } else {
-          setError("There has been an error, please try again later");
-        }
-      })
-      .finally(() => setLoading(false));
-  }
+  const { isLoading, error, submitForm, loginData, setLoginData } = useLogin();
 
   return (
     <form
@@ -83,7 +56,7 @@ function RegisterForm() {
         Margin="10px 0px 0 0px"
         loading={isLoading}
       >
-        Register
+        Log in
       </Button>
     </form>
   );

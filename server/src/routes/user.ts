@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 import { validationResult } from "express-validator";
-import SMUser from "../mongoAPI";
-import { registerValidationSchema } from "../validationUtils";
+import SMUser from "../utils/mongoAPIUtils";
+import { registerValidationSchema } from "../utils/validationUtils";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongoose";

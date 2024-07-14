@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import SMUser from "./mongoAPI";
+import SMUser from "./mongoAPIUtils";
 
 async function usernameInUse(value: string) {
   const user = await SMUser.findOne({ username: value });

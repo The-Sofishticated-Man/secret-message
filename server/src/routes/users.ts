@@ -5,7 +5,6 @@ import SMUser from "../utils/mongoAPIUtils";
 import { registerValidationSchema } from "../utils/validationUtils";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { ObjectId } from "mongoose";
 
 function createJWTToken(_id: string) {
   return jwt.sign({ _id }, process.env.JWT_SECRET_KEY as string, {

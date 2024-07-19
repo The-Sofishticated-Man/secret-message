@@ -20,3 +20,6 @@ export function loginUser(userData: object) {
 export function getUsername(userId: string) {
   return apiClient.get<usernameGetResponse>("/users/" + userId);
 }
+export function SendSecretMessage(message: string, userId: string) {
+  return apiClient.post("/send/" + userId, { secretMessage: message });
+}

@@ -17,15 +17,17 @@ export default function useRegister(
   ) => void
 ) {
   const [isLoading, setLoading] = useState(false);
-  const { authState } = useAuth();
-  const onSubmit = (formInput: formData) => {
+  const { authState, dispatch } = useAuth();
+  const registerIn = (formInput: formData) => {
     console.log(formInput);
     setLoading(true);
     registerUser(formInput)
       .then((response) => {
         console.log("User added successfully", response.data);
         SetUser(response.data.user, response.data.jwtToken);
+        dispatch({ type: "LOGIN", payload: response.data.user });
         console.log(authState);
+        window.location.href = "../messages";
       })
       .catch((error) => {
         console.log("got an error trying to create user: ", error);
@@ -44,5 +46,5 @@ export default function useRegister(
       })
       .finally(() => setLoading(false));
   };
-  return { isLoading, onSubmit };
+  return { isLoading, registerIn };
 }

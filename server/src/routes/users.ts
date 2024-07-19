@@ -11,6 +11,31 @@ function createJWTToken(_id: string) {
     expiresIn: "7d",
   });
 }
+router.get("/:userID", (req, res) => {
+  const userID = req.params.userID;
+  console.log("got username request with param of: " + userID);
+  if (!userID) {
+    console.log("userId is undifined/null");
+    res.status(400).json({ error: "you sent a bad request dingus" });
+  } else {
+    SMUser.findById(userID)
+      .select("username")
+      .then((username) => {
+        console.log("username is: " + username);
+        if (!username) {
+          console.log("could not find user");
+          res.status(400).json({ error: "could not find user" });
+        } else {
+          console.log("found user");
+          res.status(200).json(username);
+        }
+      })
+      .catch((err) => {
+        console.log("could not get username from database");
+        res.status(500).json({ error: err });
+      });
+  }
+});
 
 router.post(
   "/register",

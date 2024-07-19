@@ -4,25 +4,26 @@ import Button from "../Button";
 import BetterLink from "../BetterLink/BetterLink";
 import { useLocation } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
+import useAuth from "../../hooks/useAuth";
 
-const NavBar = ({ loggedIn }: { loggedIn: boolean }) => {
+const NavBar = () => {
   const { pathname } = useLocation();
+  const { authState } = useAuth();
   const logout = useLogout();
   const isInLoginPage = pathname === "/user/login";
   const isInRegisterPage = pathname === "/user/register";
-
   return (
     <nav className={style.navBar}>
       <LanguageSelector />
-      {!loggedIn ? (
+      {!authState.user ? (
         <>
           {!isInRegisterPage && (
-            <BetterLink to={"/user/register"}>
+            <BetterLink to={"/users/register"}>
               <Button btnType="btnPrimary">Register</Button>
             </BetterLink>
           )}
           {!isInLoginPage && (
-            <BetterLink to={"/user/login"}>
+            <BetterLink to={"/users/login"}>
               <Button
                 btnType={isInRegisterPage ? "btnPrimary" : "btnSecondary"}
               >

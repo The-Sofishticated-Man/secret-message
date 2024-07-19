@@ -1,8 +1,6 @@
 import Cookies from "js-cookie";
-import useAuth from "../hooks/useAuth";
 
 export function SetUser(user: string, token: string) {
-  const { dispatch } = useAuth();
   Cookies.set(
     "SMUser",
     JSON.stringify({
@@ -14,5 +12,4 @@ export function SetUser(user: string, token: string) {
       sameSite: "Lax",
     }
   );
-  dispatch({ type: "LOGIN", payload: user });
 }

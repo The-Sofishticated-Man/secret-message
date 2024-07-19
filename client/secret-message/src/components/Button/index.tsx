@@ -8,18 +8,20 @@ const Button = ({
   Margin,
   loading,
   OnClick,
+  className,
 }: {
   btnType?: string;
   children?: string;
   Size?: string;
   Margin?: string;
   loading?: boolean;
+  className?: string;
   OnClick?: () => void;
 }) => {
   return (
     <button
       style={{ fontSize: Size, margin: Margin, textDecoration: "none" }}
-      className={`${style.btn} ${btnType && style[btnType]}`}
+      className={`${style.btn} ${btnType && style[btnType]} ${className}`}
       onClick={OnClick}
     >
       {loading ? <LoadingSpinner /> : children}

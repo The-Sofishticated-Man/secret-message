@@ -1,0 +1,25 @@
+.secretMessageCard {
+  position: relative;
+  background-color: var(--color-primary);
+  margin: 10px 0;
+  list-style: none;
+  padding: 10px 20px;
+  width: 40%;
+  border-radius: 10px;
+}
+.secretMessage {
+  font-family: "Poppins";
+  margin-bottom: 5px;
+}
+.messageDate {
+  font-family: "Lilita One";
+  font-weight: 300;
+  position: relative;
+  top: 5px;
+}
+.closeBtn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  cursor: pointer;
+}

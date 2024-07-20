@@ -1,21 +1,8 @@
-import { useEffect, useState } from "react";
 import MessageCard from "../../components/MessageCard/MessageCard";
+import useMessages from "../../hooks/useMessages";
 import style from "./MessageBoard.module.css";
-import { getSecretMessages } from "../../services/apiClients";
 const MessageBoard = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    getSecretMessages()
-      .then((response) => {
-        console.log("got messages: ", response.data);
-        setMessages(response.data);
-      })
-      .catch((error) => {
-        setError("could not fetch messages: " + error);
-        console.error(error);
-      });
-  }, []);
+  const { messages, error } = useMessages();
   return (
     <section className={style.messageBoardSection}>
       <h1 className={style.messageBoardHeading}>

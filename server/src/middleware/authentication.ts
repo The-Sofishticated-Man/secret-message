@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
+import { Request } from "express";
 import jwt from "jsonwebtoken";
 import SMUser from "../utils/mongoAPIUtils";
 
@@ -6,9 +7,7 @@ import SMUser from "../utils/mongoAPIUtils";
 interface JwtPayload {
   _id: string;
 }
-interface SMRequest extends Request {
-  user: unknown;
-}
+
 export default async function authenticate(
   req: Request,
   res: Response,
@@ -17,6 +16,7 @@ export default async function authenticate(
   const { authorization } = req.headers;
   if (!authorization) {
     res.status(401).json({ error: "Authorization token required" });
+    return;
   }
   const token = authorization?.split(" ")[1];
   try {
@@ -26,10 +26,11 @@ export default async function authenticate(
       process.env.JWT_SECRET_KEY as string
     ) as JwtPayload;
 
-    //return
-    req.user = await SMUser.findById({ _id }).select("_id");
+    //add userId to request
+    req.user = (await SMUser.findById({ _id }).select("_id")) as object;
   } catch (error) {
-    res.status(401).json({ error: "Token could not be authorized" });
+    console.error(error);
+    res.status(401).json({ message: "Token could not be authorized" });
   }
 
   next();

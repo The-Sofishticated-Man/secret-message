@@ -3,7 +3,7 @@ import Button from "../../components/Button";
 import MessageSuccessful from "../../components/MessageSuccessful/MessageSuccessful";
 import useSendSecretMessage from "../../hooks/useSendSecretMessage";
 const SendMessage = () => {
-  const { success, username, setMessage, submitMessage, error, message } =
+  const { success, setMessage, submitMessage, error, message, username } =
     useSendSecretMessage();
   return (
     <section className={style.sendMessageSection}>

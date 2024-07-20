@@ -5,6 +5,9 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+section {
+  min-height: 80vh;
+}
 :root {
   --font-primary: "Lilita One";
   --light: #fff;
@@ -15,4 +18,3 @@
 html {
   scroll-behavior: smooth;
 }
-

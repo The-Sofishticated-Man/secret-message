@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  min-height: auto;
 }
 .container {
   display: flex;

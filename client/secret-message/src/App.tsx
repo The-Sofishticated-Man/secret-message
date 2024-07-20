@@ -8,6 +8,7 @@ import useAuth from "./hooks/useAuth";
 import MessageBoard from "./routes/MessageBoard/MessageBoard";
 import SendMessage from "./routes/SendMessage/SendMessage";
 import RequireAuth from "./util/RequireAuth";
+import Page404 from "./components/Page404/Page404";
 function App() {
   const { authState } = useAuth();
   console.log("the app's current user is ", authState.user);
@@ -43,6 +44,8 @@ function App() {
             }
           ></Route>
         </Route>
+        <Route path="404" element={<Page404 />}></Route>
+        <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
       <Footer />
     </>

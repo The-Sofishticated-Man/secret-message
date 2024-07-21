@@ -44,8 +44,7 @@ function App() {
             }
           ></Route>
         </Route>
-        <Route path="404" element={<Page404 />}></Route>
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <Footer />
     </>

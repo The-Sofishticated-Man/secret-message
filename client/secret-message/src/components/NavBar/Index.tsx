@@ -12,6 +12,8 @@ const NavBar = () => {
   const logout = useLogout();
   const isInLoginPage = pathname === "/user/login";
   const isInRegisterPage = pathname === "/user/register";
+  const isInMessagesPage = pathname === "/messages";
+  const isInHomePage = pathname === "/home";
   return (
     <nav className={style.navBar}>
       <LanguageSelector />
@@ -33,9 +35,15 @@ const NavBar = () => {
           )}
         </>
       ) : (
-        <Button btnType="btnPrimary" OnClick={logout}>
-          Log out
-        </Button>
+        <>
+          <div className={style.navigationLinks}>
+            <BetterLink to="/home" underline={isInHomePage} >Home</BetterLink>
+            <BetterLink to="/messages" underline={isInMessagesPage}>Inbox</BetterLink>
+          </div>
+          <Button btnType="btnPrimary" OnClick={logout}>
+            Log out
+          </Button>
+        </>
       )}
     </nav>
   );

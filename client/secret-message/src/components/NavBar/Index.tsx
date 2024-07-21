@@ -16,12 +16,14 @@ const NavBar = () => {
   const isInHomePage = pathname === "/home";
   return (
     <nav className={style.navBar}>
-      <LanguageSelector />
       {!authState.user ? (
-        <>
+        <div className={style.navLoggedOut}>
+          <LanguageSelector />
           {!isInRegisterPage && (
             <BetterLink to={"/users/register"}>
-              <Button btnType="btnPrimary">Register</Button>
+              <Button btnType="btnPrimary" className={style.registerButton}>
+                Register
+              </Button>
             </BetterLink>
           )}
           {!isInLoginPage && (
@@ -33,17 +35,22 @@ const NavBar = () => {
               </Button>
             </BetterLink>
           )}
-        </>
+        </div>
       ) : (
-        <>
+        <div className={style.navLoggedIn}>
+          <LanguageSelector />
           <div className={style.navigationLinks}>
-            <BetterLink to="/home" underline={isInHomePage} >Home</BetterLink>
-            <BetterLink to="/messages" underline={isInMessagesPage}>Inbox</BetterLink>
+            <BetterLink to="/home" underline={isInHomePage}>
+              Home
+            </BetterLink>
+            <BetterLink to="/messages" underline={isInMessagesPage}>
+              Inbox
+            </BetterLink>
           </div>
           <Button btnType="btnPrimary" OnClick={logout}>
             Log out
           </Button>
-        </>
+        </div>
       )}
     </nav>
   );

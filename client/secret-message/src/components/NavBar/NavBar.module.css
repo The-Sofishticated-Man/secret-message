@@ -1,8 +1,7 @@
 .navBar {
   background-color: var(--color-secondary);
   display: flex;
-  padding: 20px;
-  padding-right: 50px;
+  padding: 20px 0;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
@@ -19,4 +18,23 @@
   margin: 0;
   padding: 0;
   font-size: 1.5rem;
+}
+.navLoggedOut {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.navLoggedOut {
+  width: 100%;
+}
+.navLoggedOut :first-child {
+  flex: 1;
+}
+.navLoggedIn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
 }

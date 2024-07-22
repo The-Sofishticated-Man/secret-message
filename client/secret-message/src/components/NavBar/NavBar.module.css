@@ -1,7 +1,7 @@
 .navBar {
   background-color: var(--color-secondary);
   display: flex;
-  padding: 20px 0;
+  padding: 20px 40px;
   align-items: center;
   justify-content: space-between;
   gap: 30px;

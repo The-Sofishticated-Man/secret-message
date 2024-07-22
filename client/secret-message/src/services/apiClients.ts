@@ -35,8 +35,13 @@ export function SendSecretMessage(message: string, userId: string) {
   return apiClient.post(`/send/${userId}`, { secretMessage: message });
 }
 export function DeleteMessage(key: string) {
-  console.log("deleting message: ", key);
-  return apiClient.delete(`/messages/${key}`);
+  const jwtCookie = Cookies.get("SMUser")!;
+  const jwtToken = JSON.parse(jwtCookie as string).token;
+  return apiClient.delete(`/messages/${key}`, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  });
 }
 export function getSecretMessages() {
   const jwtCookie = Cookies.get("SMUser")!;

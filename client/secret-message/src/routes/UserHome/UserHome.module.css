@@ -1,0 +1,45 @@
+.userHomeSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  text-align: center;
+}
+.userHeading {
+  font-family: "Lilita One";
+  margin-bottom: 20px;
+}
+.userLink {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+}
+.userLink input{
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 5px solid var(--color-primary);
+    padding: 10px;
+    width:600px; 
+    outline: none;
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.userLinkText{
+    font-family: "Poppins";
+    font-size: 1.2rem;
+}
+
+.userLinkShareOptions{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    font-size: 2.3rem;
+}
+.userLinkShareOptions svg{
+    cursor: pointer;
+}

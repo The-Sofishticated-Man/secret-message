@@ -16,7 +16,7 @@ export default function useLogin() {
         console.log("login successful: ", response);
 
         //stores username and jwt token in the cookie jar
-        SetUser(response.data.user, response.data.jwtToken);
+        SetUser(response.data.user, response.data.jwtToken,response.data.id);
 
         dispatch({ type: "LOGIN", payload: response.data.user });
 

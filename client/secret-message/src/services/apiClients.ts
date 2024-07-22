@@ -4,9 +4,18 @@ interface axiosPostResponse {
   message: string;
   user: string;
   jwtToken: string;
+  id: string;
 }
 interface usernameGetResponse {
   username: string;
+}
+export type secretMessagesType = {
+  message: string;
+  _id: string;
+  date: Date;
+};
+export interface messagesGetResponse {
+  secretMessages: secretMessagesType[];
 }
 
 const apiClient = axios.create({
@@ -25,14 +34,14 @@ export function getUsername(userId: string) {
 export function SendSecretMessage(message: string, userId: string) {
   return apiClient.post(`/send/${userId}`, { secretMessage: message });
 }
+export function DeleteMessage(key: string) {
+  console.log("deleting message: ", key);
+  return apiClient.delete(`/messages/${key}`);
+}
 export function getSecretMessages() {
   const jwtCookie = Cookies.get("SMUser")!;
-  const parsedCookie = JSON.parse(jwtCookie);
   const jwtToken = JSON.parse(jwtCookie as string).token;
-  console.log("cookie: ", jwtCookie);
-  console.log("parsedCookie: ", parsedCookie);
-  console.log("jwtToken: ", jwtToken);
-  return apiClient.get<string[]>("/messages", {
+  return apiClient.get<messagesGetResponse>("/messages", {
     headers: {
       Authorization: "Bearer " + jwtToken,
     },

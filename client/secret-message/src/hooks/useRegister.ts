@@ -24,7 +24,7 @@ export default function useRegister(
     registerUser(formInput)
       .then((response) => {
         console.log("User added successfully", response.data);
-        SetUser(response.data.user, response.data.jwtToken);
+        SetUser(response.data.user, response.data.jwtToken, response.data.id);
         dispatch({ type: "LOGIN", payload: response.data.user });
         console.log(authState);
         window.location.href = "../messages";

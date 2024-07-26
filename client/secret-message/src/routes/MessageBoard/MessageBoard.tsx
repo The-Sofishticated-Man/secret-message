@@ -10,15 +10,22 @@ const MessageBoard = () => {
         Your messages will appear here
       </h1>
       <ul className={style.messageBoard}>
-        {messages.map((message) => (
-          <MessageCard
-            onDelete={() => deleteMessage(message._id)}
-            key={message._id}
-            date={message.date}
-          >
-            {message.message}
-          </MessageCard>
-        ))}
+        {messages.length ? (
+          messages.map((message) => (
+            <MessageCard
+              onDelete={() => deleteMessage(message._id)}
+              key={message._id}
+              date={message.date}
+            >
+              {message.message}
+            </MessageCard>
+          ))
+        ) : (
+          <h3>
+            You have no messages yet, but we'll update you when u receive some
+            😁
+          </h3>
+        )}
       </ul>
       <p className="text-danger">{error}</p>
     </section>

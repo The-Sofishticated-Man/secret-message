@@ -18,7 +18,10 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={!authState.user ? <HomePage /> : <Navigate to="/home" />}
+        />
         <Route path="/users">
           <Route
             path="register"

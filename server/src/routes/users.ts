@@ -57,6 +57,7 @@ router.post(
                 message: "User created successfully",
                 user: data.username,
                 jwtToken,
+                id: data.id,
               });
             })
             .catch((err) => {
@@ -94,6 +95,7 @@ router.post("/login", (req, res) => {
           res.send({
             message: "Login successful",
             user: user.username,
+            id: user.id,
             jwtToken,
           });
         }

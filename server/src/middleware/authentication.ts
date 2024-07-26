@@ -14,6 +14,7 @@ export default async function authenticate(
   next: NextFunction
 ) {
   const { authorization } = req.headers;
+  console.log("got authorization request with payload: "+authorization);
   if (!authorization) {
     res.status(401).json({ error: "Authorization token required" });
     return;
@@ -28,6 +29,7 @@ export default async function authenticate(
 
     //add userId to request
     req.user = (await SMUser.findById({ _id }).select("_id")) as object;
+    console.log("request authenticated successfully as user: ", req.user);
   } catch (error) {
     console.error(error);
     res.status(401).json({ message: "Token could not be authorized" });

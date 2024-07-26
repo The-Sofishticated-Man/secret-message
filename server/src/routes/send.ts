@@ -12,7 +12,7 @@ router.post("/:userId", (req, res) => {
   } else {
     SMUser.updateOne(
       { _id: userId },
-      { $push: { secretMessages: secretMessage } }
+      { $push: { secretMessages: {message:secretMessage, date: new Date()} } }
     )
       .then((value) => {
         console.log("updated user: ", value);

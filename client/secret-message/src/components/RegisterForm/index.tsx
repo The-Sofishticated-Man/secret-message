@@ -4,6 +4,7 @@ import useRegister from "../../hooks/useRegister";
 import { formData, userSchema } from "../../util/registrationValidationUtil";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import BetterLink from "../BetterLink/BetterLink";
 
 function RegisterForm() {
   const {
@@ -24,8 +25,8 @@ function RegisterForm() {
     >
       <h1 className={style.formHeading}>Welcome!</h1>
 
-      <p className={style.formSubHeading}>Register to create an new account</p>
-      <div className={`form-floating mb-3  ${style.formField}`}>
+      <p className={style.formSubHeading}>Register to create a new account</p>
+      <div className={`form-floating   ${style.formField}`}>
         <input
           {...register("username")}
           type="text"
@@ -35,13 +36,13 @@ function RegisterForm() {
         />
         <label htmlFor="usernameField">Username</label>
         {errors.username ? (
-          <p className={style.warningMessage}>{errors.username.message}</p>
+          <p className={"text-danger"}>{errors.username.message}</p>
         ) : (
           <p></p>
         )}
       </div>
 
-      <div className={`form-floating mb-3  ${style.formField}`}>
+      <div className={`form-floating   ${style.formField}`}>
         <input
           {...register("email")}
           type="email"
@@ -51,12 +52,12 @@ function RegisterForm() {
         />
         <label htmlFor="emailField">Email address</label>
         {errors.email ? (
-          <p className={style.warningMessage}>{errors.email.message}</p>
+          <p className={"text-danger"}>{errors.email.message}</p>
         ) : (
           <p></p>
         )}
       </div>
-      <div className={`form-floating mb-3  ${style.formField}`}>
+      <div className={`form-floating   ${style.formField}`}>
         <input
           {...register("password")}
           type="password"
@@ -66,7 +67,7 @@ function RegisterForm() {
         />
         <label htmlFor="passwordField">Password</label>
         {errors.password ? (
-          <p className={style.warningMessage}>{errors.password.message}</p>
+          <p className={"text-danger"}>{errors.password.message}</p>
         ) : (
           <p></p>
         )}
@@ -79,6 +80,10 @@ function RegisterForm() {
       >
         Register
       </Button>
+      <p className={style.loginLink}>
+        Already have an account?{" "}
+        <BetterLink to="/users/login" Color="var(--color-secondary)">Login</BetterLink>
+      </p>
     </form>
   );
 }

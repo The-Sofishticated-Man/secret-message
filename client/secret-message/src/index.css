@@ -6,8 +6,8 @@
   text-decoration: none;
 }
 section {
-  min-height: 80vh;
-  background-color: #f0f0f0;
+  min-height: 90vh;
+  background-color:  #fefefe;
 }
 :root {
   --font-primary: "Lilita One";

@@ -1,5 +1,5 @@
-import LoginForm from "../../components/LoginForm";
 import style from "./Login.module.css";
+import LoginForm from "../../components/LoginForm";
 const Register = () => {
   return (
     <section className={style.loginSection}>

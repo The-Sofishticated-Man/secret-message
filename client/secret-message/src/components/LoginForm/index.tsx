@@ -1,6 +1,7 @@
 import style from "./LoginForm.module.css";
 import Button from "../Button";
 import useLogin from "../../hooks/useLogin";
+import BetterLink from "../BetterLink/BetterLink";
 
 function RegisterForm() {
   const { isLoading, error, submitForm, loginData, setLoginData } = useLogin();
@@ -37,7 +38,7 @@ function RegisterForm() {
           placeholder=""
         />
         <label htmlFor="passwordField">Password</label>
-        {error && <p className={style.warningMessage}>{error}</p>}
+        {error && <p className={"text-danger"}>{error}</p>}
       </div>
       <div className={`form-check`}>
         <input
@@ -58,6 +59,10 @@ function RegisterForm() {
       >
         Log in
       </Button>
+      <p className={style.registerLink}>
+        Don't have an account?{" "}
+        <BetterLink to="/users/register" Color="var(--color-secondary )">Register</BetterLink>
+      </p>
     </form>
   );
 }

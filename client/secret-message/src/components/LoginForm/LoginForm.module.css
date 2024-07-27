@@ -1,21 +1,23 @@
 .loginForm {
-  max-width: 50%;
+  min-width: 700px;
   padding: 40px 60px;
-  background-color: var(--color-secondary);
+  background-color: white;
   border-radius: 15px;
+  border: 1px solid rgba(0,0,0,0.1);
   font-family: "Poppins";
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(70, 60, 18, 0.15) 0px 48px 100px 0px;
 }
 .formField {
   width: 100%;
 }
 .formCheckLabel {
-  color: white;
+  color: black;
 }
 .formHeading {
   text-align: center;
-  color: var(--color-primary);
+  font-size: 4rem;
   font-family: "Lilita One";
   margin-bottom: 20px;
 }
@@ -26,9 +28,11 @@
   text-align: center;
   font-size: 1.2rem;
 }
-.warningMessage {
-  color: var(--color-primary);
-  font-family: "Lilita One";
-  font-size: 1rem;
-  margin: 0;
+.registerLink {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.registerLink a {
+  font-weight: 600;
 }

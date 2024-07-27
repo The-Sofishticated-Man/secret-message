@@ -10,8 +10,8 @@ const NavBar = () => {
   const { pathname } = useLocation();
   const { authState } = useAuth();
   const logout = useLogout();
-  const isInLoginPage = pathname === "/user/login";
-  const isInRegisterPage = pathname === "/user/register";
+  const isInLoginPage = pathname === "/users/login";
+  const isInRegisterPage = pathname === "/users/register";
   const isInMessagesPage = pathname === "/messages";
   const isInHomePage = pathname === "/home";
   return (

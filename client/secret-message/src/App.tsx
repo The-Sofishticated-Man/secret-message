@@ -1,7 +1,7 @@
 import NavBar from "./components/NavBar/Index";
 import Footer from "./components/Footer";
 import HomePage from "./routes/HomePage";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Register from "./routes/Register/RegisterPage";
 import Login from "./routes/Login/LoginPage";
 import useAuth from "./hooks/useAuth";
@@ -12,11 +12,12 @@ import Page404 from "./components/Page404/Page404";
 import UserHome from "./routes/UserHome/UserHome";
 function App() {
   const { authState } = useAuth();
+  const { pathname } = useLocation();
   console.log("the app's current user is ", authState.user);
   console.log("is Authenticated", !!authState.user);
   return (
     <>
-      <NavBar />
+      {!(pathname == "/") && <NavBar />}
       <Routes>
         <Route
           path="/"

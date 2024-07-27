@@ -1,12 +1,11 @@
 import style from "./NavBar.module.css";
-import LanguageSelector from "../LanguageSelector";
 import Button from "../Button";
 import BetterLink from "../BetterLink/BetterLink";
 import { useLocation } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
 import useAuth from "../../hooks/useAuth";
 
-const NavBar = () => {
+const NavBar = ({ homePage }: { homePage?: boolean }) => {
   const { pathname } = useLocation();
   const { authState } = useAuth();
   const logout = useLogout();
@@ -15,10 +14,17 @@ const NavBar = () => {
   const isInMessagesPage = pathname === "/messages";
   const isInHomePage = pathname === "/home";
   return (
-    <nav className={style.navBar}>
+    <nav
+      // different style for homePage navbar
+      className={`${style.navBar} ${
+        homePage ? style.navBarHome : style.navBarRegular
+      }
+        ${authState.user ? style.LoggedIn : style.LoggedOut}`}
+    >
+      {/* // Render this when the user is logged out */}
       {!authState.user ? (
-        <div className={style.navLoggedOut}>
-          <LanguageSelector />
+        <>
+          {/* Render the 'Register' button if the user is not in the register page */}
           {!isInRegisterPage && (
             <BetterLink to={"/users/register"}>
               <Button btnType="btnPrimary" className={style.registerButton}>
@@ -26,6 +32,7 @@ const NavBar = () => {
               </Button>
             </BetterLink>
           )}
+          {/* Render the 'Log in' button if the user is not in the login page */}
           {!isInLoginPage && (
             <BetterLink to={"/users/login"}>
               <Button
@@ -35,22 +42,33 @@ const NavBar = () => {
               </Button>
             </BetterLink>
           )}
-        </div>
+        </>
       ) : (
-        <div className={style.navLoggedIn}>
-          <LanguageSelector />
+        // Render the navigation links for when the user is logged in
+        <>
           <div className={style.navigationLinks}>
-            <BetterLink to="/home" underline={isInHomePage}>
+            {/* Render the 'Home' link with an underline if the user is in the home page */}
+            <BetterLink
+              to="/home"
+              underline={isInHomePage}
+              Color="var(--color-secondary)"
+            >
               Home
             </BetterLink>
-            <BetterLink to="/messages" underline={isInMessagesPage}>
+            {/* Render the 'Inbox' link with an underline if the user is in the messages page */}
+            <BetterLink
+              to="/messages"
+              underline={isInMessagesPage}
+              Color="var(--color-secondary)"
+            >
               Inbox
             </BetterLink>
           </div>
+          {/* Render the 'Log out' button if the user is logged in*/}
           <Button btnType="btnPrimary" OnClick={logout}>
             Log out
           </Button>
-        </div>
+        </>
       )}
     </nav>
   );

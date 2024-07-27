@@ -1,30 +1,39 @@
 .hero {
-  background-image: url("../../assets/images/hero_background.jpg");
+  background-color: #ffffff;
+  background-image: url("../../assets/images/confetti-doodles.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  min-height: auto;
+  padding: 40px 0;
+  padding-top: 0;
+  background-color: #ffffff;
 }
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 120px;
-  padding: 50px 100px;
-  padding-bottom: 1rem;
+  justify-content: center;
+  text-align: center;
+  gap: 80px;
+  padding: 20px 100px;
+  padding-bottom: 80px;
+  margin-bottom: 100px;
 }
 .hero__text {
   font-family: "lilita one";
-  color: white;
-  width: 600px;
-  text-shadow: 8px 8px 5px rgba(0, 0, 0, 0.244);
+  color: var(--black);
+  width: 800px;
   align-self: center;
-  padding-bottom: 3rem;
+  padding: 40px 0 20px 0;
 }
 .hero__text h1 {
   font-size: 5rem;
   margin-bottom: 2.5rem;
+}
+.heroKeyWord {
+  background: linear-gradient(135deg, rgb(214, 158, 4) 0%, rgb(252, 216, 15));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .hero__text h2 {
   padding-right: 30px;
@@ -35,16 +44,7 @@
   width: 750px;
   overflow: hidden;
 }
-.devider {
-  background-image: url("../../assets/images/wave-haikei.svg");
-  width: 100%;
-  aspect-ratio: 16/1;
-  height: fit-content;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-}
+
 .readMore {
   display: flex;
   flex-direction: column;
@@ -65,6 +65,12 @@
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+.devider {
+  width: 40%;
+  border-radius: 50px;
+  margin: 10px auto;
+  background-color: var(--color-secondary);
 }
 
 @keyframes springy {

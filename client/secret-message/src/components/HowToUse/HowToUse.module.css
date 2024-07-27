@@ -1,6 +1,8 @@
 .instructions {
+  border-top: 2px solid rgb(0, 0, 0,0.1);
   margin: 100px 0;
-  padding: 0 50px;
+  margin-top: 0;
+  padding: 40px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;

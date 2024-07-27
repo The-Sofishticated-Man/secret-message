@@ -12,15 +12,14 @@ export default function useLogin() {
     setLoading(true);
     loginUser(loginData)
       .then((response) => {
-
         console.log("login successful: ", response);
 
         //stores username and jwt token in the cookie jar
-        SetUser(response.data.user, response.data.jwtToken,response.data.id);
+        SetUser(response.data.user, response.data.jwtToken, response.data.id);
 
         dispatch({ type: "LOGIN", payload: response.data.user });
 
-        window.location.href = "../messages";
+        window.location.href = "../home";
       })
       .catch((err) => {
         if (err.response) {

@@ -10,36 +10,57 @@
   margin-bottom: 20px;
 }
 .userLink {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 20px 50px;
-    display: flex;
-    flex-direction: column;
-}
-.userLink input{
-    margin-top: 10px;
-    border-radius: 10px;
-    border: 5px solid var(--color-primary);
-    padding: 10px;
-    width:600px; 
-    outline: none;
-    text-align: center;
-    font-family: "Poppins";
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.123);
+  border-radius: 10px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
-.userLinkText{
-    font-family: "Poppins";
-    font-size: 1.2rem;
+.userLinkText {
+  font-family: "Poppins";
+  font-size: 1.2rem;
 }
 
-.userLinkShareOptions{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    font-size: 2.3rem;
+.userLinkShareOptions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  font-size: 2.3rem;
 }
-.userLinkShareOptions svg{
-    cursor: pointer;
+.userLinkShareOptions svg {
+  cursor: pointer;
+}
+.userLinkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border: 2px solid rgba(0, 0, 0, 0.123);
+  position: relative;
+  border-radius: 10px;
+  padding: 4px;
+}
+.userLinkInput {
+  border: none;
+  outline: none;
+  padding: 10px;
+  flex: 1;
+  font-size: 1.14rem;
+  font-family: "Poppins";
+}
+.copyIcon {
+  position: absolute;
+  right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: var(--color-secondary);
+  transition: 0.1s ease-in-out;
+}
+.copyIcon:hover {
+  background-color: hsl(274, 93%, 38%); 
 }

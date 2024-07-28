@@ -13,8 +13,10 @@ import UserHome from "./routes/UserHome/UserHome";
 function App() {
   const { authState } = useAuth();
   const { pathname } = useLocation();
+
   console.log("the app's current user is ", authState.user);
   console.log("is Authenticated", !!authState.user);
+
   return (
     <>
       {!(pathname == "/") && <NavBar />}
@@ -26,13 +28,11 @@ function App() {
         <Route path="/users">
           <Route
             path="register"
-            element={
-              !authState.user ? <Register /> : <Navigate to="/messages" />
-            }
+            element={!authState.user ? <Register /> : <Navigate to="/home" />}
           />
           <Route
             path="login"
-            element={!authState.user ? <Login /> : <Navigate to="/messages" />}
+            element={!authState.user ? <Login /> : <Navigate to="/home" />}
           />
         </Route>
         <Route path="send">

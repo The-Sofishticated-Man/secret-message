@@ -4,9 +4,8 @@ export default function useLogout() {
   const { dispatch } = useAuth();
 
   const logOut = () => {
-    dispatch({ type: "LOGOUT", payload: null });
     Cookies.remove("SMUser");
-    location.href = "/";
+    dispatch({ type: "LOGOUT", payload: null });
   };
   return logOut;
 }

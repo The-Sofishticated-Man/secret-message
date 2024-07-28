@@ -65,9 +65,11 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
             </BetterLink>
           </div>
           {/* Render the 'Log out' button if the user is logged in*/}
-          <Button btnType="btnPrimary" OnClick={logout}>
-            Log out
-          </Button>
+          <BetterLink to="/">
+            <Button btnType="btnPrimary" OnClick={logout}>
+              Log out
+            </Button>
+          </BetterLink>
         </>
       )}
     </nav>

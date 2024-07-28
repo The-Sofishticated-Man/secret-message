@@ -19,7 +19,6 @@ export default function useLogin() {
 
         dispatch({ type: "LOGIN", payload: response.data.user });
 
-        window.location.href = "../home";
       })
       .catch((err) => {
         if (err.response) {

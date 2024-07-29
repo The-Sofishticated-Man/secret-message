@@ -10,8 +10,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: hsl(274, 97%, 37%);
+  border-color: hsl(274, 97%, 37%);
+  transform: translate3d(0, 0, 200px); ;
 }
 .btnPrimary {
   background-color: var(--color-secondary);

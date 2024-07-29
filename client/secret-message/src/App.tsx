@@ -1,7 +1,13 @@
 import NavBar from "./components/NavBar/Index";
 import Footer from "./components/Footer";
-import HomePage from "./routes/HomePage";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import HomePage from "./routes/HomePage/HomePage";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import Register from "./routes/Register/RegisterPage";
 import Login from "./routes/Login/LoginPage";
 import useAuth from "./hooks/useAuth";
@@ -10,10 +16,11 @@ import SendMessage from "./routes/SendMessage/SendMessage";
 import RequireAuth from "./util/RequireAuth";
 import Page404 from "./components/Page404/Page404";
 import UserHome from "./routes/UserHome/UserHome";
+import { getUsername } from "./services/apiClients";
 function App() {
   const { authState } = useAuth();
   const { pathname } = useLocation();
-
+  const { userId } = useParams();
   console.log("the app's current user is ", authState.user);
   console.log("is Authenticated", !!authState.user);
 
@@ -36,7 +43,13 @@ function App() {
           />
         </Route>
         <Route path="send">
-          <Route path=":userId" element={<SendMessage />} />
+          <Route
+            path=":userId"
+            element={<SendMessage />}
+            loader={() => {
+              return getUsername(userId!);
+            }}
+          />
         </Route>
         {/* Protected routes */}
         <Route

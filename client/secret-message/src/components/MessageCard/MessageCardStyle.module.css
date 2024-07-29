@@ -1,19 +1,28 @@
 .secretMessageCard {
   position: relative;
-  background-color: var(--color-primary);
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.1);
   margin: 10px 0;
   list-style: none;
-  padding: 10px 20px;
+  padding: 15px 25px;
   width: 500px;
   border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 0.3s ease;
+}
+.secretMessageCard:hover {
+  transform: scale(1.15);
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
 }
 .secretMessage {
   font-family: "Poppins";
   margin-bottom: 5px;
-  width: 85%;
+  width: 95%;
+  font-size: 1.2rem;
 }
 .messageDate {
   font-family: "Lilita One";
+  color: var(--color-secondary);
   font-weight: 300;
   position: relative;
   top: 5px;

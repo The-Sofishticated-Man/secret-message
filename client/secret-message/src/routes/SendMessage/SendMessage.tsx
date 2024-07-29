@@ -2,16 +2,18 @@ import style from "./SendMessage.module.css";
 import Button from "../../components/Button";
 import MessageSuccessful from "../../components/MessageSuccessful/MessageSuccessful";
 import useSendSecretMessage from "../../hooks/useSendSecretMessage";
+import { useLoaderData } from "react-router-dom";
 const SendMessage = () => {
-  const { success, setMessage, submitMessage, error, message, username } =
+  const { success, setMessage, submitMessage, error, message } =
     useSendSecretMessage();
+  const username = useLoaderData();
   return (
     <section className={style.sendMessageSection}>
       {!success ? (
         <>
           <form className={style.sendMessageForm} onSubmit={submitMessage}>
             <h1 className={style.sendMessageHeader}>
-              Send a secret message to {username} !
+              Send a secret message to {username as string} !
             </h1>
             <div className={style.sendMessageBox}>
               <textarea

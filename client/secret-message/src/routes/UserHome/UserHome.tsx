@@ -9,9 +9,7 @@ import Cookies from "js-cookie";
 import { FaCopy } from "react-icons/fa";
 const UserHome = () => {
   const userCookies = JSON.parse(Cookies.get("SMUser")!);
-  const link = `http://localhost:${import.meta.env.VITE_PORT}/send/${
-    userCookies.id
-  }`;
+  const link = `http://localhost:5173/send/${userCookies.id}`;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(link);
   };
@@ -21,8 +19,17 @@ const UserHome = () => {
       <div className={style.userLink}>
         <h3>Your link has been generated :</h3>
         <div className={style.userLinkContainer}>
-         <input className={style.userLinkInput} type="text" readOnly value={link}  /> 
-         <FaCopy className={style.copyIcon} onClick={copyToClipboard} size={35}  />
+          <input
+            className={style.userLinkInput}
+            type="text"
+            readOnly
+            value={link}
+          />
+          <FaCopy
+            className={style.copyIcon}
+            onClick={copyToClipboard}
+            size={35}
+          />
         </div>
         <p className={style.userLinkText}>
           share this link with your friends to receive secret messages !

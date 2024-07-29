@@ -11,15 +11,18 @@ const MessageBoard = () => {
       </h1>
       <ul className={style.messageBoard}>
         {messages.length ? (
-          messages.map((message) => (
-            <MessageCard
-              onDelete={() => deleteMessage(message._id)}
-              key={message._id}
-              date={message.date}
-            >
-              {message.message}
-            </MessageCard>
-          ))
+          messages
+            .map((message, index) => (
+              <MessageCard
+                onDelete={() => deleteMessage(message._id)}
+                key={message._id}
+                date={message.date}
+                zIndex={index}
+              >
+                {message.message}
+              </MessageCard>
+            ))
+            .reverse()
         ) : (
           <h3>
             You have no messages yet, but we'll update you when u receive some

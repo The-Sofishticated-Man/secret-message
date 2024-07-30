@@ -82,7 +82,7 @@ function RegisterForm() {
       </Button>
       <p className={style.loginLink}>
         Already have an account?{" "}
-        <BetterLink to="/users/login" Color="var(--color-secondary)">Login</BetterLink>
+        <BetterLink to="/login" Color="var(--color-secondary)">Login</BetterLink>
       </p>
     </form>
   );

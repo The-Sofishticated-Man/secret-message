@@ -9,8 +9,8 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
   const { pathname } = useLocation();
   const { authState } = useAuth();
   const logout = useLogout();
-  const isInLoginPage = pathname === "/users/login";
-  const isInRegisterPage = pathname === "/users/register";
+  const isInLoginPage = pathname === "/login";
+  const isInRegisterPage = pathname === "/register";
   const isInMessagesPage = pathname === "/messages";
   const isInHomePage = pathname === "/home";
   return (
@@ -26,7 +26,7 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
         <>
           {/* Render the 'Register' button if the user is not in the register page */}
           {!isInRegisterPage && (
-            <BetterLink to={"/users/register"}>
+            <BetterLink to={"/register"}>
               <Button btnType="btnPrimary" className={style.registerButton}>
                 Register
               </Button>
@@ -34,7 +34,7 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
           )}
           {/* Render the 'Log in' button if the user is not in the login page */}
           {!isInLoginPage && (
-            <BetterLink to={"/users/login"}>
+            <BetterLink to={"/login"}>
               <Button
                 btnType={isInRegisterPage ? "btnPrimary" : "btnSecondary"}
               >

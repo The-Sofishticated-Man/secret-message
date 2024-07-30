@@ -1,12 +1,10 @@
 import style from "./heroStyle.module.css";
 import { BsCaretDownFill } from "react-icons/bs";
 import { useState } from "react";
-import NavBar from "../NavBar/Index";
 const Hero = () => {
   const [isAnimated, setAnimated] = useState(true);
   return (
     <section className={style.hero}>
-      <NavBar homePage />
       <div className={style.container}>
         <div className={style.hero__text}>
           <h1>

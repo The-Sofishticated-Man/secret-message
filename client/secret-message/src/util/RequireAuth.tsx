@@ -6,7 +6,7 @@ const RequireAuth = ({ children }: { children: ReactNode }) => {
   const { authState } = useAuth();
   console.log("Current authentication state is: ", authState);
   if (!authState.user) {
-    return <Navigate to="/users/login" />;
+    return <Navigate to="/login" />;
   } else {
     return <>{children}</>;
   }

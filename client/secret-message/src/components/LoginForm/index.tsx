@@ -61,7 +61,7 @@ function RegisterForm() {
       </Button>
       <p className={style.registerLink}>
         Don't have an account?{" "}
-        <BetterLink to="/users/register" Color="var(--color-secondary )">Register</BetterLink>
+        <BetterLink to="/register" Color="var(--color-secondary )">Register</BetterLink>
       </p>
     </form>
   );

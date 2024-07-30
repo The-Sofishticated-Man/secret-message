@@ -13,6 +13,9 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: 0.2s ease-in-out;
 }
+.btn:active {
+  transform: translate(0, 2px);
+}
 .btnPrimary {
   background-color: var(--color-secondary);
   /* color: var(--color-secondary); */
@@ -21,15 +24,12 @@
 .btnPrimary:hover {
   background-color: hsl(274, 97%, 37%);
   border-color: hsl(274, 97%, 37%);
-  
 }
 .btnSecondary {
   background-color: transparent;
   color: var(--color-secondary);
 }
 .btnSecondary:hover {
-  background-color: var(--color-secondary);
-  color: white;
-  border-color: var(--color-secondary);
-  transform: translate3d(0, 0, 200px);
+  border-color: hsl(274, 97%, 37%);
+  color: hsl(274, 97%, 37%);
 }

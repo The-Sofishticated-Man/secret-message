@@ -7,6 +7,7 @@ const SendMessage = () => {
   const { success, setMessage, submitMessage, error, message } =
     useSendSecretMessage();
   const username = useLoaderData();
+  console.log("loader data:", username);
   return (
     <section className={style.sendMessageSection}>
       {!success ? (

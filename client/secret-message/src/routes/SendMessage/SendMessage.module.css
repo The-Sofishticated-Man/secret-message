@@ -2,9 +2,9 @@
   padding: 50px 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 40px;
-  min-height: 80vh;
 }
 .sendMessageHeader {
   font-family: "Lilita One";
@@ -17,8 +17,8 @@
   flex-direction: column;
   align-items: center;
 }
-.sendMessageBox{
-    position: relative;
+.sendMessageBox {
+  position: relative;
 }
 .sendMessageInput {
   min-width: 500px;
@@ -30,8 +30,8 @@
   font-family: "Poppins";
   outline: none;
 }
-.characterCounter{
-    position: absolute;
-    font-family: "Lilita One";
-    padding: 5px;
+.characterCounter {
+  position: absolute;
+  font-family: "Lilita One";
+  padding: 5px;
 }

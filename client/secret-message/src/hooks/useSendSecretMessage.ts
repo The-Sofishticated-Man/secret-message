@@ -1,30 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUsername, SendSecretMessage } from "../services/apiClients";
+import { SendSecretMessage } from "../services/apiClients";
 
 export default function useSendSecretMessage() {
   const [message, setMessage] = useState("");
-  const [username, setuserName] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const { userId } = useParams();
-
-  console.log("userId param: ", userId);
-  useEffect(() => {
-    getUsername(userId as string)
-      .then((response) => {
-        setuserName(response.data.username);
-      })
-      .catch((error) => {
-        console.error(error.message);
-        if (error.response?.status === 404) {
-          location.href = "/404";
-        } else {
-          location.href = "/error";
-        }
-      });
-  }, []);
-
   const sendSecretMessage = (message: string) => {
     SendSecretMessage(message, userId!)
       .then((response) => {
@@ -36,5 +18,5 @@ export default function useSendSecretMessage() {
       });
   };
   const submitMessage = () => sendSecretMessage(message);
-  return { message, username, setMessage, success, error, submitMessage };
+  return { message, setMessage, success, error, submitMessage };
 }

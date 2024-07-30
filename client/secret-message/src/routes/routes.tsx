@@ -15,6 +15,7 @@ import RequireAuth from "../util/RequireAuth";
 import MessageBoard from "./MessageBoard/MessageBoard";
 import NavBar from "../components/NavBar/Index";
 import Footer from "../components/Footer";
+import { getUsername } from "../services/apiClients";
 
 export function useRoutes() {
   const { authState } = useAuth();
@@ -43,7 +44,22 @@ export function useRoutes() {
           path="login"
           element={isLoggedIn ? <Navigate to="/home" /> : <LoginPage />}
         />
-        <Route path="/send/:userId" element={<SendMessage />} />
+        <Route
+          path="/send/:userId"
+          element={<SendMessage />}
+          loader={async ({ params: { userId } }) =>
+            getUsername(userId as string)
+              .then((response) => response.data.username)
+              .catch((err) => {
+                console.error(err);
+                if (err.response?.status === 404) {
+                  location.href = "/404";
+                } else {
+                  location.href = "/error";
+                }
+              })
+          }
+        />
         <Route
           path="home"
           element={

@@ -1,12 +1,13 @@
 // import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from "./App.tsx";
-// import { BrowserRouter } from "react-router-dom";
+import App from "./App.tsx";
 import AuthContextProvider from "./context/AuthContext.tsx";
 import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import App from "./App.tsx";
+import { SkeletonTheme } from "react-loading-skeleton";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AuthContextProvider>
-    <App />
+    <SkeletonTheme baseColor="#f3f3f3">
+      <App />
+    </SkeletonTheme>
   </AuthContextProvider>
 );

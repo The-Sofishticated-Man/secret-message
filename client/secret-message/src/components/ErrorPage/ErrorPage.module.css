@@ -1,0 +1,13 @@
+.errorPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Lilita One";
+}

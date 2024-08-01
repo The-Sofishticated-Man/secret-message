@@ -16,6 +16,7 @@ import MessageBoard from "./MessageBoard/MessageBoard";
 import NavBar from "../components/NavBar/Index";
 import Footer from "../components/Footer";
 import { getUsername } from "../services/apiClients";
+import Page404 from "./Page404/Page404";
 
 export function useRoutes() {
   const { authState } = useAuth();
@@ -47,18 +48,10 @@ export function useRoutes() {
         <Route
           path="/send/:userId"
           element={<SendMessage />}
-          loader={async ({ params: { userId } }) =>
-            getUsername(userId as string)
-              .then((response) => response.data.username)
-              .catch((err) => {
-                console.error(err);
-                if (err.response?.status === 404) {
-                  location.href = "/404";
-                } else {
-                  location.href = "/error";
-                }
-              })
-          }
+          loader={async ({ params: { userId } }) => {
+            return (await getUsername(userId as string)).data.username;
+          }}
+          errorElement={<Navigate to="/404" />}
         />
         <Route
           path="home"
@@ -76,6 +69,8 @@ export function useRoutes() {
             </RequireAuth>
           }
         />
+        <Route path="/404" element={<Page404 />} />
+        <Route path="*" element={<Navigate to="/404" />} />
       </Route>
     )
   );

@@ -29,6 +29,7 @@ export function loginUser(userData: object) {
   return apiClient.post<axiosPostResponse>("/users/login", userData);
 }
 export function getUsername(userId: string) {
+  console.log("getting username for:", userId);
   return apiClient.get<usernameGetResponse>(`/users/${userId}`);
 }
 export function SendSecretMessage(message: string, userId: string) {

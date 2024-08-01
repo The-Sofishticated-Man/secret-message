@@ -1,8 +1,9 @@
+import CardSkeleton from "../../components/CardSkeleton/CardSkeleton";
 import MessageCard from "../../components/MessageCard/MessageCard";
 import useMessages from "../../hooks/useMessages";
 import style from "./MessageBoard.module.css";
 const MessageBoard = () => {
-  const { messages, error, deleteMessage } = useMessages();
+  const { messages, error, deleteMessage, isLoading } = useMessages();
   console.log(messages);
   return (
     <section className={style.messageBoardSection}>
@@ -10,7 +11,9 @@ const MessageBoard = () => {
         Your messages will appear here
       </h1>
       <ul className={style.messageBoard}>
-        {messages.length ? (
+        {isLoading ? (
+          <CardSkeleton count={7} />
+        ) : messages.length ? (
           messages
             .map((message, index) => (
               <MessageCard
@@ -24,10 +27,12 @@ const MessageBoard = () => {
             ))
             .reverse()
         ) : (
-          <h3>
-            You have no messages yet, but we'll update you when u receive some
-            😁
-          </h3>
+          <>
+            <h3>
+              You have no messages yet, but we'll update you when u receive some
+              😁
+            </h3>
+          </>
         )}
       </ul>
       <p className="text-danger">{error}</p>

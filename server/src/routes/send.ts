@@ -11,7 +11,8 @@ router.post("/:userId", (req, res) => {
   const sanitizedMessage = xss(secretMessage);
   console.log("sanitized message: ", sanitizedMessage);
   if (!secretMessage) {
-    res.status(400).json({ error: "you didn't send a secretMessage dumbfuck" });
+    // secret message doesn't exist or is empty
+    res.status(400).json({ error: "you didn't send a secretMessage dipshit" });
   } else {
     SMUser.updateOne(
       { _id: userId },
@@ -22,10 +23,12 @@ router.post("/:userId", (req, res) => {
       }
     )
       .then((value) => {
+        // message saved successfully
         console.log("updated user: ", value);
         res.json({ message: "secret meassage sent successfully" });
       })
       .catch((error) => {
+        // message failed to save 
         console.error(error);
         res.status(500).json({ error });
       });

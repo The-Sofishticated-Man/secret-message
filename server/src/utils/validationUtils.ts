@@ -4,7 +4,6 @@ import SMUser from "./mongoAPIUtils";
 async function usernameInUse(value: string) {
   const user = await SMUser.findOne({ username: value });
   console.log("found user with same username: ", user);
-  //checks if the object is empty
   if (user) {
     throw new Error("Username already in use");
   }

@@ -3,10 +3,12 @@ import { loginUser } from "../services/apiClients";
 import { SetUser } from "../util/loginUtil";
 import useAuth from "./useAuth";
 export default function useLogin() {
+  
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const { dispatch } = useAuth();
+
   async function submitForm(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
@@ -18,7 +20,6 @@ export default function useLogin() {
         SetUser(response.data.user, response.data.jwtToken, response.data.id);
 
         dispatch({ type: "LOGIN", payload: response.data.user });
-
       })
       .catch((err) => {
         if (err.response) {

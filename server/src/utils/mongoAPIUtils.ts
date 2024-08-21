@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
   password: { type: String, require: true },
   secretMessages: {
     type: [{ message: String, date: Date }],
-
     default: [],
   },
 });

@@ -1,17 +1,17 @@
 import { body } from "express-validator";
 import SMUser from "./mongoAPIUtils";
-
+import logger from "../utils/loggingUtils";
 async function usernameInUse(value: string) {
   const user = await SMUser.findOne({ username: value });
-  console.log("found user with same username: ", user);
   if (user) {
+    logger.error(`found user with same username: ${user}`);
     throw new Error("Username already in use");
   }
 }
 async function emailInUse(value: string) {
   const user = await SMUser.findOne({ email: value });
-  console.log("found user with same email: ", user);
   if (user) {
+    logger.error(`found user with same email: ${user}`);
     throw new Error("Email already in use");
   }
 }

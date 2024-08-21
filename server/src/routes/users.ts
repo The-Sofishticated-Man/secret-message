@@ -5,6 +5,7 @@ import SMUser from "../utils/mongoAPIUtils";
 import { registerValidationSchema } from "../utils/validationUtils";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import logger from "../utils/loggingUtils";
 
 function createJWTToken(_id: string) {
   //creates a jwt token that with the user's id as payload
@@ -15,22 +16,22 @@ function createJWTToken(_id: string) {
 
 router.get("/:userID", (req, res) => {
   const userID = req.params.userID;
-  console.log("got username fetch request with param of: " + userID);
+  logger.info(`got username fetch request with param of: ${userID}`);
   if (!userID) {
     // user not sent with payload
-    console.log("userId is undefined/null");
+    logger.warn("userId is undefined/null");
     res.status(400).json({ error: "you sent a bad request dingus" });
   } else {
     SMUser.findById(userID)
       .select("username")
       .then((username) => {
         // user found and sent
-        console.log("sending username:", username);
+        logger.info(`sending username: ${username}`);
         res.status(200).json(username);
       })
       .catch((err) => {
         // user not found
-        console.log("could not get username from database");
+        logger.error("could not get username from database", err);
         res.status(404).json({ error: err });
       });
   }
@@ -41,9 +42,9 @@ router.post(
   registerValidationSchema,
   async (req: express.Request, res: express.Response) => {
     const errors = validationResult(req).array({ onlyFirstError: true });
-    console.log("Validation result: ", errors);
+    logger.info("Validation result: ", errors);
     const formData = req.body;
-    console.log("User creation request: ", formData);
+    logger.info("User creation request: ", formData);
 
     //only adds user if there are no errors
     if (errors.length !== 0) {
@@ -56,7 +57,7 @@ router.post(
           SMUser.create({ ...formData, password: hashedPassword })
             .then((data) => {
               // send user data to front end
-              console.log("created user successfully:");
+              logger.info("created user successfully:");
               const jwtToken = createJWTToken(data.id);
               res.status(201).json({
                 message: "User created successfully",
@@ -67,13 +68,13 @@ router.post(
             })
             .catch((err) => {
               //this triggers when the database fails to create the user
-              console.error("Error creating user", err);
+              logger.error("Error creating user", err);
               res.status(500).json({ error: err });
             });
         })
         .catch((err) => {
           //this triggers when argon fails to hash the password
-          console.error("Couldn't hash password");
+          logger.error("Couldn't hash password", err);
           res.status(500).json({ error: err });
         });
     }
@@ -82,11 +83,11 @@ router.post(
 
 router.post("/login", (req, res) => {
   const loginFields = req.body;
-  console.log("Login attempt: ", loginFields);
+  logger.info("Login attempt: ", loginFields);
   SMUser.findOne({ email: loginFields.email }).then(async (user) => {
     if (!user) {
       // user not found in database
-      console.error("Login failed: user does not exist");
+      logger.error("Login failed: user does not exist");
       res.status(401).json({ message: "Login failed" });
     } else {
       try {
@@ -94,12 +95,12 @@ router.post("/login", (req, res) => {
           !(await argon2.verify(user.password as string, loginFields.password))
         ) {
           // password doesn't match
-          console.error("Login failed: password does not match");
+          logger.error("Login failed: password does not match");
           res.status(401).json({ message: "Login failed" });
         } else {
           // password matches
           const jwtToken = createJWTToken(user.id);
-          console.log("Login successful");
+          logger.info("Login successful");
           res.send({
             message: "Login successful",
             user: user.username,
@@ -109,11 +110,12 @@ router.post("/login", (req, res) => {
         }
       } catch (err) {
         // argon failed to verify password
-        console.error("Error: couldn't verify password", err);
+        logger.error("Error: couldn't verify password", err);
       }
     }
   });
 });
 
 export default router;
+
 

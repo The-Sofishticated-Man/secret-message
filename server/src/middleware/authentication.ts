@@ -2,7 +2,7 @@ import { NextFunction, Response } from "express";
 import { Request } from "express";
 import jwt from "jsonwebtoken";
 import SMUser from "../utils/mongoAPIUtils";
-
+import logger from "../utils/loggingUtils";
 // type of payload contained in jwt token
 interface JwtPayload {
   _id: string;
@@ -14,9 +14,10 @@ export default async function authenticate(
   next: NextFunction
 ) {
   const { authorization } = req.headers;
-  console.log("got authorization request with payload: "+authorization);
+  logger.info("got authorization request with payload: ",authorization);
   if (!authorization) {
     // authorization header empty
+    logger.error("authorization header is empty");
     res.status(401).json({ error: "Authorization token required" });
     return;
   }
@@ -30,10 +31,10 @@ export default async function authenticate(
 
     // piggy back userId to the request object
     req.user = (await SMUser.findById({ _id }).select("_id")) as object;
-    console.log("request authenticated successfully as user: ", req.user);
+    logger.info("request authenticated successfully as user: ", req.user);
   } catch (error) {
     // invalid token
-    console.error(error);
+    logger.error(error);
     res.status(401).json({ message: "Token could not be authorized" });
   }
 

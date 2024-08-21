@@ -5,6 +5,7 @@ import cors from "cors";
 import user from "./routes/users";
 import send from "./routes/send";
 import messages from "./routes/messages";
+import logger from "./utils/loggingUtils";
 const app = express();
 
 //setting up environment variables
@@ -23,5 +24,5 @@ app.use("/messages", messages);
 
 const PORT = process.env.VITE_PORT || 3000;
 app.listen(PORT, () => {
-  console.log(new Date() + ` Server started and listening on port ${PORT}...`);
+  logger.info(new Date() + ` Server started and listening on port ${PORT}...`);
 });

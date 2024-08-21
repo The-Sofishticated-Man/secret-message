@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
-
+import logger from "./loggingUtils";
 mongoose
   .connect("mongodb://localhost:27017/secretMessage")
   .then(() => {
-    console.log(`${new Date()} Connected to mongodb server`);
+    logger.info(`${new Date()} Connected to mongodb server`);
   })
   .catch((error) => {
-    console.error(`Could not connect:`);
-    console.error(error);
+    logger.error(`Could not connect: ${error}`);
   });
 
 const userSchema = new mongoose.Schema({

@@ -4,7 +4,7 @@
   "description": "backend for my secret message thingy I'm trying to make",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon --files ./src/index.ts"
   },
   "keywords": [

@@ -51,7 +51,7 @@ router.post(
       //if there are errors, send them back
       res.status(400).send(errors);
     } else {
-      argon2  
+      argon2
         .hash(formData.password)
         .then((hashedPassword) => {
           SMUser.create({ ...formData, password: hashedPassword })
@@ -85,19 +85,11 @@ router.post("/login", (req, res) => {
   const loginFields = req.body;
   logger.info("Login attempt: ", loginFields);
   SMUser.findOne({ email: loginFields.email }).then(async (user) => {
-    if (!user) {
-      // user not found in database
-      logger.error("Login failed: user does not exist");
-      res.status(401).json({ message: "Login failed" });
-    } else {
+    if (user) {
       try {
         if (
-          !(await argon2.verify(user.password as string, loginFields.password))
+          await argon2.verify(user.password as string, loginFields.password)
         ) {
-          // password doesn't match
-          logger.error("Login failed: password does not match");
-          res.status(401).json({ message: "Login failed" });
-        } else {
           // password matches
           const jwtToken = createJWTToken(user.id);
           logger.info("Login successful");
@@ -107,15 +99,21 @@ router.post("/login", (req, res) => {
             id: user.id,
             jwtToken,
           });
+        } else {
+          // password doesn't match
+          logger.error("Login failed: password does not match");
+          res.status(401).json({ message: "Login failed" });
         }
       } catch (err) {
         // argon failed to verify password
         logger.error("Error: couldn't verify password", err);
       }
+    } else {
+      // user not found in database
+      logger.error("Login failed: user does not exist");
+      res.status(401).json({ message: "Login failed" });
     }
   });
 });
 
 export default router;
-
-

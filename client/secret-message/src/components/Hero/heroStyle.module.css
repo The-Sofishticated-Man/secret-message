@@ -1,13 +1,12 @@
 .hero {
   background-color: #ffffff;
   background-image: url("../../assets/images/confetti-doodles.png");
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   padding: 40px 0;
   padding-top: 0;
-  background-color: #ffffff;
+  
 }
 .container {
   display: flex;
@@ -15,7 +14,7 @@
   justify-content: center;
   text-align: center;
   gap: 80px;
-  padding: 20px 100px;
+  padding: 80px 100px;
   padding-bottom: 80px;
   margin-bottom: 100px;
 }

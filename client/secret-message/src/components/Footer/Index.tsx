@@ -17,7 +17,7 @@ const Footer = () => {
           target="_blank"
           className={style.sophishticated}
         >
-          <strong>The Sophishticated Man</strong>
+          <strong>The Sophishticated Man ahaaaaaah</strong>
         </a>
       </h4>
     </footer>

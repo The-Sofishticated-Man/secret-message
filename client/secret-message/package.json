@@ -1,11 +1,11 @@
 {
-  "homepage": "https://The-Sofishticated-Man.github.io/secret-message",
+  "homepage": "https://thesofishticatedman.github.io/secret-message",
   "name": "secret-message",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy":"npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",

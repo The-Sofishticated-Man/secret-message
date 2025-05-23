@@ -12,8 +12,12 @@ const Footer = () => {
           />
         </span>
         By
-        <a href="https://github.com/The-Sophishticated-Man" target="_blank" className={style.sophishticated}>
-          <strong>The Sophishticated Man</strong>
+        <a
+          href="https://github.com/The-Sophishticated-Man"
+          target="_blank"
+          className={style.sophishticated}
+        >
+          <strong>The Sophishticated Man ahaaaaaah</strong>
         </a>
       </h4>
     </footer>

@@ -15,6 +15,7 @@ import RequireAuth from "../util/RequireAuth";
 import MessageBoard from "./MessageBoard/MessageBoard";
 import Footer from "../components/Footer";
 import { getUsername } from "../services/apiClients";
+import Page404 from "./Page404/Page404";
 
 export function useRoutes() {
   const { authState } = useAuth();
@@ -66,6 +67,8 @@ export function useRoutes() {
             </RequireAuth>
           }
         />
+        <Route path="/404" element={<Page404 />} />
+        <Route path="*" element={<Navigate to="/404" />} />
       </Route>
     )
   );

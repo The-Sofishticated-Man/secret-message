@@ -13,7 +13,7 @@ import useAuth from "../hooks/useAuth";
 import UserHome from "./UserHome/UserHome";
 import RequireAuth from "../util/RequireAuth";
 import MessageBoard from "./MessageBoard/MessageBoard";
-import Footer from "../components/Footer/index.tsx";
+import Footer from "../components/Footer/";
 import { getUsername } from "../services/apiClients";
 
 export function useRoutes() {

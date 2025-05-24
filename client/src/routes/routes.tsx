@@ -68,7 +68,6 @@ export function useRoutes() {
         />
       </Route>
     ),
-    { basename: "/secret-message/" }
   );
 
   return routes;

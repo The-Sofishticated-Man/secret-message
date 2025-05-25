@@ -9,9 +9,12 @@ import logger from "./utils/loggingUtils";
 const app = express();
 
 //setting up environment variables
-dotenv.config({ path: path.resolve("../.env") });
+if(process.env.NODE_ENV !== "PROD") {
+  // Load environment variables from .env file manually in development mode
+  dotenv.config({ path: path.resolve("../.env") });
+}
 
-//utitily middleware
+//utility middleware
 app.use(express.json());
 app.use(cors());
 
@@ -22,7 +25,7 @@ app.use("/send", send);
 //authenticated routes
 app.use("/messages", messages);
 
-const PORT = process.env.VITE_PORT || 3000;
+const PORT = process.env.BACKEND_PORT || 3000;
 app.listen(PORT, () => {
   logger.info(new Date() + ` Server started and listening on port ${PORT}...`);
 });

@@ -1,4 +1,4 @@
-import "../types/custom";
+import "./types/custom";
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
@@ -10,7 +10,7 @@ import logger from "./utils/loggingUtils";
 const app = express();
 
 //setting up environment variables
-if(process.env.NODE_ENV !== "PROD") {
+if (process.env.NODE_ENV !== "PROD") {
   // Load environment variables from .env file manually in development mode
   dotenv.config({ path: path.resolve("../.env") });
 }

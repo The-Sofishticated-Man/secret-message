@@ -19,7 +19,7 @@ export interface messagesGetResponse {
 }
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:${import.meta.env.BACKEND_PORT}/`,
+  baseURL: import.meta.env.BASE_BACKEND_URL || "http://localhost:" + `${import.meta.env.BACKEND_PORT}/`,
 });
 
 export function registerUser(userData: object) {

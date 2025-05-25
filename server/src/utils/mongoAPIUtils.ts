@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import logger from "./loggingUtils";
 mongoose
-  .connect("mongodb://localhost:27017/secretMessage")
+  .connect(
+    process.env.MONGO_URI || "mongodb://localhost:27017/" + "secretMessage"
+  )
   .then(() => {
     logger.info(`${new Date()} Connected to mongodb server`);
   })

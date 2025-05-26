@@ -5,7 +5,6 @@ import BetterLink from "../BetterLink/BetterLink";
 const HowToUse = () => {
   return (
     // TODO: Add a better description of how to use the app
-    // TODO: remove gap under this section
     <section id="next" className={style.instructions}>
       <InstructionBox floatLeft={true} title="Title">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam earum
@@ -28,8 +27,8 @@ const HowToUse = () => {
         explicabo in?
       </InstructionBox>
       <hr />
-      <BetterLink to={"/register"}>
-        <Button btnType="btnPrimary" Size="1.5rem">
+      <BetterLink to={"/register"} className={style.getStarted}>
+        <Button btnType="btnPrimary" Size="2rem">
           Get Started Now!
         </Button>
       </BetterLink>

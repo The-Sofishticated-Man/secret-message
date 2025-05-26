@@ -18,8 +18,12 @@ export interface messagesGetResponse {
   secretMessages: secretMessagesType[];
 }
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:";
+const backendPort = import.meta.env.VITE_BACKEND_PORT || "";
+const baseURL = backendUrl + backendPort;
+
 const apiClient = axios.create({
-  baseURL: import.meta.env.BASE_BACKEND_URL || "http://localhost:" + `${import.meta.env.BACKEND_PORT}/`,
+  baseURL,
 });
 
 export function registerUser(userData: object) {
@@ -44,6 +48,7 @@ export function DeleteMessage(key: string) {
     },
   });
 }
+
 export function getSecretMessages() {
   const jwtCookie = Cookies.get("SMUser")!;
   const jwtToken = JSON.parse(jwtCookie as string).token;

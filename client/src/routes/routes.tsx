@@ -15,6 +15,7 @@ import RequireAuth from "../util/RequireAuth";
 import MessageBoard from "./MessageBoard/MessageBoard";
 import Footer from "../components/Footer/";
 import { getUsername } from "../services/apiClients";
+import NavBar from "../components/NavBar/Index";
 
 export function useRoutes() {
   const { authState } = useAuth();
@@ -25,6 +26,7 @@ export function useRoutes() {
         path="/"
         element={
           <>
+            <NavBar/>
             <Outlet />
             <Footer />
           </>

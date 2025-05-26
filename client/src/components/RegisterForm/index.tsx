@@ -16,7 +16,6 @@ function RegisterForm() {
     resolver: zodResolver(userSchema),
   });
   const { isLoading, registerIn } = useRegister(setError);
-
   return (
     <form
       noValidate={true}

@@ -1,6 +1,7 @@
 import style from "./Footer.module.css";
 import { FaHeart } from "react-icons/fa";
 const Footer = () => {
+  // TODO: restyle footer (make it a bit smaller, add some padding, etc.)
   return (
     <footer className={style.footer}>
       <h4>

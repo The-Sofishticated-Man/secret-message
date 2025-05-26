@@ -13,6 +13,7 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
   const isInRegisterPage = pathname === "/register";
   const isInMessagesPage = pathname === "/messages";
   const isInHomePage = pathname === "/home";
+  // TODO: complete restyle
   return (
     <nav
       // different style for homePage navbar

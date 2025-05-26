@@ -10,6 +10,7 @@ const InstructionBox = ({
   children: string;
 }) => {
   return (
+    // TODO: make this component responsive
     <article className={style.instruction}>
       {floatLeft && <img src={placeHolder} alt="" />}
       <div className={style.instructionText}>

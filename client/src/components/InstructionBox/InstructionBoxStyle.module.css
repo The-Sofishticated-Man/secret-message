@@ -2,7 +2,7 @@
   display: flex;
   padding: 20px;
   gap: 50px;
-  margin: 40px 0;
+  background-color: transparent;
 }
 .instruction img {
   border: 1px solid black;
@@ -20,13 +20,4 @@
 .instructionText p {
   font-family: "Poppins";
   font-size: 1.3rem;
-}
-
-hr {
-  width: 50%;
-  margin: auto;
-  border: 2px solid rgba(110, 110, 110, 0.541);
-  border: 2px solid var(--color-primary);
-  border-radius: 15px;
-  opacity: 0.9;
 }

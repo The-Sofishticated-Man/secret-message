@@ -4,6 +4,7 @@
   align-items: center;
   padding: 50px 0;
   text-align: center;
+  background-color: var(--light);
 }
 .userHeading {
   font-family: "Lilita One";

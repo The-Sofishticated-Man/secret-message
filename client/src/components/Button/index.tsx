@@ -2,27 +2,27 @@ import LoadingSpinner from "../icons/LoadingSpinner";
 import style from "./btnStyles.module.css";
 import "ldrs/ring";
 const Button = ({
-  btnType,
+  Secondary,
   children,
   Size,
   Margin,
   loading,
-  OnClick,
+  onClick,
   className,
 }: {
-  btnType?: string;
+  Secondary?:boolean,
   children?: string;
   Size?: string;
   Margin?: string;
   loading?: boolean;
   className?: string;
-  OnClick?: () => void;
+  onClick?: () => void;
 }) => {
   return (
     <button
       style={{ fontSize: Size, margin: Margin, textDecoration: "none" }}
-      className={`${style.btn} ${btnType && style[btnType]} ${className}`}
-      onClick={OnClick}
+      className={`${style.btn} ${Secondary ? style.Secondary : style.Primary} ${className}`}
+      onClick={onClick}
     >
       {loading ? <LoadingSpinner /> : children}
     </button>

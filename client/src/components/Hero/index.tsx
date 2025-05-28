@@ -2,7 +2,6 @@ import style from "./heroStyle.module.css";
 import { BsCaretDownFill } from "react-icons/bs";
 import { useState } from "react";
 const Hero = () => {
-  // todo: change background
   const [isAnimated, setAnimated] = useState(true);
   return (
     <section className={style.hero}>

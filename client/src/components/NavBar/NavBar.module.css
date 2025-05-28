@@ -1,22 +1,19 @@
-.navBar {
-  padding: 20px 40px;
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  align-items: center;
-  justify-content: end;
-  position: relative;
-}
-.navBarHome {
+.navBarContainer {
   background-color: transparent;
+  padding-block: 20px;
 }
-.navBarRegular {
+.navBar {
   background-color: white;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-}
-.LoggedOut {
-}
-.LoggedIn {
+  padding: 18px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(131, 56, 236, 0.1);
+  border: 1px solid rgba(131, 56, 236, 0.08);
+  max-width: 1600px;
+  border-radius: 20px;
+  min-height: 80px;
+  margin: auto;
 }
 .navigationLinks {
   align-items: center;
@@ -26,13 +23,72 @@
   font-family: "Lilita One";
   gap: 40px;
   list-style: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .navigationLinks {
   font-size: 1.5rem;
   margin: 0;
   padding: 0;
+}
+.logo {
+  width: 180px;
+  position: relative;
+}
+
+.linksContainer {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-left: auto;
+}
+.userLinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  right: 30px;
+  background: linear-gradient(90deg, var(--color-primary-dark, #a084e8) 0%, var(--color-secondary-dark, #d291ff) 100%);
+  padding: 8px 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(131, 56, 236, 0.18);
+  transition: box-shadow 0.2s;
+}
+
+.userLinks:hover {
+  box-shadow: 0 4px 16px rgba(131, 56, 236, 0.28);
+}
+
+.userLink {
+  color: var(--color-light, #fff);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: "Lilita One";
+  transition: color 0.2s, background 0.2s;
+  border-radius: 12px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.userLink:hover,
+.userLinks a:hover{
+  background: rgba(131, 56, 236, 0.18);
+}
+
+.userLinks a {
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+  border-radius: 12px;
+  padding: 4px 8px;
+}
+
+
+.userLinks a svg {
+  transition: color 0.2s, transform 0.2s;
+}
+
+.userLinks a:hover svg {
+  transform: scale(1.08);
 }

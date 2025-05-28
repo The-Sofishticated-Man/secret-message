@@ -51,17 +51,14 @@ function RegisterForm() {
           Remember me
         </label>
       </div>
-      <Button
-        btnType="btnPrimary"
-        Size="1.3rem"
-        Margin="10px 0px 0 0px"
-        loading={isLoading}
-      >
+      <Button Size="1.3rem" Margin="10px 0px 0 0px" loading={isLoading}>
         Log in
       </Button>
       <p className={style.registerLink}>
         Don't have an account?{" "}
-        <BetterLink to="/register" Color="var(--color-secondary )">Register</BetterLink>
+        <BetterLink to="/register" Color="var(--color-secondary )">
+          Register
+        </BetterLink>
       </p>
     </form>
   );

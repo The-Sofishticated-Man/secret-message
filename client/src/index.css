@@ -7,15 +7,18 @@
 }
 section {
   min-height: 90vh;
-  background-color:  #fefefe;
 }
 :root {
   --font-primary: "Lilita One";
-  --light: #fff;
-  --dark: #0B1215;
+  --light: hsl(265, 83%, 99.9%);
+  --dark: #0b1215;
   --color-primary: #ffbe0b;
   --color-secondary: #8338ec;
+  --background-image: url("./assets/images/tic-tac-toe.png");
 }
 html {
   scroll-behavior: smooth;
+}
+body {
+  background-image: var(--background-image);
 }

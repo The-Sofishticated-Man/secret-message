@@ -71,17 +71,14 @@ function RegisterForm() {
           <p></p>
         )}
       </div>
-      <Button
-        btnType="btnPrimary"
-        Size="1.3rem"
-        Margin="10px 0px 0 0px"
-        loading={isLoading}
-      >
+      <Button Size="1.3rem" Margin="10px 0px 0 0px" loading={isLoading}>
         Register
       </Button>
       <p className={style.loginLink}>
         Already have an account?{" "}
-        <BetterLink to="/login" Color="var(--color-secondary)">Login</BetterLink>
+        <BetterLink to="/login" Color="var(--color-secondary)">
+          Login
+        </BetterLink>
       </p>
     </form>
   );

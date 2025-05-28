@@ -1,13 +1,28 @@
 .instructions {
-  border-top: 2px solid rgb(0, 0, 0,0.1);
+  background-color: transparent;
   padding: 40px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-hr{
-  margin: 40px;
+.container {
+  max-width: 1600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  background-color: white;
 }
 .getStarted{
   margin-block: 50px;
+}
+hr{
+  width: 50%;
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 20px 0;
 }

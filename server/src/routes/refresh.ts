@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
   // This route is used to refresh the access token
   // The refresh token is expected to be in the cookies
   logger.info("got refresh request");
+  logger.info("request cookies: ", req.cookies);
   const refreshToken = req.cookies.refreshToken;
   logger.info(`refresh token: ${refreshToken}`);
   if (!refreshToken) {

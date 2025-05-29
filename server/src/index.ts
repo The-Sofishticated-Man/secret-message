@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import user from "./routes/users";
 import send from "./routes/send";
 import messages from "./routes/messages";
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== "PROD") {
 
 //utility middleware
 app.use(express.json());
+app.use(cookieParser());
 // TODO: change the origin to the actual frontend URL in production
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 

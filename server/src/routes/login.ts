@@ -25,7 +25,11 @@ router.post("/", async (req: Request, res: Response) => {
           logger.info("refresh token:", refreshToken);
           res
             .status(201)
-            .cookie("refreshToken", refreshToken, { httpOnly: true })
+            .cookie("refreshToken", refreshToken, {
+              httpOnly: true,
+              sameSite: "none",
+              secure: true,
+            })
             .json({ accessToken });
         } else {
           logger.error("Login failed: password does not match");

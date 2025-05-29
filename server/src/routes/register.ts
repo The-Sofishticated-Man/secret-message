@@ -36,7 +36,11 @@ router.post(
         logger.info("refresh token:", refreshToken);
         res
           .status(201)
-          .cookie("refreshToken", refreshToken, { httpOnly: true })
+          .cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+          })
           .json({ accessToken });
       } catch (err) {
         logger.error("Error creating user", err);

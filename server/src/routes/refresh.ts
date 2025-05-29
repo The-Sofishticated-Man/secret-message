@@ -1,11 +1,14 @@
 import express from "express";
+import logger from "../utils/loggingUtils";
+
 const router = express.Router();
 import jwt, { JwtPayload } from "jsonwebtoken";
 router.get("/", (req, res) => {
   // This route is used to refresh the access token
   // The refresh token is expected to be in the cookies
+  logger.info("got refresh request");
   const refreshToken = req.cookies.refreshToken;
-
+  logger.info(`refresh token: ${refreshToken}`);
   if (!refreshToken) {
     return res.status(401).json({ message: "No refresh token provided" });
   }
@@ -23,6 +26,7 @@ router.get("/", (req, res) => {
       const newAccessToken = jwt.sign(decoded as JwtPayload, process.env.JWT_SECRET as string, {
         expiresIn: "15m",
       });
+      logger.info(`new access token: ${newAccessToken}`);
       res.status(200).json({ accessToken: newAccessToken });
     }
   );

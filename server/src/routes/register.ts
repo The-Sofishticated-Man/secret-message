@@ -8,7 +8,6 @@ import generateTokens from "../utils/jwtUtils";
 
 const router = express.Router();
 
-
 router.post(
   "/",
   registerValidationSchema,
@@ -28,8 +27,17 @@ router.post(
           password: hashedPassword,
         });
         logger.info("created user successfully:");
-        const { accessToken, refreshToken } = generateTokens(data.id,data.username!);
-        res.status(201).cookie("refreshToken", refreshToken, { httpOnly: true }).json({accessToken});
+        const { accessToken, refreshToken } = generateTokens(
+          data.id,
+          data.username!
+        );
+        logger.info("Generated tokens successfully");
+        logger.info("access token:", accessToken);
+        logger.info("refresh token:", refreshToken);
+        res
+          .status(201)
+          .cookie("refreshToken", refreshToken, { httpOnly: true })
+          .json({ accessToken });
       } catch (err) {
         logger.error("Error creating user", err);
         res.status(500).json({ error: err });
@@ -39,5 +47,3 @@ router.post(
 );
 
 export default router;
-
-

@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { loginUser } from "../services/apiClients";
-import { SetUser } from "../util/loginUtil";
 import useAuth from "./useAuth";
 export default function useLogin() {
   
@@ -15,11 +14,8 @@ export default function useLogin() {
     loginUser(loginData)
       .then((response) => {
         console.log("login successful: ", response);
-
-        //stores username and jwt token in the cookie jar
-        SetUser(response.data.user, response.data.jwtToken, response.data.id);
-
-        dispatch({ type: "LOGIN", payload: response.data.user });
+        dispatch({ type: "LOGIN", payload: { accessToken: response.data.accessToken } });
+        window.location.href = "../messages";
       })
       .catch((err) => {
         if (err.response) {

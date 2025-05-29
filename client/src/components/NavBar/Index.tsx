@@ -7,25 +7,23 @@ import useLogout from "../../hooks/useLogout";
 import useAuth from "../../hooks/useAuth";
 import { HiHome } from "react-icons/hi2";
 import { MdInbox } from "react-icons/md";
-const NavBar = ({ homePage }: { homePage?: boolean }) => {
+const NavBar = () => {
   const { pathname } = useLocation();
-  const { authState } = useAuth();
+  const {
+    authState: { isAuthenticated },
+  } = useAuth();
   const logout = useLogout();
   const isInLoginPage = pathname === "/login";
   const isInRegisterPage = pathname === "/register";
-  const isInMessagesPage = pathname === "/messages";
-  const isInHomePage = pathname === "/home";
-  console.log(authState);
-  // TODO: complete restyle
   return (
     <div className={style.navBarContainer}>
       <nav className={style.navBar}>
         <div className={style.logoContainer}>
-          <BetterLink to={authState.user ? "/home" : "/"}>
+          <BetterLink to={isAuthenticated ? "/home" : "/"}>
             <img src={logo} alt="Logo" className={style.logo} />
           </BetterLink>
         </div>
-        {!authState.user ? (
+        {!isAuthenticated ? (
           <div className={style.linksContainer}>
             <BetterLink to="/login">
               <Button>Login</Button>
@@ -41,7 +39,7 @@ const NavBar = ({ homePage }: { homePage?: boolean }) => {
                 <HiHome size={38} />
               </BetterLink>
               <BetterLink to="/messages" className={style.userLink}>
-                <MdInbox size={42}  />
+                <MdInbox size={42} />
               </BetterLink>
             </div>
             <BetterLink to="/logout">

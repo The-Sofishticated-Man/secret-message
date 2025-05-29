@@ -29,7 +29,7 @@ export default async function authenticate(
       process.env.JWT_SECRET_KEY as string
     ) as JwtPayload;
 
-    req.user = (await SMUser.findById({ _id }).select("_id")) as object;
+    req.user = await SMUser.findById({ _id }).select("_id");
     logger.info("request authenticated successfully as user: ", req.user);
   } catch (error) {
     // invalid token

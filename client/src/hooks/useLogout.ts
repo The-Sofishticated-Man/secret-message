@@ -1,11 +1,16 @@
+import { logoutuser } from "../services/privateApiClients";
 import useAuth from "./useAuth";
-import Cookies from "js-cookie";
 export default function useLogout() {
   const { dispatch } = useAuth();
 
   const logOut = () => {
-    Cookies.remove("SMUser");
-    dispatch({ type: "LOGOUT", payload: null });
+    logoutuser()
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+      })
+      .catch((error) => {
+        console.error("Error during logout:", error);
+      });
   };
   return logOut;
 }

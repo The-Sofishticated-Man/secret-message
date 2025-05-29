@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import {
-  DeleteMessage,
+  deleteMessage as DeleteMessage,
   getSecretMessages,
   secretMessagesType,
-} from "../services/apiClients";
+} from "../services/privateApiClients";
 
 export default function useMessages() {
   const [messages, setMessages] = useState<secretMessagesType[]>([]);
@@ -15,7 +15,7 @@ export default function useMessages() {
       .then(() => {
         console.log("deleted message: ", id);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setError("could not delete message: " + error);
         console.error(error);
       });

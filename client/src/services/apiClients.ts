@@ -1,36 +1,32 @@
 import axios from "axios";
-import Cookies from "js-cookie";
-interface axiosPostResponse {
-  message: string;
-  user: string;
-  jwtToken: string;
-  id: string;
+interface authTokenResponse {
+  accessToken: string;
 }
 interface usernameGetResponse {
   username: string;
-}
-export type secretMessagesType = {
-  message: string;
-  _id: string;
-  date: Date;
-};
-export interface messagesGetResponse {
-  secretMessages: secretMessagesType[];
 }
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:";
 const backendPort = import.meta.env.VITE_BACKEND_PORT || "";
 const baseURL = backendUrl + backendPort;
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL,
 });
 
+export const privateApiClient = axios.create({
+  baseURL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true, // This allows cookies to be sent with requests
+});
+
 export function registerUser(userData: object) {
-  return apiClient.post<axiosPostResponse>("/users/register", userData);
+  return apiClient.post<authTokenResponse>("/register", userData);
 }
 export function loginUser(userData: object) {
-  return apiClient.post<axiosPostResponse>("/users/login", userData);
+  return apiClient.post<authTokenResponse>("/login", userData);
 }
 export function getUsername(userId: string) {
   console.log("getting username for:", userId);
@@ -39,22 +35,13 @@ export function getUsername(userId: string) {
 export function SendSecretMessage(message: string, userId: string) {
   return apiClient.post(`/send/${userId}`, { secretMessage: message });
 }
-export function DeleteMessage(key: string) {
-  const jwtCookie = Cookies.get("SMUser")!;
-  const jwtToken = JSON.parse(jwtCookie as string).token;
-  return apiClient.delete(`/messages/${key}`, {
-    headers: {
-      Authorization: `Bearer ${jwtToken}`,
-    },
-  });
-}
 
-export function getSecretMessages() {
-  const jwtCookie = Cookies.get("SMUser")!;
-  const jwtToken = JSON.parse(jwtCookie as string).token;
-  return apiClient.get<messagesGetResponse>("/messages", {
+// This function is used to refresh the access token
+export function refreshAccessToken() {
+  return apiClient.get<authTokenResponse>("/refresh", {
     headers: {
-      Authorization: "Bearer " + jwtToken,
+      "Content-Type": "application/json",
     },
+    withCredentials: true, // This allows cookies to be sent with requests
   });
 }

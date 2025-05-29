@@ -7,7 +7,6 @@ import {
 } from "../util/registrationValidationUtil";
 import Cookies from "js-cookie";
 import useAuth from "./useAuth";
-import { SetUser } from "../util/loginUtil";
 Cookies.attributes;
 
 export default function useRegister(
@@ -24,8 +23,12 @@ export default function useRegister(
     registerUser(formInput)
       .then((response) => {
         console.log("User added successfully", response.data);
-        SetUser(response.data.user, response.data.jwtToken, response.data.id);
-        dispatch({ type: "LOGIN", payload: response.data.user });
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            accessToken: response.data.accessToken 
+          },
+        });
         console.log(authState);
         window.location.href = "../messages";
       })

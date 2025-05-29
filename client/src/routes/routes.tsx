@@ -19,14 +19,14 @@ import NavBar from "../components/NavBar/Index";
 
 export function useRoutes() {
   const { authState } = useAuth();
-  const isLoggedIn = !!authState.user;
+  const isLoggedIn = !!authState.username;
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route
         path="/"
         element={
           <>
-            <NavBar/>
+            <NavBar />
             <Outlet />
             <Footer />
           </>
@@ -69,7 +69,7 @@ export function useRoutes() {
           }
         />
       </Route>
-    ),
+    )
   );
 
   return routes;

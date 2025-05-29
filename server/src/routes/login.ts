@@ -26,7 +26,7 @@ router.post("/", async (req: Request, res: Response) => {
           res
             .status(201)
             .cookie("refreshToken", refreshToken, { httpOnly: true })
-            .json({accessToken});
+            .json({ accessToken });
         } else {
           logger.error("Login failed: password does not match");
           res.status(401).json({ message: "Login failed" });

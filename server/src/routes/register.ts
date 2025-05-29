@@ -39,7 +39,6 @@ router.post(
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
             sameSite: "none",
-            secure: true,
           })
           .json({ accessToken });
       } catch (err) {

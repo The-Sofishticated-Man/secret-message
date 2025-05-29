@@ -28,7 +28,6 @@ router.post("/", async (req: Request, res: Response) => {
             .cookie("refreshToken", refreshToken, {
               httpOnly: true,
               sameSite: "none",
-              secure: true,
             })
             .json({ accessToken });
         } else {

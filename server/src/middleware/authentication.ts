@@ -26,7 +26,7 @@ export default async function authenticate(
     //decrypts jwt token and returns payload
     const { _id } = jwt.verify(
       token as string,
-      process.env.JWT_SECRET_KEY as string
+      process.env.ACCESS_SECRET as string
     ) as JwtPayload;
 
     req.user = await SMUser.findById({ _id }).select("_id");

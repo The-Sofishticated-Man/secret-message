@@ -28,6 +28,7 @@ router.post("/", async (req: Request, res: Response) => {
             .cookie("refreshToken", refreshToken, {
               httpOnly: true,
               sameSite: "none",
+              maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
             })
             .json({ accessToken });
         } else {

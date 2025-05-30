@@ -13,6 +13,9 @@ router.get("/", (req, res) => {
   if (!refreshToken) {
     return res.status(401).json({ message: "No refresh token provided" });
   }
+  logger.info(
+    `verifying refresh token... with secret: ${process.env.REFRESH_SECRET}`
+  );
   jwt.verify(
     refreshToken,
     process.env.REFRESH_SECRET as string,

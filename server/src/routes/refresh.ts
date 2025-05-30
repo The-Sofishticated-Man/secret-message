@@ -26,9 +26,10 @@ router.get("/", (req, res) => {
       if (err) {
         return res.status(403).json({ message: "Invalid refresh token" });
       }
-      // If the refresh token is valid, issue a new access token
+      // Remove 'exp' and 'iat' from the decoded payload before signing a new token
+      const { exp, iat, ...payload } = decoded as JwtPayload;
       const newAccessToken = jwt.sign(
-        decoded as JwtPayload,
+        payload,
         process.env.ACCESS_SECRET as string,
         {
           expiresIn: "15m",

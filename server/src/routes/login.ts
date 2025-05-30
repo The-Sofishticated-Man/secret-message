@@ -27,7 +27,7 @@ router.post("/", async (req: Request, res: Response) => {
             .status(201)
             .cookie("refreshToken", refreshToken, {
               httpOnly: true,
-              sameSite: "none",
+              sameSite: "lax",
               maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
             })
             .json({ accessToken });

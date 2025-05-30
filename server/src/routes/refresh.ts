@@ -6,8 +6,8 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 router.get("/", (req, res) => {
   // This route is used to refresh the access token
   // The refresh token is expected to be in the cookies
-  logger.info("got refresh request");
-  logger.info("request cookies: ", req.cookies);
+  logger.info(`got refresh request`);
+  logger.info(`request cookies: ${JSON.stringify(req.cookies)}`);
   const refreshToken = req.cookies.refreshToken;
   logger.info(`refresh token: ${refreshToken}`);
   if (!refreshToken) {
@@ -24,9 +24,13 @@ router.get("/", (req, res) => {
         return res.status(403).json({ message: "Invalid refresh token" });
       }
       // If the refresh token is valid, issue a new access token
-      const newAccessToken = jwt.sign(decoded as JwtPayload, process.env.JWT_SECRET as string, {
-        expiresIn: "15m",
-      });
+      const newAccessToken = jwt.sign(
+        decoded as JwtPayload,
+        process.env.JWT_SECRET as string,
+        {
+          expiresIn: "15m",
+        }
+      );
       logger.info(`new access token: ${newAccessToken}`);
       res.status(200).json({ accessToken: newAccessToken });
     }

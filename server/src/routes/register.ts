@@ -13,9 +13,9 @@ router.post(
   registerValidationSchema,
   async (req: Request, res: Response) => {
     const errors = validationResult(req).array({ onlyFirstError: true });
-    logger.info("Validation result: ", errors);
+    logger.info(`Validation result: ${JSON.stringify(errors)}`);
     const formData = req.body;
-    logger.info("User creation request: ", formData);
+    logger.info(`User creation request: ${JSON.stringify(formData)}`);
 
     if (errors.length !== 0) {
       res.status(400).send(errors);
@@ -26,14 +26,14 @@ router.post(
           ...formData,
           password: hashedPassword,
         });
-        logger.info("created user successfully:");
+        logger.info(`created user successfully:`);
         const { accessToken, refreshToken } = generateTokens(
           data.id,
           data.username!
         );
-        logger.info("Generated tokens successfully");
-        logger.info("access token:", accessToken);
-        logger.info("refresh token:", refreshToken);
+        logger.info(`Generated tokens successfully`);
+        logger.info(`access token: ${accessToken}`);
+        logger.info(`refresh token: ${refreshToken}`);
         res
           .status(201)
           .cookie("refreshToken", refreshToken, {
@@ -43,7 +43,7 @@ router.post(
           })
           .json({ accessToken });
       } catch (err) {
-        logger.error("Error creating user", err);
+        logger.error(`Error creating user: ${err}`);
         res.status(500).json({ error: err });
       }
     }

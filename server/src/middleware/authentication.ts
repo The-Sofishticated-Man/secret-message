@@ -14,10 +14,10 @@ export default async function authenticate(
   next: NextFunction
 ) {
   const { authorization } = req.headers;
-  logger.info("got authorization request with payload: ", authorization);
+  logger.info(`got authorization request with payload:  ${authorization}`);
   if (!authorization) {
     // authorization header empty
-    logger.error("authorization header is empty");
+    logger.error(`authorization header is empty`);
     res.status(401).json({ error: "Authorization token required" });
     return;
   }
@@ -30,10 +30,10 @@ export default async function authenticate(
     ) as JwtPayload;
 
     req.user = await SMUser.findById({ _id }).select("_id");
-    logger.info("request authenticated successfully as user: ", req.user);
+    logger.info(`request authenticated successfully as user: ${req.user}`);
   } catch (error) {
     // invalid token
-    logger.error(error);
+    logger.error(`${error}`);
     res.status(401).json({ message: "Token could not be authorized" });
   }
 

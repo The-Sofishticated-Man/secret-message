@@ -38,6 +38,8 @@ router.post(
           httpOnly: true,
           sameSite: "lax",
           maxAge: 30 * 24 * 60 * 60 * 1000,
+          secure: false, // Set to true if using HTTPS
+          path: "/",
         });
         res.status(201).json({ accessToken });
       } catch (err) {

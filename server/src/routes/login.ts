@@ -21,8 +21,8 @@ router.post("/", async (req: Request, res: Response) => {
             user.username!
           );
           logger.info("Generated tokens successfully");
-          logger.info("access token:", accessToken);
-          logger.info("refresh token:", refreshToken);
+          logger.info(`access token: ${accessToken}`);
+          logger.info(`refresh token: ${refreshToken}`);
           res
             .status(201)
             .cookie("refreshToken", refreshToken, {

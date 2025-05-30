@@ -24,16 +24,7 @@ if (process.env.NODE_ENV !== "PROD") {
 app.use(express.json());
 app.use(cookieParser());
 // TODO: change the origin to the actual frontend URL in production
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-      "http://ip172-18-0-70-d0s90h291nsg00bvhhlg-3000.direct.labs.play-with-docker.com",
-    ],
-    credentials: true,
-  })
-);
+// app.use( cors({ origin: [ "http://localhost:5173", "http://127.0.0.1:5173", "http://ip172-18-0-70-d0s90h291nsg00bvhhlg-3000.direct.labs.play-with-docker.com", ], credentials: true, }));
 
 //unauthenticated routes
 app.use("/users", user);

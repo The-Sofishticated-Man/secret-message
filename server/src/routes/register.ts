@@ -34,14 +34,12 @@ router.post(
         logger.info(`Generated tokens successfully`);
         logger.info(`access token: ${accessToken}`);
         logger.info(`refresh token: ${refreshToken}`);
-        res
-          .status(201)
-          .cookie("refreshToken", refreshToken, {
-            httpOnly: true,
-            sameSite: "lax",
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-          })
-          .json({ accessToken });
+        res.cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          sameSite: "lax",
+          maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
+        res.status(201).json({ accessToken });
       } catch (err) {
         logger.error(`Error creating user: ${err}`);
         res.status(500).json({ error: err });

@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
       // If the refresh token is valid, issue a new access token
       const newAccessToken = jwt.sign(
         decoded as JwtPayload,
-        process.env.JWT_SECRET as string,
+        process.env.ACCESS_SECRET as string,
         {
           expiresIn: "15m",
         }

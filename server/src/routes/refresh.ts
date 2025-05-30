@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     `verifying refresh token... with secret: ${process.env.REFRESH_SECRET}`
   );
   jwt.verify(
-    refreshToken,
+    refreshToken as string,
     process.env.REFRESH_SECRET as string,
     (
       err: jwt.JsonWebTokenError | null,

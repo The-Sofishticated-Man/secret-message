@@ -25,9 +25,9 @@ router.post("/", async (req: Request, res: Response) => {
           logger.info(`refresh token: ${refreshToken}`);
           res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000,
-            secure: false, // Set to true if using HTTPS
+            secure: true, // Set to true if using HTTPS
             path: "/",
           });
           res.status(201).json({ accessToken });

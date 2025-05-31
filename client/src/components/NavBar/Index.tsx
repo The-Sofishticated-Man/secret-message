@@ -23,16 +23,7 @@ const NavBar = () => {
             <img src={logo} alt="Logo" className={style.logo} />
           </BetterLink>
         </div>
-        {!isAuthenticated ? (
-          <div className={style.linksContainer}>
-            <BetterLink to="/login">
-              <Button>Login</Button>
-            </BetterLink>
-            <BetterLink to="/register">
-              <Button Secondary>Signup</Button>
-            </BetterLink>
-          </div>
-        ) : (
+        {isAuthenticated ? (
           <>
             <div className={style.userLinks}>
               <BetterLink to="/home" className={style.userLink}>
@@ -46,6 +37,15 @@ const NavBar = () => {
               Logout
             </Button>
           </>
+        ) : !isInLoginPage && !isInRegisterPage && (
+          <div className={style.linksContainer}>
+            <BetterLink to="/login">
+              <Button>Login</Button>
+            </BetterLink>
+            <BetterLink to="/register">
+              <Button Secondary>Signup</Button>
+            </BetterLink>
+          </div>
         )}
       </nav>
     </div>

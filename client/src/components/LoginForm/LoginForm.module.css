@@ -3,11 +3,12 @@
   padding: 40px 60px;
   background-color: white;
   border-radius: 15px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   font-family: "Poppins";
   display: flex;
   flex-direction: column;
   box-shadow: rgba(70, 60, 18, 0.15) 0px 48px 100px 0px;
+  margin: auto;
 }
 .formField {
   width: 100%;

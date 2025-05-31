@@ -3,9 +3,8 @@ import Button from "../Button";
 import useLogin from "../../hooks/useLogin";
 import BetterLink from "../BetterLink/BetterLink";
 
-function RegisterForm() {
+function LoginForm() {
   const { isLoading, error, submitForm, loginData, setLoginData } = useLogin();
-
   return (
     <form
       noValidate={true}
@@ -64,4 +63,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

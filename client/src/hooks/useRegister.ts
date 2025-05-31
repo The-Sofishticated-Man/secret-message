@@ -5,10 +5,8 @@ import {
   pathType,
   serverError,
 } from "../util/registrationValidationUtil";
-import Cookies from "js-cookie";
 import useAuth from "./useAuth";
-Cookies.attributes;
-
+import { useNavigate } from "react-router-dom";
 export default function useRegister(
   setError: (
     path: pathType,
@@ -17,12 +15,14 @@ export default function useRegister(
 ) {
   const [isLoading, setLoading] = useState(false);
   const { authState, dispatch } = useAuth();
+  const navigate = useNavigate(); 
   const registerIn = (formInput: formData) => {
     console.log(formInput);
     setLoading(true);
     registerUser(formInput)
       .then((response) => {
         console.log("User added successfully", response.data);
+        console.log("received access token: ", response.data.accessToken);
         dispatch({
           type: "LOGIN",
           payload: {
@@ -30,7 +30,7 @@ export default function useRegister(
           },
         });
         console.log(authState);
-        window.location.href = "../messages";
+        navigate("/home", { replace: true }); // Redirect to home after login
       })
       .catch((error) => {
         console.log("got an error trying to create user: ", error);

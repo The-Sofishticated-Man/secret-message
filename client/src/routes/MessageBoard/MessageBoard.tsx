@@ -4,7 +4,7 @@ import useMessages from "../../hooks/useMessages";
 import style from "./MessageBoard.module.css";
 const MessageBoard = () => {
   const { messages, error, deleteMessage, isLoading } = useMessages();
-  console.log(messages);
+  console.log(`MessageBoard: messages`, messages);
   return (
     <section className={style.messageBoardSection}>
       <h1 className={style.messageBoardHeading}>

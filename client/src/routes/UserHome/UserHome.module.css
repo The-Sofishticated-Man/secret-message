@@ -4,7 +4,6 @@
   align-items: center;
   padding: 50px 0;
   text-align: center;
-  background-color: var(--light);
 }
 .userHeading {
   font-family: "Lilita One";
@@ -18,6 +17,7 @@
   flex-direction: column;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  background-color: white;
 }
 
 .userLinkText {
@@ -63,5 +63,5 @@
   transition: 0.1s ease-in-out;
 }
 .copyIcon:hover {
-  background-color: hsl(274, 93%, 38%); 
+  background-color: hsl(274, 93%, 38%);
 }

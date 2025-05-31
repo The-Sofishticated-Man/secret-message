@@ -26,7 +26,7 @@ const SendMessage = () => {
               <p className={style.characterCounter}>{message.length}/1000</p>
             </div>
           </form>
-          <Button OnClick={submitMessage} className={style.sendMessageBtn}>
+          <Button onClick={submitMessage} className={style.sendMessageBtn}>
             Send Message
           </Button>
           <p className="text-danger">{error}</p>

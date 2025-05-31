@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { jwtDecode } from "jwt-decode";
-import useRefreshToken from "../hooks/useRefreshToken";
 interface authStateType {
   accessToken: string | null;
   username: string | null;
@@ -70,16 +69,6 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     isAuthenticated: false,
     isGuest: false,
   });
-  useEffect(() => {
-    const refresh = useRefreshToken();
-    const refreshToken = async () => {
-      const token = await refresh();
-      if (token) {
-        console.log("Token refreshed:", token);
-      }
-    };
-    refreshToken();
-  }, []);
   return (
     <AuthContext.Provider value={{ authState, dispatch }}>
       {children}

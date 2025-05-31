@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
+import useAxiosPrivate from "./useAxiosPrivate";
 import {
-  deleteMessage as DeleteMessage,
-  getSecretMessages,
   secretMessagesType,
+  getSecretMessages,
+  deleteMessage,
 } from "../services/privateApiClients";
 
 export default function useMessages() {
+  const axiosPrivate = useAxiosPrivate();
   const [messages, setMessages] = useState<secretMessagesType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const deleteMessage = (id: string) => {
+
+  const handleDeleteMessage = (id: string) => {
     setMessages(messages.filter((message) => message._id !== id));
-    DeleteMessage(id)
+    deleteMessage(id, axiosPrivate)
       .then(() => {
         console.log("deleted message: ", id);
       })
@@ -20,10 +23,10 @@ export default function useMessages() {
         console.error(error);
       });
   };
+
   useEffect(() => {
-    getSecretMessages()
+    getSecretMessages(axiosPrivate)
       .then((response) => {
-        console.log("got messages: ", response.data);
         setMessages(response.data.secretMessages);
       })
       .catch((error) => {
@@ -31,6 +34,7 @@ export default function useMessages() {
         console.error(error);
       })
       .finally(() => setIsLoading(false));
-  }, []);
-  return { messages, error, deleteMessage, isLoading };
+  }, [axiosPrivate]);
+
+  return { messages, error, deleteMessage: handleDeleteMessage, isLoading };
 }

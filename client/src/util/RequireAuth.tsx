@@ -1,16 +1,20 @@
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useLogout from "../hooks/useLogout";
 
 const RequireAuth = () => {
-  const { authState: { isAuthenticated } } = useAuth();
-  const logout = useLogout();
+  const {
+    authState: { isAuthenticated },
+  } = useAuth();
 
-  console.log("Current authentication state is: ", isAuthenticated);
+  console.log("RequireAuth: isAuthenticated:", isAuthenticated);
+
   if (!isAuthenticated) {
-    logout();
+    console.log(
+      "RequireAuth: User is not authenticated, redirecting to login."
+    );
     return <Navigate to="/login" />;
   } else {
+    console.log("RequireAuth: User is authenticated, rendering outlet.");
     return <Outlet />;
   }
 };

@@ -42,11 +42,9 @@ const NavBar = () => {
                 <MdInbox size={42} />
               </BetterLink>
             </div>
-            <BetterLink to="/logout">
-              <Button Secondary onClick={logout}>
-                Logout
-              </Button>
-            </BetterLink>
+            <Button Secondary onClick={logout}>
+              Logout
+            </Button>
           </>
         )}
       </nav>

@@ -6,6 +6,7 @@ export default function useLogout() {
   const logOut = () => {
     logoutuser()
       .then(() => {
+        console.log("User logged out successfully");
         dispatch({ type: "LOGOUT" });
       })
       .catch((error) => {

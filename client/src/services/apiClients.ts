@@ -5,20 +5,8 @@ interface authTokenResponse {
 interface usernameGetResponse {
   username: string;
 }
-
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:";
-const backendPort = import.meta.env.VITE_BACKEND_PORT || "";
-const baseURL = backendUrl + backendPort;
-
 export const apiClient = axios.create({
-  baseURL,
-});
-
-export const privateApiClient = axios.create({
-  baseURL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: "/api",
   withCredentials: true, // This allows cookies to be sent with requests
 });
 
@@ -42,6 +30,5 @@ export function refreshAccessToken() {
     headers: {
       "Content-Type": "application/json",
     },
-    withCredentials: true, // This allows cookies to be sent with requests
   });
 }

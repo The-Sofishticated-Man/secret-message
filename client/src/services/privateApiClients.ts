@@ -1,8 +1,4 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:";
-const backendPort = import.meta.env.VITE_BACKEND_PORT || "";
-export const baseURL = backendUrl + backendPort;
+import axios from "axios";
 
 export type secretMessagesType = {
   message: string;
@@ -13,14 +9,20 @@ export interface messagesGetResponse {
   secretMessages: secretMessagesType[];
 }
 
-const privateApiClient = useAxiosPrivate();
+export const privateApiClient = axios.create({
+  baseURL: "/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true, // This allows cookies to be sent with requests
+});
 
-export function logoutuser() {
-  return privateApiClient.get("/logout");
+export function logoutuser(api = privateApiClient) {
+  return api.get("/logout");
 }
-export function deleteMessage(key: string) {
-  return privateApiClient.delete(`/messages/${key}`);
+export function deleteMessage(key: string, api = privateApiClient) {
+  return api.delete(`/messages/${key}`);
 }
-export function getSecretMessages() {
-  return privateApiClient.get<messagesGetResponse>("/messages");
+export function getSecretMessages(api = privateApiClient) {
+  return api.get<messagesGetResponse>("/messages");
 }

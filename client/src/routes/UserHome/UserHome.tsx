@@ -5,17 +5,19 @@ import {
   FaSquareXTwitter,
 } from "react-icons/fa6";
 import style from "./UserHome.module.css";
-import Cookies from "js-cookie";
 import { FaCopy } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 const UserHome = () => {
-  const userCookies = JSON.parse(Cookies.get("SMUser")!);
-  const link = `http://localhost:5173/send/${userCookies.id}`;
+  const {
+    authState: { userID, username },
+  } = useAuth();
+  const link = `http://localhost:5173/send/${userID}`;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(link);
   };
   return (
     <section className={style.userHomeSection}>
-      <h1 className={style.userHeading}>Welcome {userCookies.user} !</h1>
+      <h1 className={style.userHeading}>Welcome {username} !</h1>
       <div className={style.userLink}>
         <h3>Your link has been generated :</h3>
         <div className={style.userLinkContainer}>

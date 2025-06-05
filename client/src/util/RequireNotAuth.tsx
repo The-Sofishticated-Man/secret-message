@@ -5,7 +5,7 @@ const RequireNotAuth = () => {
   const {
     authState: { isAuthenticated },
   } = useAuth();
-
+  console.log("RequireNotAuth isAuthenticated:", isAuthenticated);
   return <>{isAuthenticated ? <Navigate to="/home" /> : <Outlet />}</>;
 };
 

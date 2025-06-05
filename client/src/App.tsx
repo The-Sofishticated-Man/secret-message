@@ -1,14 +1,20 @@
 import { RouterProvider } from "react-router-dom";
 import { useRoutes } from "./routes/routes";
-import useAxiosPrivate from "./hooks/useAxiosPrivate";
+import { SkeletonTheme } from "react-loading-skeleton";
+import AuthContextProvider from "./context/AuthContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 function App() {
   const routes = useRoutes();
-  // Initialize axios private client to handle token refresh and authorization headers
-  useAxiosPrivate();
+  const queryClient = new QueryClient();
+
   return (
-    <>
-      <RouterProvider router={routes} />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <SkeletonTheme baseColor="#f3f3f3">
+        <AuthContextProvider>
+          <RouterProvider router={routes} />
+        </AuthContextProvider>
+      </SkeletonTheme>
+    </QueryClientProvider>
   );
 }
 

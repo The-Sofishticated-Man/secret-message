@@ -1,21 +1,25 @@
 import CardSkeleton from "../../components/CardSkeleton/CardSkeleton";
 import MessageCard from "../../components/MessageCard/MessageCard";
-import useMessages from "../../hooks/useMessages";
+import { useMessages } from "../../hooks/useMessages";
 import style from "./MessageBoard.module.css";
+
 const MessageBoard = () => {
-  const { messages, error, deleteMessage, isLoading } = useMessages();
-  console.log(`MessageBoard: messages`, messages);
+  const { messages, isPending, isError, error, refetch, deleteMessage } =
+    useMessages();
   return (
     <section className={style.messageBoardSection}>
       <h1 className={style.messageBoardHeading}>
         Your messages will appear here
       </h1>
+      <button onClick={() => refetch()} className={style.refreshButton}>
+        Refresh
+      </button>
       <ul className={style.messageBoard}>
-        {isLoading ? (
+        {isPending ? (
           <CardSkeleton count={7} />
         ) : messages.length ? (
           messages
-            .map((message, index) => (
+            .map((message: any, index: number) => (
               <MessageCard
                 onDelete={() => deleteMessage(message._id)}
                 key={message._id}
@@ -35,7 +39,7 @@ const MessageBoard = () => {
           </>
         )}
       </ul>
-      <p className="text-danger">{error}</p>
+      <p className="text-danger">{isError ? (error as Error).message : ""}</p>
     </section>
   );
 };

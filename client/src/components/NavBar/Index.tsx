@@ -12,7 +12,7 @@ const NavBar = () => {
   const {
     authState: { isAuthenticated },
   } = useAuth();
-  const logout = useLogout();
+  const { logOut, isLoading } = useLogout();
   const isInLoginPage = pathname === "/login";
   const isInRegisterPage = pathname === "/register";
   return (
@@ -33,19 +33,22 @@ const NavBar = () => {
                 <MdInbox size={42} />
               </BetterLink>
             </div>
-            <Button Secondary onClick={logout}>
+            <Button loading={isLoading} Secondary onClick={logOut}>
               Logout
             </Button>
           </>
-        ) : !isInLoginPage && !isInRegisterPage && (
-          <div className={style.linksContainer}>
-            <BetterLink to="/login">
-              <Button>Login</Button>
-            </BetterLink>
-            <BetterLink to="/register">
-              <Button Secondary>Signup</Button>
-            </BetterLink>
-          </div>
+        ) : (
+          !isInLoginPage &&
+          !isInRegisterPage && (
+            <div className={style.linksContainer}>
+              <BetterLink to="/login">
+                <Button>Login</Button>
+              </BetterLink>
+              <BetterLink to="/register">
+                <Button Secondary>Signup</Button>
+              </BetterLink>
+            </div>
+          )
         )}
       </nav>
     </div>

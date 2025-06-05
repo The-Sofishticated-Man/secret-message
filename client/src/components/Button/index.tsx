@@ -24,7 +24,7 @@ const Button = ({
       className={`${style.btn} ${Secondary ? style.Secondary : style.Primary} ${className}`}
       onClick={onClick}
     >
-      {loading ? <LoadingSpinner /> : children}
+      {loading ? <LoadingSpinner Color={Secondary ? "var(--color-secondary)" : "white"} /> : children}
     </button>
   );
 };

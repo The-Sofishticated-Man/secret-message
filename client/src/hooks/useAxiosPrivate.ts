@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { privateApiClient } from "../services/privateApiClients";
 
 const useAxiosPrivate = () => {
-  const refresh = useRefreshToken();
+  const { refresh } = useRefreshToken();
   const {
     authState: { accessToken },
   } = useAuth();

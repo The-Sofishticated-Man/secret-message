@@ -19,7 +19,7 @@ function RegisterForm() {
   return (
     <form
       noValidate={true}
-      onSubmit={handleSubmit(registerIn)}
+      onSubmit={handleSubmit((data) => registerIn(data))}
       className={style.loginForm}
     >
       <h1 className={style.formHeading}>Welcome!</h1>

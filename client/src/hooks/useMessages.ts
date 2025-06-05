@@ -1,40 +1,41 @@
-import { useState, useEffect } from "react";
-import useAxiosPrivate from "./useAxiosPrivate";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  secretMessagesType,
   getSecretMessages,
   deleteMessage,
 } from "../services/privateApiClients";
+import useAxiosPrivate from "./useAxiosPrivate";
 
-export default function useMessages() {
+export function useMessages() {
   const axiosPrivate = useAxiosPrivate();
-  const [messages, setMessages] = useState<secretMessagesType[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const queryClient = useQueryClient();
 
-  const handleDeleteMessage = (id: string) => {
-    setMessages(messages.filter((message) => message._id !== id));
-    deleteMessage(id, axiosPrivate)
-      .then(() => {
-        console.log("deleted message: ", id);
-      })
-      .catch((error: any) => {
-        setError("could not delete message: " + error);
-        console.error(error);
-      });
+  const {
+    data: messages = [],
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["messages"],
+    queryFn: () =>
+      getSecretMessages(axiosPrivate).then((res) => res.data.secretMessages),
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (id: string) => deleteMessage(id, axiosPrivate),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["messages"] });
+    },
+  });
+
+  return {
+    messages,
+    isPending,
+    isError,
+    error,
+    refetch,
+    deleteMessage: (id: string) => deleteMutation.mutate(id),
   };
-
-  useEffect(() => {
-    getSecretMessages(axiosPrivate)
-      .then((response) => {
-        setMessages(response.data.secretMessages);
-      })
-      .catch((error) => {
-        setError("could not fetch messages: " + error);
-        console.error(error);
-      })
-      .finally(() => setIsLoading(false));
-  }, [axiosPrivate]);
-
-  return { messages, error, deleteMessage: handleDeleteMessage, isLoading };
 }

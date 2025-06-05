@@ -1,8 +1,11 @@
 import express from "express";
 import logger from "../utils/loggingUtils";
+import {
+  verifyRefreshTokenAndGetPayload,
+  signAccessTokenFromPayload,
+} from "../utils/jwtUtils";
 
 const router = express.Router();
-import jwt, { JwtPayload } from "jsonwebtoken";
 router.get("/", (req, res) => {
   // This route is used to refresh the access token
   // The refresh token is expected to be in the cookies
@@ -13,32 +16,15 @@ router.get("/", (req, res) => {
   if (!refreshToken) {
     return res.status(401).json({ message: "No refresh token provided" });
   }
-  logger.info(
-    `verifying refresh token... with secret: ${process.env.REFRESH_SECRET}`
-  );
-  jwt.verify(
-    refreshToken as string,
-    process.env.REFRESH_SECRET as string,
-    (
-      err: jwt.JsonWebTokenError | null,
-      decoded: string | JwtPayload | undefined
-    ) => {
-      if (err) {
-        return res.status(403).json({ message: "Invalid refresh token" });
-      }
-      // Remove 'exp' and 'iat' from the decoded payload before signing a new token
-      const { exp, iat, ...payload } = decoded as JwtPayload;
-      const newAccessToken = jwt.sign(
-        payload,
-        process.env.ACCESS_SECRET as string,
-        {
-          expiresIn: "15m",
-        }
-      );
-      logger.info(`new access token: ${newAccessToken}`);
-      res.status(200).json({ accessToken: newAccessToken });
+  logger.info(`verifying refresh token...`);
+  verifyRefreshTokenAndGetPayload(refreshToken, (err, payload) => {
+    if (err || !payload) {
+      return res.status(403).json({ message: "Invalid refresh token" });
     }
-  );
+    const newAccessToken = signAccessTokenFromPayload(payload);
+    logger.info(`new access token: ${newAccessToken}`);
+    res.status(200).json({ accessToken: newAccessToken });
+  });
 });
 
 export default router;

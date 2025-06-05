@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import SMUser from "../utils/mongoAPIUtils";
 import argon2 from "argon2";
 import logger from "../utils/loggingUtils";
-import generateTokens from "../utils/jwtUtils";
+import {generateTokens} from "../utils/jwtUtils";
 
 const router = express.Router();
 

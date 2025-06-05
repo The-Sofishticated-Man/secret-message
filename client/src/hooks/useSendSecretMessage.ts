@@ -1,22 +1,28 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { SendSecretMessage } from "../services/apiClients";
 
 export default function useSendSecretMessage() {
-  const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
   const { userId } = useParams();
-  const sendSecretMessage = (message: string) => {
-    SendSecretMessage(message, userId!)
-      .then((response) => {
-        console.log("Secret message response: ", response);
-        setSuccess(true);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+  const mutation = useMutation({
+    mutationFn: (msg: string) => SendSecretMessage(msg, userId!),
+    onSuccess:()=>{
+      console.log("Message sent successfully");
+    }
+    ,
+    onError: (error: Error) => {
+      console.error("Error sending message:", error);
+    }
+  });
+
+  const submitMessage = (message: string) => mutation.mutate(message);
+
+  return {
+    submitMessage,
+    isLoading: mutation.isPending,
+    isSuccess: mutation.isSuccess,
+    isError: mutation.isError,
+    error: mutation.error as Error | null,
+    reset: mutation.reset,
   };
-  const submitMessage = () => sendSecretMessage(message);
-  return { message, setMessage, success, error, submitMessage };
 }

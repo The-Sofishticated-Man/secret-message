@@ -13,3 +13,10 @@
 .messageBoardHeading {
   font-family: "Lilita One";
 }
+.refreshButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+}

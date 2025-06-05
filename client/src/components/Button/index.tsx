@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import LoadingSpinner from "../icons/LoadingSpinner";
 import style from "./btnStyles.module.css";
 import "ldrs/ring";
@@ -11,7 +12,7 @@ const Button = ({
   className,
 }: {
   Secondary?:boolean,
-  children?: string;
+  children?: ReactNode;
   Size?: string;
   Margin?: string;
   loading?: boolean;

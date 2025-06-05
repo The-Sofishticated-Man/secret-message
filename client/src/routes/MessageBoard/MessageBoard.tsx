@@ -1,6 +1,8 @@
+import Button from "../../components/Button";
 import CardSkeleton from "../../components/CardSkeleton/CardSkeleton";
 import MessageCard from "../../components/MessageCard/MessageCard";
 import { useMessages } from "../../hooks/useMessages";
+import { RiRefreshFill } from "react-icons/ri";
 import style from "./MessageBoard.module.css";
 
 const MessageBoard = () => {
@@ -11,9 +13,13 @@ const MessageBoard = () => {
       <h1 className={style.messageBoardHeading}>
         Your messages will appear here
       </h1>
-      <button onClick={() => refetch()} className={style.refreshButton}>
-        Refresh
-      </button>
+      <Button
+        Size="1.2rem"
+        onClick={() => refetch()}
+        className={style.refreshButton}
+      >
+        <span>Refresh</span> <RiRefreshFill size={30} />
+      </Button>
       <ul className={style.messageBoard}>
         {isPending ? (
           <CardSkeleton count={7} />

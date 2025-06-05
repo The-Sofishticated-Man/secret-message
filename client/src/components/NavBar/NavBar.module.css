@@ -47,7 +47,11 @@
   align-items: center;
   position: relative;
   right: 30px;
-  background: linear-gradient(90deg, var(--color-primary-dark, #a084e8) 0%, var(--color-secondary-dark, #d291ff) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-dark, #a084e8) 0%,
+    var(--color-secondary-dark, #d291ff) 100%
+  );
   padding: 8px 18px;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(131, 56, 236, 0.18);
@@ -72,7 +76,7 @@
 }
 
 .userLink:hover,
-.userLinks a:hover{
+.userLinks a:hover {
   background: rgba(131, 56, 236, 0.18);
 }
 
@@ -84,11 +88,20 @@
   padding: 4px 8px;
 }
 
-
 .userLinks a svg {
   transition: color 0.2s, transform 0.2s;
 }
 
 .userLinks a:hover svg {
   transform: scale(1.08);
+}
+
+.activeLink {
+  background: rgba(131, 56, 236, 0.28);
+  color: var(--color-secondary, #d291ff);
+}
+
+.activeButton {
+  outline: 2px solid var(--color-secondary, #d291ff);
+  background: rgba(131, 56, 236, 0.1);
 }

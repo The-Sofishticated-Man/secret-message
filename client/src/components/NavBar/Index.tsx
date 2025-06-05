@@ -26,10 +26,22 @@ const NavBar = () => {
         {isAuthenticated ? (
           <>
             <div className={style.userLinks}>
-              <BetterLink to="/home" className={style.userLink}>
+              <BetterLink
+                to="/home"
+                className={
+                  style.userLink +
+                  (pathname === "/home" ? " " + style.activeLink : "")
+                }
+              >
                 <HiHome size={38} />
               </BetterLink>
-              <BetterLink to="/messages" className={style.userLink}>
+              <BetterLink
+                to="/messages"
+                className={
+                  style.userLink +
+                  (pathname === "/messages" ? " " + style.activeLink : "")
+                }
+              >
                 <MdInbox size={42} />
               </BetterLink>
             </div>
@@ -42,10 +54,23 @@ const NavBar = () => {
           !isInRegisterPage && (
             <div className={style.linksContainer}>
               <BetterLink to="/login">
-                <Button>Login</Button>
+                <Button
+                  className={
+                    pathname === "/login" ? style.activeButton : undefined
+                  }
+                >
+                  Login
+                </Button>
               </BetterLink>
               <BetterLink to="/register">
-                <Button Secondary>Signup</Button>
+                <Button
+                  Secondary
+                  className={
+                    pathname === "/register" ? style.activeButton : undefined
+                  }
+                >
+                  Signup
+                </Button>
               </BetterLink>
             </div>
           )

@@ -13,15 +13,9 @@ import RequireAuth from "../util/RequireAuth";
 import RequireNotAuth from "../util/RequireNotAuth";
 import MessageBoard from "./MessageBoard/MessageBoard";
 import Page404 from "./Page404/Page404";
-import { getUsername } from "../services/apiClients";
 import PersistLogin from "../util/PersistLogin";
 import Layout from "./Layout";
-import type { LoaderFunctionArgs } from "react-router-dom";
-
-const sendMessageLoader = async (args: LoaderFunctionArgs) => {
-  const userId = args.params.userId as string;
-  return (await getUsername(userId)).data.username;
-};
+import getUsernameFromID from "../util/getUsernameFromID";
 
 export function useRoutes() {
   const routes = createBrowserRouter(
@@ -38,7 +32,7 @@ export function useRoutes() {
           <Route
             path="/send/:userId"
             element={<SendMessage />}
-            loader={sendMessageLoader}
+            loader={getUsernameFromID}
             errorElement={<Navigate to="/404" replace />}
           />
 

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useReducer } from "react";
+import { createContext, ReactNode,useReducer } from "react";
 import { jwtDecode } from "jwt-decode";
 interface authStateType {
   accessToken: string | null;

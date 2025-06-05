@@ -2,14 +2,22 @@ import style from "./SendMessage.module.css";
 import Button from "../../components/Button";
 import MessageSuccessful from "../../components/MessageSuccessful/MessageSuccessful";
 import useSendSecretMessage from "../../hooks/useSendSecretMessage";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const SendMessage = () => {
   const { isSuccess, submitMessage, error, isLoading, isError, reset } =
     useSendSecretMessage();
-  const username = useLoaderData();
+  const { username, recipientId } = useLoaderData();
   const [message, setMessage] = useState("");
+
+  const {
+    authState: { userID },
+  } = useAuth();
+  const userSendingMessageToHimself = recipientId == userID;
+
+  console.log("Username from loader:", username);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,8 +25,11 @@ const SendMessage = () => {
   };
 
   return (
-    <section className={style.sendMessageSection}>
-      <>
+    // If the user is trying to send a message to themselves, redirect to home
+    userSendingMessageToHimself ? (
+      <Navigate to="/home" replace />
+    ) : (
+      <section className={style.sendMessageSection}>
         <form className={style.sendMessageForm} onSubmit={handleSubmit}>
           <h1 className={style.sendMessageHeader}>
             Send a secret message to {username as string} !
@@ -74,8 +85,8 @@ const SendMessage = () => {
             </div>
           </div>
         )}
-      </>
-    </section>
+      </section>
+    )
   );
 };
 

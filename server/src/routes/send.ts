@@ -14,7 +14,9 @@ router.post("/:userId", (req, res) => {
   if (!secretMessage) {
     // secret message doesn't exist or is empty
     logger.error(`secret message is undefined or empty`);
-    res.status(400).json({ error: "you didn't send a secretMessage dipshit" });
+    return res
+      .status(400)
+      .json({ error: "you didn't send a secretMessage dipshit" });
   } else {
     SMUser.updateOne(
       { _id: userId },
@@ -27,12 +29,12 @@ router.post("/:userId", (req, res) => {
       .then((value) => {
         // message saved successfully
         logger.info(`updated user: ${JSON.stringify(value)}`);
-        res.json({ message: "secret meassage sent successfully" });
+        return res.json({ message: "secret meassage sent successfully" });
       })
       .catch((error) => {
         // message failed to save
         logger.error(`failed to update user: ${error}`);
-        res.status(500).json({ error });
+        return res.status(500).json({ error });
       });
   }
 });

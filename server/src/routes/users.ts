@@ -9,17 +9,17 @@ router.get("/:userID", (req, res) => {
   logger.info(`got username fetch request with param of: ${userID}`);
   if (!userID) {
     logger.warn(`userId is undefined/null`);
-    res.status(400).json({ error: "you sent a bad request dingus" });
+    return res.status(400).json({ error: "you sent a bad request dingus" });
   } else {
     SMUser.findById(userID)
       .select("username")
       .then((username) => {
         logger.info(`sending username: ${JSON.stringify(username)}`);
-        res.status(200).json(username);
+        return res.status(200).json(username);
       })
       .catch((err) => {
         logger.error(`could not get username from database: ${err}`);
-        res.status(404).json({ error: err });
+        return res.status(404).json({ error: err });
       });
   }
 });

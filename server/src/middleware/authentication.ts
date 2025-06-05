@@ -18,8 +18,7 @@ export default async function authenticate(
   if (!authorization) {
     // authorization header empty
     logger.error(`authorization header is empty`);
-    res.status(401).json({ error: "Authorization token required" });
-    return;
+    return res.status(401).json({ error: "Authorization token required" });
   }
   const token = authorization?.split(" ")[1];
   try {
@@ -34,7 +33,7 @@ export default async function authenticate(
   } catch (error) {
     // invalid token
     logger.error(`${error}`);
-    res.status(401).json({ message: "Token could not be authorized" });
+    return res.status(401).json({ message: "Token could not be authorized" });
   }
 
   next();

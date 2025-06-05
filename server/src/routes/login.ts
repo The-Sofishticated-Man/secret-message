@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import SMUser from "../utils/mongoAPIUtils";
 import argon2 from "argon2";
 import logger from "../utils/loggingUtils";
-import {generateTokens} from "../utils/jwtUtils";
+import { generateTokens } from "../utils/jwtUtils";
 
 const router = express.Router();
 
@@ -30,18 +30,18 @@ router.post("/", async (req: Request, res: Response) => {
             secure: false, // Set to true if using HTTPS
             path: "/",
           });
-          res.status(201).json({ accessToken });
+          return res.status(201).json({ accessToken });
         } else {
           logger.error(`Login failed: password does not match`);
-          res.status(401).json({ message: "Login failed" });
+          return res.status(401).json({ message: "Login failed" });
         }
       } catch (err) {
         logger.error(`Error: couldn't verify password: ${err}`);
-        res.status(500).json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error" });
       }
     } else {
       logger.error(`Login failed: user does not exist`);
-      res.status(401).json({ message: "Login failed" });
+      return res.status(401).json({ message: "Login failed" });
     }
   });
 });

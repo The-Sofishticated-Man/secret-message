@@ -4,7 +4,7 @@ import SMUser from "../utils/mongoAPIUtils";
 import { validationResult } from "express-validator";
 import argon2 from "argon2";
 import logger from "../utils/loggingUtils";
-import {generateTokens} from "../utils/jwtUtils";
+import { generateTokens } from "../utils/jwtUtils";
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.post(
     logger.info(`User creation request: ${JSON.stringify(formData)}`);
 
     if (errors.length !== 0) {
-      res.status(400).send(errors);
+      return res.status(400).send(errors);
     } else {
       try {
         const hashedPassword = await argon2.hash(formData.password);
@@ -41,10 +41,10 @@ router.post(
           secure: false, // Set to true if using HTTPS
           path: "/",
         });
-        res.status(201).json({ accessToken });
+        return res.status(201).json({ accessToken });
       } catch (err) {
         logger.error(`Error creating user: ${err}`);
-        res.status(500).json({ error: err });
+        return res.status(500).json({ error: err });
       }
     }
   }

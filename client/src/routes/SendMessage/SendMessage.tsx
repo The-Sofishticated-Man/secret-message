@@ -1,6 +1,5 @@
 import style from "./SendMessage.module.css";
 import Button from "../../components/Button";
-import MessageSuccessful from "../../components/MessageSuccessful/MessageSuccessful";
 import useSendSecretMessage from "../../hooks/useSendSecretMessage";
 import { Navigate, useLoaderData } from "react-router-dom";
 import { useState } from "react";
@@ -22,6 +21,7 @@ const SendMessage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     submitMessage(message);
+    setMessage("");
   };
 
   return (
@@ -42,7 +42,7 @@ const SendMessage = () => {
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
-                if (isError) reset();
+                reset();
               }}
             ></textarea>
             <p className={style.characterCounter}>{message.length}/1000</p>
@@ -56,7 +56,6 @@ const SendMessage = () => {
         )}
         {isSuccess && (
           <div className={style.successContainer}>
-            <MessageSuccessful />
             <div className={style.successIndicator}>
               <svg
                 width="60"

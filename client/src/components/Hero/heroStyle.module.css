@@ -1,5 +1,5 @@
 .hero {
-  background-color: transparent ; 
+  background-color: transparent;
   position: relative;
   padding: 40px 0;
   padding-top: 0;
@@ -26,9 +26,16 @@
   margin-bottom: 2.5rem;
 }
 .heroKeyWord {
-  background: linear-gradient(135deg, rgb(214, 158, 4) 0%, rgb(252, 216, 15));
+  background: linear-gradient(92deg, var(--color-secondary) 0%, #a259f7 40%, var(--color-primary) 100%);
   background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  filter: drop-shadow(0 2px 12px rgba(131, 56, 236, 0.13));
+  text-shadow: 0 1px 8px rgba(255, 190, 11, 0.10);
+  transition: background 0.4s;
 }
 .hero__text h2 {
   padding-right: 30px;

@@ -7,12 +7,12 @@ import useAxiosPrivate from "./useAxiosPrivate";
 export default function useLogout() {
   const { dispatch } = useAuth();
   const navigate = useNavigate();
-  const privateApiClient = useAxiosPrivate()
+  const privateApiClient = useAxiosPrivate();
   const logoutMutation = useMutation({
     mutationFn: () => logoutuser(privateApiClient),
     onSuccess: () => {
       dispatch({ type: "LOGOUT" });
-      navigate("/login", { replace: true });
+      navigate("/", { replace: true });
     },
     onError: (error: any) => {
       console.error("Logout error:", error);

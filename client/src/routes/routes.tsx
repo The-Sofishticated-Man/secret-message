@@ -30,21 +30,20 @@ export function useRoutes() {
           </Route>
 
           <Route
-            path="/send/:userId"
+            path="send/:userId"
             element={<SendMessage />}
             loader={getUsernameFromID}
             errorElement={<Navigate to="/404" replace />}
           />
-
-          {/* Protected routes that require authentication */}
+        </Route>
+        <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />}>
             <Route path="home" element={<UserHome />} />
             <Route path="messages" element={<MessageBoard />} />
           </Route>
-
-          <Route path="*" element={<Navigate to="/404" replace />} />
-          <Route path="/404" element={<Page404 />}></Route>
         </Route>
+        <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path="/404" element={<Page404 />}></Route>
       </Route>
     )
   );

@@ -1,25 +1,23 @@
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import { refreshAccessToken } from "../services/apiClients";
 
 const useRefreshToken = () => {
   const { dispatch } = useAuth();
-  const mutation = useMutation({
-    mutationFn: async () => {
+  const query = useQuery({
+    queryKey: ["refreshToken"],
+    queryFn: async () => {
       const response = await refreshAccessToken();
       const data = response.data;
+      dispatch({ type: "LOGIN", payload: { accessToken: data.accessToken } });
+      console.log("Token refreshed successfully:", data.accessToken);
       return data.accessToken;
     },
-    onSuccess: (accessToken) => {
-      dispatch({ type: "LOGIN", payload: { accessToken: accessToken } });
-      console.log("Token refreshed successfully:", accessToken);
-    },
-    onError: (error) => {
-      console.error("Error refreshing token:", error);
-    },
+    enabled: false,
+    retry: false,
   });
 
-  return {refresh: mutation.mutate, isLoading: mutation.isPending};
+  return { refresh: query.refetch, isLoading: query.isFetching };
 };
 
 export default useRefreshToken;

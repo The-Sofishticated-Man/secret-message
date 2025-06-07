@@ -8,13 +8,13 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SkeletonTheme baseColor="#f3f3f3">
-        <AuthContextProvider>
+    <AuthContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <SkeletonTheme baseColor="#f3f3f3">
           <RouterProvider router={routes} />
-        </AuthContextProvider>
-      </SkeletonTheme>
-    </QueryClientProvider>
+        </SkeletonTheme>
+      </QueryClientProvider>
+    </AuthContextProvider>
   );
 }
 

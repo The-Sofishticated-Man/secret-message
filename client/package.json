@@ -32,6 +32,7 @@
     "zod": "^3.25.28"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.80.6",
     "@types/dompurify": "^3.2.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.15.27",

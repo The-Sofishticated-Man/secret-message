@@ -17,8 +17,13 @@ export function useMessages() {
     refetch,
   } = useQuery({
     queryKey: ["messages"],
-    queryFn: () =>
-      getSecretMessages(axiosPrivate).then((res) => res.data.secretMessages),
+    queryFn: async () => {
+      const res = await getSecretMessages(axiosPrivate);
+      if (!res || !res.data || !res.data.secretMessages) {
+        throw new Error("Failed to fetch messages");
+      }
+      return res.data.secretMessages;
+    },
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 5, // 5 minutes
   });

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FaSquareFacebook,
   FaSquareInstagram,
@@ -11,9 +12,12 @@ const UserHome = () => {
   const {
     authState: { userID, username },
   } = useAuth();
+  const [copied, setCopied] = useState(false);
   const link = `http://localhost:5173/send/${userID}`;
   const copyToClipboard = () => {
     navigator.clipboard.writeText(link);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   };
   return (
     <section className={style.userHomeSection}>
@@ -32,6 +36,7 @@ const UserHome = () => {
             onClick={copyToClipboard}
             size={35}
           />
+          {copied && <span className={style.copiedIndicator}>Copied!</span>}
         </div>
         <p className={style.userLinkText}>
           share this link with your friends to receive secret messages !

@@ -1,7 +1,6 @@
 import style from "./Footer.module.css";
 import { FaHeart } from "react-icons/fa";
 const Footer = () => {
-  // TODO: restyle footer (make it a bit smaller, add some padding, etc.)
   return (
     <footer className={style.footer}>
       <h4>
@@ -13,7 +12,7 @@ const Footer = () => {
           />
         </span>
         By
-        <br className="block" />
+        <br className={style.break} />
         <a
           href="https://github.com/The-Sofishticated-Man"
           target="_blank"

@@ -1,6 +1,6 @@
 .navBarContainer {
   background-color: transparent;
-  padding-block: 20px;
+  padding: 20px;
 }
 .navBar {
   background-color: white;
@@ -15,93 +15,66 @@
   min-height: 80px;
   margin: auto;
 }
-.navigationLinks {
-  align-items: center;
-  justify-self: center;
-  color: var(--color-primary);
+.desktopLinks {
   display: flex;
-  font-family: "Lilita One";
-  gap: 40px;
-  list-style: none;
-}
-
-.navigationLinks {
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 0;
+  gap: 32px;
+  align-items: center;
 }
 .logo {
   width: 180px;
   position: relative;
 }
 
-.linksContainer {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-left: auto;
-}
-.userLinks {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  position: relative;
-  right: 30px;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-dark, #a084e8) 0%,
-    var(--color-secondary-dark, #d291ff) 100%
-  );
-  padding: 8px 18px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(131, 56, 236, 0.18);
-  transition: box-shadow 0.2s;
+.mobileLinks {
+  display: none;
 }
 
-.userLinks:hover {
-  box-shadow: 0 4px 16px rgba(131, 56, 236, 0.28);
-}
-
-.userLink {
-  color: var(--color-light, #fff);
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-family: "Lilita One";
-  transition: color 0.2s, background 0.2s;
+.hamburgerButton {
+  background: var(--light);
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 2px 8px 0 rgba(131, 56, 236, 0.08);
+  padding: 10px;
   border-radius: 12px;
-  padding: 6px 10px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  background: transparent;
+  justify-content: center;
+  color: var(--color-secondary);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+  z-index: 100;
+}
+.hamburgerButton:focus,
+.hamburgerButton:hover {
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--light));
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 16px 0 rgba(131, 56, 236, 0.16);
+  outline: none;
 }
 
-.userLink:hover,
-.userLinks a:hover {
-  background: rgba(131, 56, 236, 0.18);
+@media (max-width: 768px) {
+  .desktopLinks {
+    display: none;
+  }
+  .mobileLinks {
+    display: flex;
+  }
+  .logo {
+    width: 150px;
+  }
 }
-
-.userLinks a {
-  display: flex;
-  align-items: center;
-  transition: background 0.2s;
-  border-radius: 12px;
-  padding: 4px 8px;
-}
-
-.userLinks a svg {
-  transition: color 0.2s, transform 0.2s;
-}
-
-.userLinks a:hover svg {
-  transform: scale(1.08);
-}
-
-.activeLink {
-  background: rgba(131, 56, 236, 0.28);
-  color: var(--color-secondary, #d291ff);
-}
-
-.activeButton {
-  outline: 2px solid var(--color-secondary, #d291ff);
-  background: rgba(131, 56, 236, 0.1);
+@media (max-width: 1100px) {
+  .navBarContainer {
+    padding: 0;
+  }
+  .navBar {
+    padding: 18px 24px;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+  }
+  .navigationLinks {
+    gap: 24px;
+    font-size: 1.2rem;
+  }
 }

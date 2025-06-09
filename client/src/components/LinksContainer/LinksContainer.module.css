@@ -1,0 +1,11 @@
+/* LinksContainer/LinksContainer.module.css */
+.linksContainer {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-left: auto;
+}
+.activeButton {
+  outline: 2px solid var(--color-secondary, #d291ff);
+  background: rgba(131, 56, 236, 0.1);
+}

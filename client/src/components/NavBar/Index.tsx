@@ -1,20 +1,36 @@
 import style from "./NavBar.module.css";
-import Button from "../Button";
 import logo from "../../assets/images/Logo.png";
 import BetterLink from "../BetterLink/BetterLink";
 import { useLocation } from "react-router-dom";
-import useLogout from "../../hooks/useLogout";
 import useAuth from "../../hooks/useAuth";
-import { HiHome } from "react-icons/hi2";
-import { MdInbox } from "react-icons/md";
+import UserLinks from "../UserLinks";
+import LinksContainer from "../LinksContainer";
+import HamburgerMenu from "../HamburgerMenu";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
+import { useState } from "react";
+import useLogout from "../../hooks/useLogout";
+
 const NavBar = () => {
   const { pathname } = useLocation();
   const {
     authState: { isAuthenticated },
   } = useAuth();
-  const { logOut, isLoading } = useLogout();
-  const isInLoginPage = pathname === "/login";
-  const isInRegisterPage = pathname === "/register";
+  const isInHomePage = pathname === "/";
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const { logOut } = useLogout();
+
+  // Links for HamburgerMenu
+  const guestLinks = [
+    { to: "/login", label: "Login" },
+    { to: "/register", label: "Signup" },
+  ];
+  const userLinks = [
+    { to: "/home", label: "Home" },
+    { to: "/messages", label: "Messages" },
+    { label: "Logout", onClick: logOut }, // You can add onClick for logout if needed
+  ];
+
   return (
     <div className={style.navBarContainer}>
       <nav className={style.navBar}>
@@ -23,59 +39,28 @@ const NavBar = () => {
             <img src={logo} alt="Logo" className={style.logo} />
           </BetterLink>
         </div>
-        {isAuthenticated ? (
-          <>
-            <div className={style.userLinks}>
-              <BetterLink
-                to="/home"
-                className={
-                  style.userLink +
-                  (pathname === "/home" ? " " + style.activeLink : "")
-                }
-              >
-                <HiHome size={38} />
-              </BetterLink>
-              <BetterLink
-                to="/messages"
-                className={
-                  style.userLink +
-                  (pathname === "/messages" ? " " + style.activeLink : "")
-                }
-              >
-                <MdInbox size={42} />
-              </BetterLink>
-            </div>
-            <Button loading={isLoading} Secondary onClick={logOut}>
-              Logout
-            </Button>
-          </>
-        ) : (
-          !isInLoginPage &&
-          !isInRegisterPage && (
-            <div className={style.linksContainer}>
-              <BetterLink to="/login">
-                <Button
-                  className={
-                    pathname === "/login" ? style.activeButton : undefined
-                  }
-                >
-                  Login
-                </Button>
-              </BetterLink>
-              <BetterLink to="/register">
-                <Button
-                  Secondary
-                  className={
-                    pathname === "/register" ? style.activeButton : undefined
-                  }
-                >
-                  Signup
-                </Button>
-              </BetterLink>
-            </div>
-          )
-        )}
+        <div className={style.desktopLinks}>
+          {isAuthenticated ? <UserLinks /> : isInHomePage && <LinksContainer />}
+        </div>
+        <div className={style.mobileLinks}>
+          <button
+            className={style.hamburgerButton}
+            onClick={() => setHamburgerOpen(!hamburgerOpen)}
+          >
+            {hamburgerOpen ? (
+              <IoMdClose size={24} />
+            ) : (
+              <GiHamburgerMenu size={24} />
+            )}
+          </button>
+        </div>
       </nav>
+      {hamburgerOpen && (
+        <HamburgerMenu
+          setOpen={setHamburgerOpen}
+          links={isAuthenticated ? userLinks : guestLinks}
+        />
+      )}
     </div>
   );
 };

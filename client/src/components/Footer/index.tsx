@@ -13,12 +13,13 @@ const Footer = () => {
           />
         </span>
         By
+        <br className="block" />
         <a
-          href="https://github.com/The-Sophishticated-Man"
+          href="https://github.com/The-Sofishticated-Man"
           target="_blank"
           className={style.sophishticated}
         >
-          <strong>The Sophishticated Man</strong>
+          <strong>The Sofishticated Man</strong>
         </a>
       </h4>
     </footer>

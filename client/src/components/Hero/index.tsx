@@ -8,8 +8,9 @@ const Hero = () => {
       <div className={style.container}>
         <div className={style.hero__text}>
           <h1>
-            Receive <span className={style.heroKeyWord}>Anonymous</span>{" "}
-            Messages from Strangers!
+            Receive <span className={style.heroKeyWord}>Anonymous</span> <br />
+            Messages from
+            <br /> Strangers!
           </h1>
           <h2>
             Find out what your friends and family think about you without

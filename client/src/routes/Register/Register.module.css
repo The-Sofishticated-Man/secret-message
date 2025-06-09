@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   background-position: center;
+  height: 100%;
   background-attachment: fixed;
   background-size: cover;
 }

@@ -5,6 +5,8 @@
   min-height: 100vh;
 }
 .layoutContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
-  min-height: 90vh;
 }

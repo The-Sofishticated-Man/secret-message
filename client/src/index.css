@@ -6,7 +6,7 @@
   text-decoration: none;
 }
 section {
-  min-height: 90vh;
+  flex: 1;
 }
 :root {
   --font-primary: "Lilita One";

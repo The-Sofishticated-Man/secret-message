@@ -13,3 +13,24 @@
   text-decoration: none;
   margin-left: 8px;
 }
+h4 {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    font-size: 1.05rem;
+    padding: 18px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    font-size: 0.9rem;
+    padding: 10px 0;
+  }
+  .sophishticated {
+    margin-left: 4px;
+    font-size: 0.95em;
+  }
+}

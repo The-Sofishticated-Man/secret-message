@@ -9,39 +9,29 @@ const HowToUse = () => {
   return (
     <section id="next" className={style.instructions}>
       <div className={style.container}>
-        <InstructionBox
-          floatLeft={true}
-          title="Create an Account"
-          vidsrc={signupvid}
-        >
+        <InstructionBox title="Create an Account" vidsrc={signupvid}>
           Start by creating a free account by clicking the "Get Started Now!"
           button below. This will allow you to save your progress and access all
           features of the app.
         </InstructionBox>
         <hr />
-        <InstructionBox
-          floatLeft={false}
-          title="Share Your Link"
-          vidsrc={copylinkvidlol}
-        >
+        <InstructionBox title="Share Your Link" vidsrc={copylinkvidlol}>
           After creating your account, you can generate and share your unique
           link with others. Simply copy the link provided in your dashboard and
           put it in your bio or something.
         </InstructionBox>
 
         <hr />
-        <InstructionBox
-          floatLeft={true}
-          title="Receive Messages"
-          vidsrc={messagesvidlol}
-        >
+        <InstructionBox title="Receive Messages" vidsrc={messagesvidlol}>
           Once you've shared your link, you can start receiving messages from
           anyone who clicks on it. All messages will be stored securely in your
           account, and you can access them anytime from your dashboard.
         </InstructionBox>
         <hr />
-        <BetterLink to={"/register"} className={style.getStarted}>
-          <Button Size="2rem">Get Started Now!</Button>
+        <BetterLink to={"/register"} >
+          <Button className={style.getStarted} >
+            Get Started Now!
+          </Button>
         </BetterLink>
       </div>
     </section>

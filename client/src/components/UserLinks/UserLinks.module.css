@@ -1,0 +1,53 @@
+/* UserLinks/UserLinks.module.css */
+.userLinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  right: 30px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-dark, #a084e8) 0%,
+    var(--color-secondary-dark, #d291ff) 100%
+  );
+  padding: 8px 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(131, 56, 236, 0.18);
+  transition: box-shadow 0.2s;
+}
+.userLinks:hover {
+  box-shadow: 0 4px 16px rgba(131, 56, 236, 0.28);
+}
+.userLink {
+  color: var(--color-light, #fff);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: "Lilita One";
+  transition: color 0.2s, background 0.2s;
+  border-radius: 12px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+.userLink:hover {
+  background: rgba(131, 56, 236, 0.18);
+}
+.activeLink {
+  background: rgba(131, 56, 236, 0.28);
+  color: var(--color-secondary, #d291ff);
+}
+.logoutButton {
+  color: var(--color-light, #fff);
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-family: "Lilita One";
+  border-radius: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.logoutButton:hover {
+  background: rgba(131, 56, 236, 0.18);
+}

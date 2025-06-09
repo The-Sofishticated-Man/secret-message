@@ -1,6 +1,8 @@
 .loginForm {
-  min-width: 700px;
-  padding: 35px 60px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 700px;
+  padding: 32px 16px;
   border: 1px solid rgba(0,0,0,0.1);
   /* padding-top: 35px; */
   background-color: white;
@@ -9,6 +11,16 @@
   display: flex;
   flex-direction: column;
   box-shadow: rgba(70, 60, 18, 0.15) 0px 48px 100px 0px;
+}
+@media (min-width: 600px) {
+  .loginForm {
+    padding: 35px 32px;
+  }
+}
+@media (min-width: 900px) {
+  .loginForm {
+    padding: 35px 60px;
+  }
 }
 .formField {
   width: 100%;
@@ -20,15 +32,35 @@
   text-align: center;
   /* color: var(--color-primary); */
   font-family: "Lilita One";
-  font-size: 4rem;
+  font-size: 2.2rem;
   padding-bottom: 20px;
+}
+@media (min-width: 600px) {
+  .formHeading {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 900px) {
+  .formHeading {
+    font-size: 4rem;
+  }
 }
 .formSubHeading {
   /* color: var(--color-primary); */
   font-family: "Poppins";
   font-weight: 500;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1rem;
+}
+@media (min-width: 600px) {
+  .formSubHeading {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 900px) {
+  .formSubHeading {
+    font-size: 1.4rem;
+  }
 }
 .warningMessage {
   font-family: "Lilita One";
@@ -37,7 +69,17 @@
 .loginLink {
   margin-top: 20px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
+}
+@media (min-width: 600px) {
+  .loginLink {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 900px) {
+  .loginLink {
+    font-size: 1.2rem;
+  }
 }
 .loginLink a {
   font-weight: 600;

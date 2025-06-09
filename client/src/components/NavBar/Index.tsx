@@ -16,7 +16,8 @@ const NavBar = () => {
   const {
     authState: { isAuthenticated },
   } = useAuth();
-  const isInHomePage = pathname === "/";
+  const notInLoginNorRegisterPage =
+    pathname !== "/login" && pathname !== "/register";
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const { logOut } = useLogout();
 
@@ -40,9 +41,14 @@ const NavBar = () => {
           </BetterLink>
         </div>
         <div className={style.desktopLinks}>
-          {isAuthenticated ? <UserLinks /> : isInHomePage && <LinksContainer />}
+          {isAuthenticated ? (
+            <UserLinks />
+          ) : (
+            notInLoginNorRegisterPage && <LinksContainer />
+          )}
         </div>
         <div className={style.mobileLinks}>
+          {notInLoginNorRegisterPage && (
           <button
             className={style.hamburgerButton}
             onClick={() => setHamburgerOpen(!hamburgerOpen)}
@@ -53,9 +59,10 @@ const NavBar = () => {
               <GiHamburgerMenu size={24} />
             )}
           </button>
+        )}
         </div>
       </nav>
-      {hamburgerOpen && (
+      {hamburgerOpen &&  (
         <HamburgerMenu
           setOpen={setHamburgerOpen}
           links={isAuthenticated ? userLinks : guestLinks}

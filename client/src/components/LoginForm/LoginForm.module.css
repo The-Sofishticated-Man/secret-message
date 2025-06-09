@@ -1,6 +1,8 @@
 .loginForm {
-  min-width: 700px;
-  padding: 40px 60px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 700px;
+  padding: 32px 16px;
   background-color: white;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -10,6 +12,16 @@
   box-shadow: rgba(70, 60, 18, 0.15) 0px 48px 100px 0px;
   margin: auto;
 }
+@media (min-width: 600px) {
+  .loginForm {
+    padding: 40px 32px;
+  }
+}
+@media (min-width: 900px) {
+  .loginForm {
+    padding: 40px 60px;
+  }
+}
 .formField {
   width: 100%;
 }
@@ -18,9 +30,19 @@
 }
 .formHeading {
   text-align: center;
-  font-size: 4rem;
+  font-size: 2.2rem;
   font-family: "Lilita One";
   margin-bottom: 20px;
+}
+@media (min-width: 600px) {
+  .formHeading {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 900px) {
+  .formHeading {
+    font-size: 4rem;
+  }
 }
 .formSubHeading {
   color: var(--color-primary);
@@ -32,8 +54,15 @@
 .registerLink {
   margin-top: 20px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
-.registerLink a {
-  font-weight: 600;
+@media (min-width: 600px) {
+  .registerLink {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 900px) {
+  .registerLink {
+    font-size: 1.2rem;
+  }
 }

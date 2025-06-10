@@ -3,9 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig(() => {
   const env = loadEnv("DEV", "../", "VITE_");
-  const backendURL =
-    env.VITE_BACKEND_URL ||
-    "http://localhost" + (":" + env.VITE_BACKEND_PORT || 3000);
+  const backendURL = `${env.VITE_BACKEND_URL || "http://localhost"}:${
+    env.VITE_BACKEND_PORT || "3000"
+  }`;
+  console.log("Environment variables:", env);
   console.log("Using backend URL:", backendURL);
   return {
     plugins: [react()],

@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 import logger from "./loggingUtils";
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/secretMessage";
+import dotenv from "dotenv";
+if (process.env.NODE_ENV !== "production") {
+  // Load environment variables from .env file in development
+  dotenv.config();
+}
+const mongoURI =
+  process.env.MONGO_URI ||
+  (process.env.NODE_ENV === "production"
+    ? "mongodb://mongo:27017"
+    : "mongodb://localhost:27017") + "/secret-messages";
 mongoose
-  .connect(
-    mongoURI
-  )
+  .connect(mongoURI)
   .then(() => {
     logger.info(`${new Date()} Connected to mongodb server on ${mongoURI}...`);
   })

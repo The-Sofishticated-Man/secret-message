@@ -9,7 +9,7 @@ const mongoURI =
   process.env.MONGO_URI ||
   (process.env.NODE_ENV === "production"
     ? "mongodb://mongo:27017"
-    : "mongodb://localhost:27017") + "/secret-messages";
+    : "mongodb://localhost:27017") + "/secretMessages";
 mongoose
   .connect(mongoURI)
   .then(() => {

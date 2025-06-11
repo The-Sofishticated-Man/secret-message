@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import { refreshAccessToken } from "../services/apiClients";
+import log from "../util/loggingUtils";
 
 const useRefreshToken = () => {
   const { dispatch } = useAuth();
@@ -10,7 +11,7 @@ const useRefreshToken = () => {
       const response = await refreshAccessToken();
       const data = response.data;
       dispatch({ type: "LOGIN", payload: { accessToken: data.accessToken } });
-      console.log("Token refreshed successfully:", data.accessToken);
+      log.debug("Token refreshed successfully:", data.accessToken);
       return data.accessToken;
     },
     enabled: false,

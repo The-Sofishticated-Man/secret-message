@@ -3,6 +3,7 @@ import { logoutuser } from "../services/privateApiClients";
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxiosPrivate from "./useAxiosPrivate";
+import log from "../util/loggingUtils";
 
 export default function useLogout() {
   const { dispatch } = useAuth();
@@ -12,8 +13,8 @@ export default function useLogout() {
     mutationFn: () => logoutuser(privateApiClient),
     onSuccess: () => {
       dispatch({ type: "LOGOUT" });
-      console.log("Logout successful");
-      console.log("Redirecting to home page...");
+      log.debug("Logout successful");
+      log.debug("Redirecting to home page...");
       navigate("/", { replace: true });
     },
     onError: (error: any) => {

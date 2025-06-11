@@ -1,6 +1,7 @@
 import winston from "winston"
+const loggingLevel = process.env.BACKEND_LOGGING_LEVEL || "debug";
 const logger = winston.createLogger({
-    level: "debug",
+    level: loggingLevel,
     format: winston.format.simple(),
     exitOnError: false,
     transports: [

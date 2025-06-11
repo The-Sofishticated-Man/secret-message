@@ -5,6 +5,8 @@ import DOMPurify from "dompurify";
 import { ReactNode } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import log from "../../util/loggingUtils";
+
 const MessageCard = ({
   children,
   date,
@@ -16,12 +18,12 @@ const MessageCard = ({
   onDelete?: () => void;
   zIndex?: number;
 }) => {
-  console.log("rendering Message", children);
+  log.debug("rendering Message", children);
 
   const sanitizedMessage =
     typeof children === "string" && DOMPurify.sanitize(children);
 
-  console.log("sanitized message", sanitizedMessage);
+  log.debug("sanitized message", sanitizedMessage);
 
   const formattedDistance =
     date && formatDistance(date as Date, new Date(), { addSuffix: true });
@@ -32,11 +34,7 @@ const MessageCard = ({
         {sanitizedMessage || <Skeleton count={2} />}
       </p>
       <span className={style.messageDate}>
-        {formattedDistance || (
-          <Skeleton
-            width={"10rem"}
-          />
-        )}
+        {formattedDistance || <Skeleton width={"10rem"} />}
       </span>
       {formattedDistance ? (
         <IoClose size={"2rem"} className={style.closeBtn} onClick={onDelete} />

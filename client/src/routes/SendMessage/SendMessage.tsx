@@ -4,6 +4,7 @@ import useSendSecretMessage from "../../hooks/useSendSecretMessage";
 import { Navigate, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import log from "../../util/loggingUtils";
 
 const SendMessage = () => {
   const { isSuccess, submitMessage, error, isLoading, isError, reset } =
@@ -16,7 +17,7 @@ const SendMessage = () => {
   } = useAuth();
   const userSendingMessageToHimself = recipientId == userID;
 
-  console.log("Username from loader:", username);
+  log.debug("Username from loader:", username);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

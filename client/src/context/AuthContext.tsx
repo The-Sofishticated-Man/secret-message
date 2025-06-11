@@ -1,5 +1,6 @@
-import { createContext, ReactNode,useReducer } from "react";
+import { createContext, ReactNode, useReducer } from "react";
 import { jwtDecode } from "jwt-decode";
+import log from "../util/loggingUtils";
 interface authStateType {
   accessToken: string | null;
   username: string | null;
@@ -39,7 +40,7 @@ const authReducer = (authState: authStateType, action: reducerActionType) => {
       const decodedToken = jwtDecode<jwtPayloadType>(
         action.payload?.accessToken as string
       );
-      console.log("Logged in as user: ", action.payload);
+      log.debug("Logged in as user: ", action.payload);
       return {
         accessToken: action.payload!.accessToken,
         username: decodedToken.username,
@@ -48,7 +49,7 @@ const authReducer = (authState: authStateType, action: reducerActionType) => {
         isGuest: false,
       };
     case "LOGOUT":
-      console.log("Logged out");
+      log.debug("Logged out");
       return {
         accessToken: null,
         username: null,
@@ -61,7 +62,7 @@ const authReducer = (authState: authStateType, action: reducerActionType) => {
   }
 };
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  console.log("auth context provider launched");
+  log.debug("auth context provider launched");
   const [authState, dispatch] = useReducer(authReducer, {
     accessToken: null,
     username: null,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import log from "../util/loggingUtils";
 interface authTokenResponse {
   accessToken: string;
 }
@@ -17,7 +18,7 @@ export function loginUser(userData: object) {
   return apiClient.post<authTokenResponse>("/login", userData);
 }
 export function getUsername(userId: string) {
-  console.log("getting username for:", userId);
+  log.debug("getting username for:", userId);
   return apiClient.get<usernameGetResponse>(`/users/${userId}`);
 }
 export function SendSecretMessage(message: string, userId: string) {

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
 import useAuth from "./useAuth";
 import { privateApiClient } from "../services/privateApiClients";
+import log from "../util/loggingUtils";
 
 const useAxiosPrivate = () => {
   const { refresh } = useRefreshToken();
@@ -11,8 +12,8 @@ const useAxiosPrivate = () => {
   useEffect(() => {
     const requestInterceptor = privateApiClient.interceptors.request.use(
       (config) => {
-        console.log("Axios request interceptor triggered");
-        console.log(
+        log.debug("Axios request interceptor triggered");
+        log.debug(
           accessToken ? "Access token is present" : "No access token found"
         );
         if (!config.headers["Authorization"]) {
@@ -27,12 +28,12 @@ const useAxiosPrivate = () => {
       async (error) => {
         const prevRequest = error?.config;
         if (error?.response?.status === 403 && !prevRequest.sent) {
-          console.log(
+          log.debug(
             "Axios response interceptor triggered: 403 error, refreshing token"
           );
           prevRequest.sent = true;
           const newAccessToken = await refresh();
-          console.log("got new access token",newAccessToken);
+          log.debug("got new access token", newAccessToken);
           prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return privateApiClient(prevRequest);
         }

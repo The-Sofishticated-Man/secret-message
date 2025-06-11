@@ -23,7 +23,7 @@ const MessageBoard = () => {
       <ul className={style.messageBoard}>
         {isPending ? (
           <CardSkeleton count={7} />
-        ) : messages.length ? (
+        ) : messages.length && !isError ? (
           messages
             .map((message: any, index: number) => (
               <MessageCard

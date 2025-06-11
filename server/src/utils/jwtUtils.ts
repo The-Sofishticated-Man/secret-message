@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken";
+import logger from "./loggingUtils";
 export const ACCESS_SECRET =
   process.env.ACCESS_SECRET || "sloppyKissesFromGrandma552";
 export const REFRESH_SECRET =
   process.env.REFRESH_SECRET || "sloppyKissesFromGrandma225";
 
-
+logger.info(
+  `Using ACCESS_SECRET: ${ACCESS_SECRET} and REFRESH_SECRET: ${REFRESH_SECRET}`
+);
 
 export function generateTokens(_id: string, username: string) {
   const payload = { _id, username };

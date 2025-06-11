@@ -12,6 +12,8 @@ export default function useLogout() {
     mutationFn: () => logoutuser(privateApiClient),
     onSuccess: () => {
       dispatch({ type: "LOGOUT" });
+      console.log("Logout successful");
+      console.log("Redirecting to home page...");
       navigate("/", { replace: true });
     },
     onError: (error: any) => {

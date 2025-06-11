@@ -3,6 +3,7 @@ import { Request } from "express";
 import jwt from "jsonwebtoken";
 import SMUser from "../utils/mongoAPIUtils";
 import logger from "../utils/loggingUtils";
+import { ACCESS_SECRET } from "../utils/jwtUtils";
 // type of payload contained in jwt token
 interface JwtPayload {
   _id: string;
@@ -23,10 +24,7 @@ export default async function authenticate(
   const token = authorization?.split(" ")[1];
   try {
     //decrypts jwt token and returns payload
-    const { _id } = jwt.verify(
-      token as string,
-      process.env.ACCESS_SECRET as string
-    ) as JwtPayload;
+    const { _id } = jwt.verify(token as string, ACCESS_SECRET) as JwtPayload;
 
     req.user = await SMUser.findById({ _id }).select("_id");
     logger.info(`request authenticated successfully as user: ${req.user}`);

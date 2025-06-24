@@ -211,6 +211,6 @@ Don't forget to give the project a star! Thanks again!
 [issues-shield]: https://img.shields.io/github/issues/the-sofishticated-man/secret-message.svg?style=for-the-badge
 [issues-url]: https://github.com/the-sofishticated-man/secret-message/issues
 [license-shield]: https://img.shields.io/github/license/the-sofishticated-man/secret-message.svg?style=for-the-badge
-[license-url]: https://github.com/the-sofishticated-man/secret-message/blob/master/LICENSE.txt
+[license-url]: https://github.com/the-sofishticated-man/secret-message/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username

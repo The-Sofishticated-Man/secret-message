@@ -22,7 +22,7 @@
 <h1 align="center">Secret Messaging App</h3>
 
   <p align="center">
-    A simple and secure messaging platform that lets you generate a unique link others can use to send you anonymous messages. sender identities remain completely hidden. Perfect for gathering honest feedback or just having fun!
+    A simple and secure messaging platform that lets you generate a unique link others can use to send you anonymous messages. Sender identities remain completely hidden. Perfect for gathering honest feedback or just having fun!
  
   <p align="center">
   <a href="https://github.com/the-sofishticated-man/secret-message/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
@@ -45,8 +45,8 @@
   - Supports both **Access Tokens** and **Refresh Tokens**
   - Token rotation and expiration handling
 
-- **Full-Stack Data Sanitization**
-  - **Backend:** Protects against injection attacks with input validation and sanitization
+- **Full-Stack Data Sanitisation**
+  - **Backend:** Protects against injection attacks with input validation and sanitisation
   - **Frontend:** Cleans user input to prevent XSS and other client-side vulnerabilities
 
 - **Fast Routing & Data Fetching**
@@ -55,22 +55,22 @@
   - Built-in caching, background updates, and revalidation
 
 - **Responsive Design**
-  - Fully responsive layout optimized for **mobile, tablet, and desktop**
+  - Fully responsive layout optimised for **mobile, tablet, and desktop**
   - Built with flexible UI components and modern CSS practices## Prerequisites
-Make sure you have the following installed:
+
 
 ## Getting Started
-Before doing anything sure you have the following installed:
+Before doing anything, make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/) v22 (or later)
 - [TypeScript](https://www.typescriptlang.org/) v5.4.3 (or later)
 
-You can install node using:
-#### for windows:
+You can install Node using:
+#### For Windows:
 ```
 winget install OpenJS.NodeJS // For windows
 ```
-#### for mac:
+#### For Mac:
 ```
 brew install node
 ```
@@ -90,7 +90,7 @@ npm install -g typescript
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file, These are the default values if ones are not set.
+To run this project, you will need to add the following environment variables to your .env file. These are the default values if none are set.
 
 `NODE_ENV=development`
 `VITE_BACKEND_URL=localhost` 
@@ -101,7 +101,7 @@ To run this project, you will need to add the following environment variables to
 `VITE_FRONTEND_LOGGING_LEVEL=debug` 
 `BACKEND_LOGGING_LEVEL= debug`
 
-Note that the default values for `MONGO_URI` and `VITE_FRONTEND_LOGGING_LEVEL` will change when `NODE_ENV` is set to production, becoming `mongodb://mongo:27017` and `slient` respectively.
+Note that the default values for `MONGO_URI` and `VITE_FRONTEND_LOGGING_LEVEL` will change when `NODE_ENV` is set to production, becoming `mongodb://mongo:27017` and `silent` respectively.
 ## Run Locally
 
 Clone the project
@@ -110,7 +110,7 @@ Clone the project
 git clone https://github.com/The-Sofishticated-Man/secret-message
 ```
 
-Go to the project directory
+Go to the project directory.
 
 ```
 cd my-project
@@ -122,7 +122,7 @@ Install client dependencies
 cd client
 npm install
 ```
-Start frontend server
+Start the frontend server.
 
 ```
 npm run dev
@@ -133,7 +133,7 @@ Install server dependencies
 cd server
 npm install
 ```
-Start backend server
+Start the backend server.
 
 ```
 npm run dev
@@ -144,35 +144,35 @@ npm run dev
 
 ## Deployment
 
-The way I initally made this, for the backend, you can just run docker compose and deploy your containers on any cloud provider.
+The way I initially made this, for the backend, you can just run Docker Compose and deploy your containers on any cloud provider.
 
-However for the frontend, you can use many different hosting options like vercel, cloudflare, or github pages.
+However, for the frontend, you can use many different hosting options like Vercel, Cloudflare, or GitHub Pages.
 
 I *would* have made it a docker image aswell and served it with nginx but honestly I couldn't be arsed 🗿.
 
-### Deploy the frontend using github pages.
-To deploy this project to github pages, start by forking this repository, clone it, then navigate to the client folder.
+### Deploy the frontend using GitHub Pages.
+To deploy this project to GitHub Pages, start by forking this repository, cloning it, and then navigating to the client folder.
 
 ```
 git clone https://github.com/yourusername/your-forked-repo.git
 cd your-forked-repo/client
 ```
 
-Then, you're gonna have to edit the package. file and add your urls, (replace your username and repo-name)
+Then, you're gonna have to edit the package.json file and add your URLs (replace your username and repo-name)
 ```
 "homepage": "https://yourusername.github.io/repo-name"
 ```
 
-After that it's just one simple command
+After that, it's just one simple command.
 ```
 npm run deploy
 ```
-### Deploy the backend using docker.
-This one is much simpler, just head to your cloud provider's cli or whatever environment you're using, make sure you're in the the project's root directory and run:
+### Deploy the backend using Docker.
+This one is much simpler, just head to your cloud provider's CLI or whatever environment you're using, make sure you're in the project's root directory and run:
 ```
 docker compose up --build backend
 ```
-this will attach it to your backend container which is useful for debugging logs.
+This will attach it to your backend container, which is useful for debugging logs.
 
 ## Roadmap
 
@@ -180,7 +180,7 @@ this will attach it to your backend container which is useful for debugging logs
 - [ ] 🌍 Multi-language support  
   - [ ] French 🇫🇷  
   - [ ] Arabic 🇸🇦  
-- [ ] 👤 Sign in as guest  
+- [ ] 👤 Sign in as a guest  
 - [ ] 🔐 Sign in using OAuth (Google, GitHub, etc.)
 - [ ] 🧪 Add some tests  
   - [ ] Unit tests  
@@ -213,4 +213,4 @@ Don't forget to give the project a star! Thanks again!
 [license-shield]: https://img.shields.io/github/license/the-sofishticated-man/secret-message.svg?style=for-the-badge
 [license-url]: https://github.com/the-sofishticated-man/secret-message/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: www.linkedin.com/in/islam-lameche-8266802a1
